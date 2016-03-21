@@ -51,8 +51,8 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         let layout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         var size : CGSize = layout.itemSize
         if(viewLoaded){
-            var newHeight = size.height * imageRatio
-            size.height = newHeight
+//            var newHeight = size.height * imageRatio
+//            size.height = newHeight
         }
         return size
     }
@@ -82,7 +82,7 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
             completionHandler: {(response: NSURLResponse?,data: NSData?,error: NSError?) -> Void in
                 if error == nil {
                     cell.thumbnailImg.image = UIImage(data: data!)!
-                    cell.thumbnailImg.bounds = bounds;
+//                    cell.thumbnailImg.bounds = bounds;
                 }
         })
         
