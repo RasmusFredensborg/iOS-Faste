@@ -14,6 +14,7 @@ class ThumbnailCell: UICollectionViewCell {
     @IBOutlet var viewLbl: UILabel!
     @IBOutlet var thumbnailImg: UIImageView!
     
+    @IBOutlet weak var descriptionView: UIView!
     @IBOutlet weak var thumbWidth: NSLayoutConstraint!
     @IBOutlet weak var thumbHeight: NSLayoutConstraint!
 }

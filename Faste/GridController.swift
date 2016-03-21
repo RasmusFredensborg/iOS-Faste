@@ -21,7 +21,7 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
     var YTVideosArray: Array<YTVideo> = []
     var selectedVideoIndex: Int!
     var viewLoaded = false
-    var imageRatio : CGFloat = 0
+    var newHeight : CGFloat = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController!.navigationBar.translucent = false;
@@ -50,22 +50,23 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
     func collectionView( collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize{
         let layout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         var size : CGSize = layout.itemSize
+        
         if(viewLoaded){
-//            var newHeight = size.height * imageRatio
-//            size.height = newHeight
+            size.height = self.newHeight
         }
+        
         return size
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell: ThumbnailCell = collectionView.dequeueReusableCellWithReuseIdentifier("ThumbnailCell", forIndexPath: indexPath) as! ThumbnailCell
         
-        cell.layer.shadowColor = UIColor.grayColor().CGColor;
-        cell.layer.shadowOffset = CGSizeMake(0, 2.0);
-        cell.layer.shadowRadius = 3.0;
-        cell.layer.shadowOpacity = 0.25;
-        cell.layer.masksToBounds = false;
-        cell.layer.shadowPath = UIBezierPath(roundedRect:cell.bounds, cornerRadius:cell.contentView.layer.cornerRadius).CGPath;
+//        cell.layer.shadowColor = UIColor.grayColor().CGColor;
+//        cell.layer.shadowOffset = CGSizeMake(0, 2.0);
+//        cell.layer.shadowRadius = 3.0;
+//        cell.layer.shadowOpacity = 0.25;
+//        cell.layer.masksToBounds = false;
+//        cell.layer.shadowPath = UIBezierPath(roundedRect:cell.bounds, cornerRadius:cell.contentView.layer.cornerRadius).CGPath;
         
         let video = YTVideosArray[indexPath.row]
         cell.titleLbl.text = video.title
@@ -82,7 +83,8 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
             completionHandler: {(response: NSURLResponse?,data: NSData?,error: NSError?) -> Void in
                 if error == nil {
                     cell.thumbnailImg.image = UIImage(data: data!)!
-//                    cell.thumbnailImg.bounds = bounds;
+                    cell.thumbnailImg.bounds = bounds;
+                    
                 }
         })
         
@@ -92,7 +94,7 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         cell.viewLbl.text = video.viewCount
         cell.durationLbl.text = ISOConverter(video.duration)
         if(indexPath.row+1==videoArray.count){
-            imageRatio = cell.thumbnailImg.bounds.height/cell.bounds.height
+            self.newHeight = bounds.size.height + cell.descriptionView.bounds.height
             viewLoaded = true
             self.collectionView.collectionViewLayout.invalidateLayout()
         }
@@ -197,7 +199,7 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
                         video.likeCount = videoStatDict["likeCount"] as! String
                         
                         self.YTVideosArray.append(video)
-
+                        
                         
                         self.videoIndex++
                         if self.videoIndex == self.videoArray.count{

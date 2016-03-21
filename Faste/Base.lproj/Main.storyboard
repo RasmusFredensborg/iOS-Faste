@@ -117,6 +117,7 @@
                                         </constraints>
                                         <inset key="insetFor6xAndEarlier" minX="0.0" minY="-15" maxX="0.0" maxY="15"/>
                                         <connections>
+                                            <outlet property="descriptionView" destination="WDh-uY-a3v" id="ybo-wf-KPY"/>
                                             <outlet property="durationLbl" destination="VUS-CA-blU" id="mOU-MN-26g"/>
                                             <outlet property="thumbnailImg" destination="JPe-LD-aOD" id="eSE-y6-h6E"/>
                                             <outlet property="titleLbl" destination="80O-sc-Zof" id="g8V-pb-KrU"/>
