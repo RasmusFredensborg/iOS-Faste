@@ -22,6 +22,7 @@ class VideoController: UIViewController, UICollectionViewDataSource, UICollectio
         UINavigationBar.appearance().translucent = true
         let playerVars = ["playsinline" : 1]// "controls" : 1, "playsinline" : 1, "autohide" : 1, "showinfo" : 1, "autoplay" : 1, "fs" : 1, "rel" : 0, "loop" : 0, "enablejsapi" : 1, "modestbranding" : 1]
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "rotated", name: UIDeviceOrientationDidChangeNotification, object: nil)
         
         videoCollectionView.dataSource = self
         videoCollectionView.delegate = self
@@ -32,10 +33,19 @@ class VideoController: UIViewController, UICollectionViewDataSource, UICollectio
         layout.itemSize = CGSize(width: 160, height: 135)
         videoCollectionView.collectionViewLayout = layout
         
-        
         playerView.loadWithVideoId(video.ID, playerVars: playerVars)
         height.constant = UIScreen.mainScreen().bounds.width * (9/16)
     }
+    
+    func rotated(){
+        if(UIDevice.currentDevice().orientation.isLandscape){
+            height.constant = UIScreen.mainScreen().bounds.height
+        }
+        else{
+            height.constant = UIScreen.mainScreen().bounds.width * (9/16)
+        }
+    }
+    
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 2
     }

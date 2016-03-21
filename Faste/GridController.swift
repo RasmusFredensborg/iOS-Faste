@@ -32,6 +32,7 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         self.navigationController!.navigationBar.frame.size.width =  100
         self.title = "FASTEREGLER"
         
+        
         collectionView.dataSource = self
         collectionView.delegate = self
         var videos = "";

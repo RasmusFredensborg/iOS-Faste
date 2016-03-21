@@ -46,8 +46,6 @@ class GridLayout: UICollectionViewFlowLayout {
             if(UIDevice.currentDevice().orientation.isLandscape){
                 numberOfItemsPerRow = 3;
                 let itemsPerRow = CGFloat(max(numberOfItemsPerRow, 1))
-                
-                // Calculate the sum of the spacing between cells
                 let totalSpacing = minimumInteritemSpacing * (itemsPerRow - 1.0)
                 sectionInset.left = -((itemsPerRow*(newItemSize.width+(totalSpacing-UIScreen.mainScreen().bounds.width)/itemsPerRow)))/2
                 sectionInset.right = sectionInset.left
@@ -56,17 +54,9 @@ class GridLayout: UICollectionViewFlowLayout {
             if(UIDevice.currentDevice().orientation.isPortrait){
                 numberOfItemsPerRow = 2
                 let itemsPerRow = CGFloat(max(numberOfItemsPerRow, 1))
-                
-                // Calculate the sum of the spacing between cells
                 let totalSpacing = minimumInteritemSpacing * (itemsPerRow - 1.0)
-                // Calculate how wide items should be
                 newItemSize.width = (collectionView.bounds.size.width - sectionInset.left - sectionInset.right - totalSpacing) / itemsPerRow
-                
-                // Item height is set in GridController
-                //            if itemSize.height > 0 {
-                //                let itemAspectRatio = itemSize.width / itemSize.height
-                //                newItemSize.height = newItemSize.width / itemAspectRatio
-                //            }
+
                 // Set the new item size
                 itemSize = newItemSize
             }
