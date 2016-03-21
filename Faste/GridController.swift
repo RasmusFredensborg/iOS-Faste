@@ -42,8 +42,6 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
             }
         }
         getVideos(videos);
-        
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -59,7 +57,7 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         var size : CGSize = layout.itemSize
         var rect = CGRect()
         size.height = self.newHeight
-        
+
         if(!shadowLoaded){
             var visibleCells = layout.collectionView!.visibleCells()
             if(visibleCells.count != 0){
@@ -75,6 +73,7 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
                 shadowLoaded = true
             }
         }
+
         
         return size
     }
@@ -105,12 +104,11 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
             
             cell.viewLbl.text = video.viewCount
             cell.durationLbl.text = ISOConverter(video.duration)
-            if(indexPath.item == YTVideosArray.count-1){
+            if((indexPath.item == YTVideosArray.count-1) ){
                 self.newHeight = bounds.size.height + cell.descriptionView.bounds.height
                 viewLoaded = true
                 self.collectionView.collectionViewLayout.invalidateLayout()
-            }
-            
+            }            
             
         }
         return cell;

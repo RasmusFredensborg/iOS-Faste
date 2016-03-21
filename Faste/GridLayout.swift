@@ -21,33 +21,55 @@ class GridLayout: UICollectionViewFlowLayout {
         super.prepareLayout()
         
         if let collectionView = self.collectionView {
-            var device = UIDevice.currentDevice().model
-            
-            if(device == "iPad"){
-                sectionInset.left = (UIScreen.mainScreen().bounds.width)/15
+            let device = UIDevice.currentDevice();
+            let model = device.model;
+            if(model == "iPad"){
+                sectionInset.left = (UIScreen.mainScreen().bounds.width)/12
                 sectionInset.right = sectionInset.left
-                sectionInset.top = sectionInset.left/4
+                sectionInset.top = 10
                 minimumInteritemSpacing = 10
                 minimumLineSpacing = 10
+            }
+            else{
+                sectionInset.left = 5
+                sectionInset.right = sectionInset.left
+                sectionInset.top = 5
+                minimumInteritemSpacing = 5
+                minimumLineSpacing = 5
             }
             
             var newItemSize = itemSize
             collectionView.backgroundColor = UIColor(red: 0xfa/255,green: 0xfa/255,blue: 0xfa/255,alpha: 1.0)
             // Always use an item count of at least 1 and convert it to a float to use in size calculations
-            let itemsPerRow = CGFloat(max(numberOfItemsPerRow, 1))
+
             
-            // Calculate the sum of the spacing between cells
-            let totalSpacing = minimumInteritemSpacing * (itemsPerRow - 1.0)
-            
-            // Calculate how wide items should be
-            newItemSize.width = (collectionView.bounds.size.width - sectionInset.left - sectionInset.right - totalSpacing) / itemsPerRow
-            // Use the aspect ratio of the current item size to determine how tall the items should be
-            if itemSize.height > 0 {
-                let itemAspectRatio = itemSize.width / itemSize.height
-                newItemSize.height = newItemSize.width / itemAspectRatio
+            if(UIDevice.currentDevice().orientation.isLandscape){
+                numberOfItemsPerRow = 3;
+                let itemsPerRow = CGFloat(max(numberOfItemsPerRow, 1))
+                
+                // Calculate the sum of the spacing between cells
+                let totalSpacing = minimumInteritemSpacing * (itemsPerRow - 1.0)
+                sectionInset.left = -((itemsPerRow*(newItemSize.width+(totalSpacing-UIScreen.mainScreen().bounds.width)/itemsPerRow)))/2
+                sectionInset.right = sectionInset.left
             }
-            // Set the new item size
-            itemSize = newItemSize
+            
+            if(UIDevice.currentDevice().orientation.isPortrait){
+                numberOfItemsPerRow = 2
+                let itemsPerRow = CGFloat(max(numberOfItemsPerRow, 1))
+                
+                // Calculate the sum of the spacing between cells
+                let totalSpacing = minimumInteritemSpacing * (itemsPerRow - 1.0)
+                // Calculate how wide items should be
+                newItemSize.width = (collectionView.bounds.size.width - sectionInset.left - sectionInset.right - totalSpacing) / itemsPerRow
+                
+                // Item height is set in GridController
+                //            if itemSize.height > 0 {
+                //                let itemAspectRatio = itemSize.width / itemSize.height
+                //                newItemSize.height = newItemSize.width / itemAspectRatio
+                //            }
+                // Set the new item size
+                itemSize = newItemSize
+            }
         }
     }
     
