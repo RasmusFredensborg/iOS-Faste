@@ -11,7 +11,7 @@ import UIKit
 class GridController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var videoArray = ["QBWwWP_5Nc8","8oo8z8NwpLA","BNdFm-stES0", "DtrcDz-yUKU", "kZOCBths2lY", "vsbxs8tYXxM"]
+    var videoArray = ["QBWwWP_5Nc8","8oo8z8NwpLA","BNdFm-stES0", "DtrcDz-yUKU", "kZOCBths2lY", "vsbxs8tYXxM","QBWwWP_5Nc8","8oo8z8NwpLA","DtrcDz-yUKU","QBWwWP_5Nc8","8oo8z8NwpLA","DtrcDz-yUKU","QBWwWP_5Nc8","8oo8z8NwpLA","BNdFm-stES0", "DtrcDz-yUKU", "kZOCBths2lY", "vsbxs8tYXxM","QBWwWP_5Nc8","8oo8z8NwpLA","DtrcDz-yUKU","QBWwWP_5Nc8","8oo8z8NwpLA","DtrcDz-yUKU"]
     
     let apiKey: String = "AIzaSyBrA9OpNqp6u_wnMKfTaT3sBkjnmflmAuc"
     var desiredChannelsArray = ["Emento Developer"]
@@ -80,33 +80,36 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell: ThumbnailCell = collectionView.dequeueReusableCellWithReuseIdentifier("ThumbnailCell", forIndexPath: indexPath) as! ThumbnailCell
-        //        if(viewLoaded != true){
-        let video = YTVideosArray[indexPath.row]
-        cell.titleLbl.text = video.title
-        
-        let ratio = CGFloat(video.thumbnailHeight)/CGFloat(video.thumbnailWidth)
-        var bounds = CGRect()
-        
-        bounds.origin = CGPointZero;
-        bounds.size = CGSize(width: cell.bounds.width, height: cell.bounds.width*ratio)
-        let imgURL: NSURL = NSURL(string: video.thumbnail)!
-        
-        if let url = NSURL(string: video.thumbnail) {
-            if let data = NSData(contentsOfURL: url) {
-                cell.thumbnailImg.image = UIImage(data: data)
-            }
-        }     
-
-        
-        cell.viewLbl.text = String(video.viewCount)
-        cell.durationLbl.text = ISOConverter(video.duration)
-        if((indexPath.item == YTVideosArray.count-1) && !viewLoaded){
-            self.newHeight = bounds.size.height + cell.descriptionView.bounds.height
-            viewLoaded = true
-            self.collectionView.collectionViewLayout.invalidateLayout()
-        }
-        
-        //        }
+//        if(viewLoaded != true){
+            let video = YTVideosArray[indexPath.row]
+            cell.titleLbl.text = video.title
+            
+            let ratio = CGFloat(video.thumbnailHeight)/CGFloat(video.thumbnailWidth)
+            var bounds = CGRect()
+            
+            bounds.origin = CGPointZero;
+            bounds.size = CGSize(width: cell.bounds.width, height: cell.bounds.width*ratio)
+            let imgURL: NSURL = NSURL(string: video.thumbnail)!
+            let request: NSURLRequest = NSURLRequest(URL: imgURL)
+            NSURLConnection.sendAsynchronousRequest(
+                request, queue: NSOperationQueue.mainQueue(),
+                completionHandler: {(response: NSURLResponse?,data: NSData?,error: NSError?) -> Void in
+                    if error == nil {
+                        cell.thumbnailImg.image = UIImage(data: data!)!
+                        cell.thumbnailImg.bounds = bounds;
+                        
+                    }
+            })
+            
+            cell.viewLbl.text = String(video.viewCount)
+            cell.durationLbl.text = ISOConverter(video.duration)
+            if((indexPath.item == YTVideosArray.count-1) && !viewLoaded){
+                self.newHeight = bounds.size.height + cell.descriptionView.bounds.height
+                viewLoaded = true
+                self.collectionView.collectionViewLayout.invalidateLayout()
+            }            
+            
+//        }
         return cell;
     }
     
