@@ -87,7 +87,7 @@ class VideoController: UIViewController, UICollectionViewDataSource, UICollectio
             let cell: DescriptionCell = collectionView.dequeueReusableCellWithReuseIdentifier("DescriptionCell", forIndexPath: indexPath) as! DescriptionCell
             cell.title.text = video.title
             cell.videoDescription.text = video.description
-            cell.viewCount.text = video.viewCount
+            cell.viewCount.text = String(video.viewCount)
             
             cell.layer.shadowColor = UIColor.grayColor().CGColor;
             cell.layer.shadowOffset = CGSizeMake(0, 2.0);

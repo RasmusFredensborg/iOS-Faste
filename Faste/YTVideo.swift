@@ -12,7 +12,7 @@ class YTVideo {
     var title : String
     var ID : String
     var description : String
-    var viewCount : String
+    var viewCount : Int
     var duration : String
     var thumbnail : String
     var thumbnailWidth : Int
@@ -22,7 +22,7 @@ class YTVideo {
         self.title = ""
         self.ID = ""
         self.description = ""
-        self.viewCount = ""
+        self.viewCount = 0
         self.duration = ""
         self.thumbnail = ""
         self.thumbnailWidth = 0

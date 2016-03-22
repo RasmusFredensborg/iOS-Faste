@@ -52,14 +52,13 @@ class GridLayout: UICollectionViewFlowLayout {
             }
             
             if(UIDevice.currentDevice().orientation.isPortrait){
-                numberOfItemsPerRow = 2
+                numberOfItemsPerRow = 2;
                 let itemsPerRow = CGFloat(max(numberOfItemsPerRow, 1))
                 let totalSpacing = minimumInteritemSpacing * (itemsPerRow - 1.0)
                 newItemSize.width = (collectionView.bounds.size.width - sectionInset.left - sectionInset.right - totalSpacing) / itemsPerRow
-
-                // Set the new item size
-                itemSize = newItemSize
             }
+            
+            itemSize = newItemSize
         }
     }
     
