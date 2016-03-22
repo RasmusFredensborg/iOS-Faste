@@ -499,6 +499,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = dk.emento.FasteTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Faste/Faste-Bridging-Header.h";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Faste.app/Faste";
 			};
 			name = Debug;
@@ -511,6 +512,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = dk.emento.FasteTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Faste/Faste-Bridging-Header.h";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Faste.app/Faste";
 			};
 			name = Release;

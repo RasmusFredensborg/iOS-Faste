@@ -81,35 +81,52 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell: ThumbnailCell = collectionView.dequeueReusableCellWithReuseIdentifier("ThumbnailCell", forIndexPath: indexPath) as! ThumbnailCell
 //        if(viewLoaded != true){
-            let video = YTVideosArray[indexPath.row]
-            cell.titleLbl.text = video.title
-            
-            let ratio = CGFloat(video.thumbnailHeight)/CGFloat(video.thumbnailWidth)
-            var bounds = CGRect()
-            
-            bounds.origin = CGPointZero;
-            bounds.size = CGSize(width: cell.bounds.width, height: cell.bounds.width*ratio)
-            let imgURL: NSURL = NSURL(string: video.thumbnail)!
-            let request: NSURLRequest = NSURLRequest(URL: imgURL)
-            NSURLConnection.sendAsynchronousRequest(
-                request, queue: NSOperationQueue.mainQueue(),
-                completionHandler: {(response: NSURLResponse?,data: NSData?,error: NSError?) -> Void in
-                    if error == nil {
-                        cell.thumbnailImg.image = UIImage(data: data!)!
-                        cell.thumbnailImg.bounds = bounds;
-                        
-                    }
-            })
-            
-            cell.viewLbl.text = String(video.viewCount)
-            cell.durationLbl.text = ISOConverter(video.duration)
-            if((indexPath.item == YTVideosArray.count-1) && !viewLoaded){
-                self.newHeight = bounds.size.height + cell.descriptionView.bounds.height
-                viewLoaded = true
-                self.collectionView.collectionViewLayout.invalidateLayout()
-            }            
-            
-//        }
+        let video = YTVideosArray[indexPath.row]
+        cell.titleLbl.text = video.title
+        
+        let ratio = CGFloat(video.thumbnailHeight)/CGFloat(video.thumbnailWidth)
+        var bounds = CGRect()
+        
+        bounds.origin = CGPointZero;
+        bounds.size = CGSize(width: cell.bounds.width, height: cell.bounds.width*ratio)
+        let imgURL: NSURL = NSURL(string: video.thumbnail)!
+        let request: NSURLRequest = NSURLRequest(URL: imgURL)
+        NSURLConnection.sendAsynchronousRequest(
+            request, queue: NSOperationQueue.mainQueue(),
+            completionHandler: {(response: NSURLResponse?,data: NSData?,error: NSError?) -> Void in
+                if error == nil {
+                    cell.thumbnailImg.image = UIImage(data: data!)!
+                    cell.thumbnailImg.bounds = bounds;
+                    
+                }
+        })
+//
+//        let url = NSURL(string: video.thumbnail)
+//        let request = NSURLRequest(URL: url)
+//        let config = NSURLSessionConfiguration.defaultSessionConfiguration()
+//        let session = NSURLSession(configuration: config)
+//        
+//        let task = session.dataTaskWithRequest(request, completionHandler: {(data, response, error) in
+//            if error == nil {
+//                cell.thumbnailImg.image = UIImage(data: data!)!
+//                cell.thumbnailImg.bounds = bounds;
+//                
+//            }
+//        });
+        
+        // do whatever you need with the task e.g. run
+        //task.resume()
+        
+        
+        cell.viewLbl.text = String(video.viewCount)
+        cell.durationLbl.text = ISOConverter(video.duration)
+        if((indexPath.item == YTVideosArray.count-1) && !viewLoaded){
+            self.newHeight = bounds.size.height + cell.descriptionView.bounds.height
+            viewLoaded = true
+            self.collectionView.collectionViewLayout.invalidateLayout()
+        }
+        
+        //        }
         return cell;
     }
     

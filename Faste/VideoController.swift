@@ -9,10 +9,12 @@
 import UIKit
 
 class VideoController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
-    @IBOutlet weak var height: NSLayoutConstraint!
-    @IBOutlet weak var videoCollectionView: UICollectionView!
     
+    @IBOutlet weak var videoCollectionView: UICollectionView!
     @IBOutlet weak var playerView: YTPlayerView!
+    
+    @IBOutlet weak var playerHeight: NSLayoutConstraint!
+
     let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()
     var video : YTVideo!
     
@@ -20,7 +22,7 @@ class VideoController: UIViewController, UICollectionViewDataSource, UICollectio
         super.viewDidLoad()
         self.navigationController!.navigationBar.translucent = false;
         UINavigationBar.appearance().translucent = true
-        let playerVars = ["playsinline" : 1]// "controls" : 1, "playsinline" : 1, "autohide" : 1, "showinfo" : 1, "autoplay" : 1, "fs" : 1, "rel" : 0, "loop" : 0, "enablejsapi" : 1, "modestbranding" : 1]
+        let playerVars = ["playsinline" : 0, "controls" : 1, "autohide" : 0, "showinfo" : 0, "autoplay" : 1, "fs" : 1, "rel" : 0, "modestbranding" : 1, "listType" : "user_uploads", "list" : "Emento Developer"]
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "rotated", name: UIDeviceOrientationDidChangeNotification, object: nil)
         
@@ -34,15 +36,16 @@ class VideoController: UIViewController, UICollectionViewDataSource, UICollectio
         videoCollectionView.collectionViewLayout = layout
         
         playerView.loadWithVideoId(video.ID, playerVars: playerVars)
-        height.constant = UIScreen.mainScreen().bounds.width * (9/16)
+        playerView.playVideoAt(1)
+        playerHeight.constant = UIScreen.mainScreen().bounds.width * (9/16)
     }
     
     func rotated(){
         if(UIDevice.currentDevice().orientation.isLandscape){
-            height.constant = UIScreen.mainScreen().bounds.height
+            playerHeight.constant = UIScreen.mainScreen().bounds.height
         }
         else{
-            height.constant = UIScreen.mainScreen().bounds.width * (9/16)
+            playerHeight.constant = UIScreen.mainScreen().bounds.width * (9/16)
         }
     }
     

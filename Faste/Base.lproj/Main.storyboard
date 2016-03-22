@@ -323,8 +323,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="htZ-Sb-jPL"/>
                     <connections>
-                        <outlet property="height" destination="Kox-um-cTP" id="Dxc-Ex-g2s"/>
-                        <outlet property="playerView" destination="gjB-nG-CwY" id="XZp-9F-nrW"/>
+                        <outlet property="playerHeight" destination="Kox-um-cTP" id="VeW-R3-E55"/>
+                        <outlet property="playerView" destination="gjB-nG-CwY" id="CYR-7u-stI"/>
                         <outlet property="videoCollectionView" destination="Hyy-3t-g1q" id="RRP-tc-7Ct"/>
                     </connections>
                 </viewController>
