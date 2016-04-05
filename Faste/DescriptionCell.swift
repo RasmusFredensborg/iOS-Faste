@@ -12,4 +12,6 @@ class DescriptionCell: UICollectionViewCell {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var viewCount: UILabel!
     @IBOutlet weak var videoDescription: UILabel!
+    
+    @IBOutlet weak var nextVideo: UIButton!
 }

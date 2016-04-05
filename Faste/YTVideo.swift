@@ -18,6 +18,7 @@ class YTVideo {
     var thumbnailWidth : Int
     var thumbnailHeight : Int
     var likeCount : String
+    var playlist : Array<String>
     init(){
         self.title = ""
         self.ID = ""
@@ -28,5 +29,6 @@ class YTVideo {
         self.thumbnailWidth = 0
         self.thumbnailHeight = 0
         self.likeCount = ""
+        self.playlist = []
     }
 }

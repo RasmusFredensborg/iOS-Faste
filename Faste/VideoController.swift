@@ -8,21 +8,24 @@
 
 import UIKit
 
-class VideoController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
+class VideoController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, YTPlayerViewDelegate{
     
     @IBOutlet weak var videoCollectionView: UICollectionView!
     @IBOutlet weak var playerView: YTPlayerView!
-    
     @IBOutlet weak var playerHeight: NSLayoutConstraint!
-
+    let playerVars = ["playsinline" : 0, "controls" : 1, "autohide" : 0, "showinfo" : 0, "autoplay" : 1, "fs" : 1, "rel" : 0, "modestbranding" : 1, "enablejsapi" : 1]
     let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-    var video : YTVideo!
-    
+    var YTVideosArray : Array<YTVideo> = []
+    var videoIndex = 0;
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController!.navigationBar.translucent = false;
         UINavigationBar.appearance().translucent = true
-        let playerVars = ["playsinline" : 0, "controls" : 1, "autohide" : 0, "showinfo" : 0, "autoplay" : 1, "fs" : 1, "rel" : 0, "modestbranding" : 1, "listType" : "user_uploads", "list" : "Emento Developer"]
+        self.navigationController!.navigationBar.barStyle = UIBarStyle.Black
+        self.navigationController!.navigationBar.barTintColor = UIColor.darkGrayColor();
+        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor();
+        
+        self.playerView.delegate = self
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "rotated", name: UIDeviceOrientationDidChangeNotification, object: nil)
         
@@ -35,18 +38,38 @@ class VideoController: UIViewController, UICollectionViewDataSource, UICollectio
         layout.itemSize = CGSize(width: 160, height: 135)
         videoCollectionView.collectionViewLayout = layout
         
-        playerView.loadWithVideoId(video.ID, playerVars: playerVars)
-        playerView.playVideoAt(1)
+        playerView.loadWithVideoId(YTVideosArray[videoIndex].ID, playerVars: playerVars)
+        
         playerHeight.constant = UIScreen.mainScreen().bounds.width * (9/16)
+    }
+    
+    func nextVideoClick(gr:UITapGestureRecognizer)
+    {
+        if(videoIndex < YTVideosArray.count-1){
+            videoIndex++;
+            self.playerView.loadWithVideoId(YTVideosArray[videoIndex].ID, playerVars: playerVars)
+            videoCollectionView.reloadData()
+        }
+    }
+    
+    
+    func playerViewDidBecomeReady(playerView: YTPlayerView!) {
+        playerView.playVideo()
+        
+    }
+    
+    func playerView(playerView: YTPlayerView!, receivedError error: YTPlayerError) {
+        print("Error")
     }
     
     func rotated(){
         if(UIDevice.currentDevice().orientation.isLandscape){
             playerHeight.constant = UIScreen.mainScreen().bounds.height
         }
-        else{
+        else if(UIDevice.currentDevice().orientation.isPortrait){
             playerHeight.constant = UIScreen.mainScreen().bounds.width * (9/16)
         }
+        videoCollectionView.reloadData()
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -55,12 +78,14 @@ class VideoController: UIViewController, UICollectionViewDataSource, UICollectio
     
     func collectionView( collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize{
         
-        let device = UIDevice.currentDevice().model
+        let device = UIDevice.currentDevice()
         
-        if(device == "iPad"){
+        if(device.model == "iPad"){
             layout.minimumLineSpacing = 20
         }
-        
+        if(device.orientation.isLandscape){
+            playerHeight.constant = UIScreen.mainScreen().bounds.height
+        }
         var newItemSize = layout.itemSize
         let numberOfItemsPerRow = 1
         collectionView.backgroundColor = UIColor(red: 0xfa/255,green: 0xfa/255,blue: 0xfa/255,alpha: 1.0)
@@ -88,6 +113,8 @@ class VideoController: UIViewController, UICollectionViewDataSource, UICollectio
         
         if(indexPath.row==0){
             let cell: DescriptionCell = collectionView.dequeueReusableCellWithReuseIdentifier("DescriptionCell", forIndexPath: indexPath) as! DescriptionCell
+            let video = YTVideosArray[videoIndex]
+            cell.nextVideo.addTarget(self, action: "nextVideoClick:", forControlEvents: UIControlEvents.TouchUpInside)
             cell.title.text = video.title
             cell.videoDescription.text = video.description
             cell.viewCount.text = String(video.viewCount)
@@ -116,3 +143,4 @@ class VideoController: UIViewController, UICollectionViewDataSource, UICollectio
         
     }
 }
+

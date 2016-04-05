@@ -47,8 +47,10 @@ class GridLayout: UICollectionViewFlowLayout {
                 numberOfItemsPerRow = 3;
                 let itemsPerRow = CGFloat(max(numberOfItemsPerRow, 1))
                 let totalSpacing = minimumInteritemSpacing * (itemsPerRow - 1.0)
+                newItemSize.width = (collectionView.bounds.size.width - sectionInset.left - sectionInset.right - totalSpacing) / itemsPerRow
                 sectionInset.left = -((itemsPerRow*(newItemSize.width+(totalSpacing-UIScreen.mainScreen().bounds.width)/itemsPerRow)))/2
                 sectionInset.right = sectionInset.left
+                newItemSize.width = (collectionView.bounds.size.width - sectionInset.left - sectionInset.right - totalSpacing) / itemsPerRow
             }
             
             if(UIDevice.currentDevice().orientation.isPortrait){

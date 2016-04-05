@@ -11,7 +11,7 @@ import UIKit
 class GridController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var videoArray = ["QBWwWP_5Nc8","8oo8z8NwpLA","BNdFm-stES0", "DtrcDz-yUKU", "kZOCBths2lY", "vsbxs8tYXxM","QBWwWP_5Nc8","8oo8z8NwpLA","DtrcDz-yUKU","QBWwWP_5Nc8","8oo8z8NwpLA","DtrcDz-yUKU","QBWwWP_5Nc8","8oo8z8NwpLA","BNdFm-stES0", "DtrcDz-yUKU", "kZOCBths2lY", "vsbxs8tYXxM","QBWwWP_5Nc8","8oo8z8NwpLA","DtrcDz-yUKU","QBWwWP_5Nc8","8oo8z8NwpLA","DtrcDz-yUKU"]
+    let videoArray = ["DtrcDz-yUKU", "QBWwWP_5Nc8", "kZOCBths2lY", "vsbxs8tYXxM", "BNdFm-stES0"]
     
     let apiKey: String = "AIzaSyBrA9OpNqp6u_wnMKfTaT3sBkjnmflmAuc"
     var desiredChannelsArray = ["Emento Developer"]
@@ -21,17 +21,13 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
     var YTVideosArray: Array<YTVideo> = []
     var selectedVideoIndex: Int!
     var viewLoaded = false
-    var shadowLoaded = false
     var newHeight : CGFloat = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController!.navigationBar.translucent = false;
         self.navigationController!.navigationBar.barStyle = UIBarStyle.Black
         self.navigationController!.navigationBar.barTintColor = UIColor.darkGrayColor();
-        let navSize = self.navigationController!.navigationBar.frame
-        self.navigationController!.navigationBar.frame.size.width =  100
         self.title = "FASTEREGLER"
-        
         
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -59,19 +55,16 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         var rect = CGRect()
         size.height = self.newHeight
 
-        if(!shadowLoaded){
-            var visibleCells = layout.collectionView!.visibleCells()
-            if(visibleCells.count != 0){
-                for cell in visibleCells{
-                    rect.size = size
-                    cell.layer.shadowColor = UIColor.grayColor().CGColor;
-                    cell.layer.shadowOffset = CGSizeMake(0, 2.0);
-                    cell.layer.shadowRadius = 3.0;
-                    cell.layer.shadowOpacity = 0.25;
-                    cell.layer.masksToBounds = false;
-                    cell.layer.shadowPath = UIBezierPath(roundedRect:rect, cornerRadius: 0).CGPath;
-                }
-                shadowLoaded = true
+        let visibleCells = layout.collectionView!.visibleCells()
+        if(visibleCells.count != 0){
+            for cell in visibleCells{
+                rect.size = size
+                cell.layer.shadowColor = UIColor.grayColor().CGColor;
+                cell.layer.shadowOffset = CGSizeMake(0, 2.0);
+                cell.layer.shadowRadius = 3.0;
+                cell.layer.shadowOpacity = 0.25;
+                cell.layer.masksToBounds = false;
+                cell.layer.shadowPath = UIBezierPath(roundedRect:rect, cornerRadius: 0).CGPath;
             }
         }
         
@@ -80,7 +73,7 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell: ThumbnailCell = collectionView.dequeueReusableCellWithReuseIdentifier("ThumbnailCell", forIndexPath: indexPath) as! ThumbnailCell
-//        if(viewLoaded != true){
+
         let video = YTVideosArray[indexPath.row]
         cell.titleLbl.text = video.title
         
@@ -88,7 +81,7 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         var bounds = CGRect()
         
         bounds.origin = CGPointZero;
-        bounds.size = CGSize(width: cell.bounds.width, height: cell.bounds.width*ratio)
+                    bounds.size = CGSize(width: cell.bounds.width, height: cell.bounds.width*ratio)
         let imgURL: NSURL = NSURL(string: video.thumbnail)!
         let request: NSURLRequest = NSURLRequest(URL: imgURL)
         NSURLConnection.sendAsynchronousRequest(
@@ -100,33 +93,14 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
                     
                 }
         })
-//
-//        let url = NSURL(string: video.thumbnail)
-//        let request = NSURLRequest(URL: url)
-//        let config = NSURLSessionConfiguration.defaultSessionConfiguration()
-//        let session = NSURLSession(configuration: config)
-//        
-//        let task = session.dataTaskWithRequest(request, completionHandler: {(data, response, error) in
-//            if error == nil {
-//                cell.thumbnailImg.image = UIImage(data: data!)!
-//                cell.thumbnailImg.bounds = bounds;
-//                
-//            }
-//        });
-        
-        // do whatever you need with the task e.g. run
-        //task.resume()
-        
         
         cell.viewLbl.text = String(video.viewCount)
         cell.durationLbl.text = ISOConverter(video.duration)
+        self.newHeight = bounds.size.height + cell.descriptionView.bounds.height
         if((indexPath.item == YTVideosArray.count-1) && !viewLoaded){
-            self.newHeight = bounds.size.height + cell.descriptionView.bounds.height
             viewLoaded = true
             self.collectionView.collectionViewLayout.invalidateLayout()
         }
-        
-        //        }
         return cell;
     }
     
@@ -139,7 +113,8 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         
         if segue.identifier == "idSeguePlayer" {
             let playerViewController = segue.destinationViewController as! VideoController
-            playerViewController.video = YTVideosArray[selectedVideoIndex]
+            playerViewController.YTVideosArray = YTVideosArray
+            playerViewController.videoIndex = selectedVideoIndex
         }
     }
     
@@ -228,7 +203,7 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
                         
                         self.videoIndex++
                         if self.videoIndex == self.videoArray.count{
-                            self.YTVideosArray.sortInPlace({$0.viewCount > $1.viewCount});
+                            //self.YTVideosArray.sortInPlace({$0.viewCount > $1.viewCount});
                             self.collectionView.reloadData()
                         }
                     }
