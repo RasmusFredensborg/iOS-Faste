@@ -11,7 +11,7 @@ import UIKit
 class GridController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     @IBOutlet weak var collectionView: UICollectionView!
     
-    let videoArray = ["DtrcDz-yUKU", "QBWwWP_5Nc8", "kZOCBths2lY", "vsbxs8tYXxM", "BNdFm-stES0"]
+    let videoArray = ["DtrcDz-yUKU", "QBWwWP_5Nc8", "vsbxs8tYXxM", "kZOCBths2lY", "BNdFm-stES0"]
     
     let apiKey: String = "AIzaSyBrA9OpNqp6u_wnMKfTaT3sBkjnmflmAuc"
     var desiredChannelsArray = ["Emento Developer"]
@@ -32,7 +32,7 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         collectionView.dataSource = self
         collectionView.delegate = self
         var videos = "";
-        for(var i = 0; i<videoArray.count; i++){
+        for i in 0 ..< videoArray.count {
             videos += videoArray[i];
             if(i != videoArray.count-1){
                 videos += ","
@@ -116,10 +116,11 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
             playerViewController.YTVideosArray = YTVideosArray
             playerViewController.videoIndex = selectedVideoIndex
         }
+        
     }
     
-    func ISOConverter(var isoString: String) -> String{
-        isoString = isoString.stringByReplacingOccurrencesOfString("PT", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+    func ISOConverter(source: String) -> String{
+        var isoString = source.stringByReplacingOccurrencesOfString("PT", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
         var hours = ""
         var minutes = ""
         
@@ -183,7 +184,7 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
                     
                     let items: Array<Dictionary<NSObject, AnyObject>> = resultsDict["items"] as! Array<Dictionary<NSObject, AnyObject>>
                     
-                    for var i=0; i<items.count; ++i {
+                    for i in 0 ..< items.count {
                         let videoSnippetDict = (items[i] as Dictionary<NSObject, AnyObject>)["snippet"] as! Dictionary<NSObject, AnyObject>
                         let videoDetailsDict = (items[i] as Dictionary<NSObject, AnyObject>)["contentDetails"] as! Dictionary<NSObject, AnyObject>
                         let videoStatDict = (items[i] as Dictionary<NSObject, AnyObject>)["statistics"] as! Dictionary<NSObject, AnyObject>
@@ -201,7 +202,7 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
                         self.YTVideosArray.append(video)
                         
                         
-                        self.videoIndex++
+                        self.videoIndex+=1
                         if self.videoIndex == self.videoArray.count{
                             //self.YTVideosArray.sortInPlace({$0.viewCount > $1.viewCount});
                             self.collectionView.reloadData()

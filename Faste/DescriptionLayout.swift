@@ -20,7 +20,7 @@ class DescriptionLayout: UICollectionViewFlowLayout {
         super.prepareLayout()
         
         if let collectionView = self.collectionView {
-            var device = UIDevice.currentDevice().model
+            let device = UIDevice.currentDevice().model
             
             if(device == "iPad"){
                 minimumLineSpacing = 20

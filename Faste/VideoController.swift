@@ -27,7 +27,7 @@ class VideoController: UIViewController, UICollectionViewDataSource, UICollectio
         
         self.playerView.delegate = self
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "rotated", name: UIDeviceOrientationDidChangeNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(VideoController.rotated), name: UIDeviceOrientationDidChangeNotification, object: nil)
         
         videoCollectionView.dataSource = self
         videoCollectionView.delegate = self
@@ -46,7 +46,7 @@ class VideoController: UIViewController, UICollectionViewDataSource, UICollectio
     func nextVideoClick(gr:UITapGestureRecognizer)
     {
         if(videoIndex < YTVideosArray.count-1){
-            videoIndex++;
+            videoIndex+=1;
             self.playerView.loadWithVideoId(YTVideosArray[videoIndex].ID, playerVars: playerVars)
             videoCollectionView.reloadData()
         }
@@ -114,7 +114,7 @@ class VideoController: UIViewController, UICollectionViewDataSource, UICollectio
         if(indexPath.row==0){
             let cell: DescriptionCell = collectionView.dequeueReusableCellWithReuseIdentifier("DescriptionCell", forIndexPath: indexPath) as! DescriptionCell
             let video = YTVideosArray[videoIndex]
-            cell.nextVideo.addTarget(self, action: "nextVideoClick:", forControlEvents: UIControlEvents.TouchUpInside)
+            cell.nextVideo.addTarget(self, action: #selector(VideoController.nextVideoClick(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             cell.title.text = video.title
             cell.videoDescription.text = video.description
             cell.viewCount.text = String(video.viewCount)
