@@ -22,6 +22,7 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
     var selectedVideoIndex: Int!
     var viewLoaded = false
     var newHeight : CGFloat = 0
+    var ratio : CGFloat = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController!.navigationBar.translucent = false;
@@ -49,12 +50,18 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         return YTVideosArray.count
     }
     
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.Portrait
+    }
+    
     func collectionView( collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize{
         let layout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         var size : CGSize = layout.itemSize
         var rect = CGRect()
         size.height = self.newHeight
-
+        if(viewLoaded){
+            size.width = self.newHeight/self.ratio
+        }
         let visibleCells = layout.collectionView!.visibleCells()
         if(visibleCells.count != 0){
             for cell in visibleCells{
@@ -77,7 +84,7 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         let video = YTVideosArray[indexPath.row]
         cell.titleLbl.text = video.title
         
-        let ratio = CGFloat(video.thumbnailHeight)/CGFloat(video.thumbnailWidth)
+        self.ratio = CGFloat(video.thumbnailHeight)/CGFloat(video.thumbnailWidth)
         var bounds = CGRect()
         
         bounds.origin = CGPointZero;
@@ -97,6 +104,7 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         cell.viewLbl.text = String(video.viewCount)
         cell.durationLbl.text = ISOConverter(video.duration)
         self.newHeight = bounds.size.height + cell.descriptionView.bounds.height
+        ratio = self.newHeight/cell.bounds.width
         if((indexPath.item == YTVideosArray.count-1) && !viewLoaded){
             viewLoaded = true
             self.collectionView.collectionViewLayout.invalidateLayout()
