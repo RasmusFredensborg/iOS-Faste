@@ -29,6 +29,20 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         self.navigationController!.navigationBar.barStyle = UIBarStyle.Black
         self.navigationController!.navigationBar.barTintColor = UIColor.darkGrayColor();
         self.title = "FASTEREGLER"
+        let infoImage = UIImage(named: "info.png")
+        let imgWidth = Int(30)
+        let imgHeight = Int(30)
+        let infoButton:UIButton = UIButton(frame: CGRect(x: 0, y: 0, width: imgWidth, height: imgHeight))
+        infoButton.setBackgroundImage(infoImage, forState: .Normal)
+        infoButton.addTarget(self, action: #selector(GridController.infoTapped), forControlEvents: UIControlEvents.TouchUpInside)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: infoButton)
+        let layout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        var size = CGSize()
+        size.height = 240
+        size.width = 300
+        layout.minimumLineSpacing = 10
+        layout.minimumInteritemSpacing = 10
+        layout.itemSize = size
         
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -42,6 +56,12 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         getVideos(videos);
     }
     
+    func infoTapped(){
+        let alert = UIAlertController(title: "Emento", message: "Contact: developer@emento.dk", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -50,33 +70,29 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         return YTVideosArray.count
     }
     
-    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-        return UIInterfaceOrientationMask.Portrait
-    }
-    
-    func collectionView( collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize{
-        let layout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        var size : CGSize = layout.itemSize
-        var rect = CGRect()
-        size.height = self.newHeight
-        if(viewLoaded){
-            size.width = self.newHeight/self.ratio
-        }
-        let visibleCells = layout.collectionView!.visibleCells()
-        if(visibleCells.count != 0){
-            for cell in visibleCells{
-                rect.size = size
-                cell.layer.shadowColor = UIColor.grayColor().CGColor;
-                cell.layer.shadowOffset = CGSizeMake(0, 2.0);
-                cell.layer.shadowRadius = 3.0;
-                cell.layer.shadowOpacity = 0.25;
-                cell.layer.masksToBounds = false;
-                cell.layer.shadowPath = UIBezierPath(roundedRect:rect, cornerRadius: 0).CGPath;
-            }
-        }
-        
-        return size
-    }
+//    func collectionView( collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize{
+//        let layout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+//        var size : CGSize = layout.itemSize
+//        var rect = CGRect()
+//        size.height = self.newHeight
+//        if(viewLoaded){
+//            size.width = self.newHeight/self.ratio
+//        }
+//        let visibleCells = layout.collectionView!.visibleCells()
+//        if(visibleCells.count != 0){
+//            for cell in visibleCells{
+//                rect.size = size
+//                cell.layer.shadowColor = UIColor.grayColor().CGColor;
+//                cell.layer.shadowOffset = CGSizeMake(0, 2.0);
+//                cell.layer.shadowRadius = 3.0;
+//                cell.layer.shadowOpacity = 0.25;
+//                cell.layer.masksToBounds = false;
+//                cell.layer.shadowPath = UIBezierPath(roundedRect:rect, cornerRadius: 0).CGPath;
+//            }
+//        }
+//        
+//        return size
+//    }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell: ThumbnailCell = collectionView.dequeueReusableCellWithReuseIdentifier("ThumbnailCell", forIndexPath: indexPath) as! ThumbnailCell
@@ -85,10 +101,6 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         cell.titleLbl.text = video.title
         
         self.ratio = CGFloat(video.thumbnailHeight)/CGFloat(video.thumbnailWidth)
-        var bounds = CGRect()
-        
-        bounds.origin = CGPointZero;
-                    bounds.size = CGSize(width: cell.bounds.width, height: cell.bounds.width*ratio)
         let imgURL: NSURL = NSURL(string: video.thumbnail)!
         let request: NSURLRequest = NSURLRequest(URL: imgURL)
         NSURLConnection.sendAsynchronousRequest(
@@ -96,19 +108,20 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
             completionHandler: {(response: NSURLResponse?,data: NSData?,error: NSError?) -> Void in
                 if error == nil {
                     cell.thumbnailImg.image = UIImage(data: data!)!
-                    cell.thumbnailImg.bounds = bounds;
+//                    cell.thumbnailImg.bounds = bounds;
                     
                 }
         })
         
         cell.viewLbl.text = String(video.viewCount)
         cell.durationLbl.text = ISOConverter(video.duration)
-        self.newHeight = bounds.size.height + cell.descriptionView.bounds.height
-        ratio = self.newHeight/cell.bounds.width
-        if((indexPath.item == YTVideosArray.count-1) && !viewLoaded){
-            viewLoaded = true
-            self.collectionView.collectionViewLayout.invalidateLayout()
-        }
+        
+        cell.layer.shadowColor = UIColor.grayColor().CGColor;
+        cell.layer.shadowOffset = CGSizeMake(0, 2.0);
+        cell.layer.shadowRadius = 3.0;
+        cell.layer.shadowOpacity = 0.25;
+        cell.layer.masksToBounds = false;
+        cell.layer.shadowPath = UIBezierPath(roundedRect:cell.bounds, cornerRadius: 0).CGPath;
         return cell;
     }
     
