@@ -11,20 +11,16 @@ import UIKit
 class GridController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     @IBOutlet weak var collectionView: UICollectionView!
     
-    let videoArray = ["DtrcDz-yUKU", "QBWwWP_5Nc8", "vsbxs8tYXxM", "kZOCBths2lY", "BNdFm-stES0"]
+    let videoArray = ["DtrcDz-yUKU", "QBWwWP_5Nc8", "vsbxs8tYXxM", "kZOCBths2lY", "BNdFm-stES0", "QBWwWP_5Nc8", "vsbxs8tYXxM", "kZOCBths2lY", "BNdFm-stES0", "QBWwWP_5Nc8", "vsbxs8tYXxM", "kZOCBths2lY", "BNdFm-stES0", "QBWwWP_5Nc8", "vsbxs8tYXxM", "kZOCBths2lY", "BNdFm-stES0", "QBWwWP_5Nc8", "vsbxs8tYXxM", "kZOCBths2lY", "BNdFm-stES0", "QBWwWP_5Nc8", "vsbxs8tYXxM", "kZOCBths2lY", "BNdFm-stES0", "QBWwWP_5Nc8", "vsbxs8tYXxM", "kZOCBths2lY", "BNdFm-stES0", "QBWwWP_5Nc8", "vsbxs8tYXxM", "kZOCBths2lY", "BNdFm-stES0"]
     
     let apiKey: String = "AIzaSyBrA9OpNqp6u_wnMKfTaT3sBkjnmflmAuc"
-    var desiredChannelsArray = ["Emento Developer"]
+    
     var videoIndex = 0
-    var channelsDataArray: Array<Dictionary<NSObject, AnyObject>> = []
-    var videosArray: Array<Dictionary<NSObject, AnyObject>> = []
-    var YTVideosArray: Array<YTVideo> = []
+    
     var selectedVideoIndex: Int!
-    var viewLoaded = false
-    var newHeight : CGFloat = 0
-    var ratio : CGFloat = 0
     let device = UIDevice.currentDevice().model
     var layout = UICollectionViewFlowLayout()
+    let gridHelper = GridDataHelper()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,26 +102,23 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return YTVideosArray.count
+        return gridHelper.YTVideosArray.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell: ThumbnailCell = collectionView.dequeueReusableCellWithReuseIdentifier("ThumbnailCell", forIndexPath: indexPath) as! ThumbnailCell
 
-        let video = YTVideosArray[indexPath.row]
+        let video = gridHelper.YTVideosArray[indexPath.row]
         cell.titleLbl.text = video.title
         
-        self.ratio = CGFloat(video.thumbnailHeight)/CGFloat(video.thumbnailWidth)
-        let imgURL: NSURL = NSURL(string: video.thumbnail)!
-        let request: NSURLRequest = NSURLRequest(URL: imgURL)
-        NSURLConnection.sendAsynchronousRequest(
-            request, queue: NSOperationQueue.mainQueue(),
-            completionHandler: {(response: NSURLResponse?,data: NSData?,error: NSError?) -> Void in
-                if error == nil {
-                    cell.thumbnailImg.image = UIImage(data: data!)!
-                    
-                }
-        })
+        if(video.thumbnailImage == nil)
+        {
+            gridHelper.load_image(video.thumbnailUrl, imageview: cell.thumbnailImg!, index: indexPath.row)
+        }
+        else
+        {
+            cell.thumbnailImg.image = video.thumbnailImage
+        }
         
         cell.viewLbl.text = String(video.viewCount)
         cell.durationLbl.text = ISOConverter(video.duration)
@@ -148,7 +141,7 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         
         if segue.identifier == "idSeguePlayer" {
             let playerViewController = segue.destinationViewController as! VideoController
-            playerViewController.YTVideosArray = YTVideosArray
+            playerViewController.YTVideosArray = gridHelper.YTVideosArray
             playerViewController.videoIndex = selectedVideoIndex
         }
         
@@ -189,6 +182,14 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         return indexPath
     }
     
+    func do_grid_refresh()
+    {
+        dispatch_async(dispatch_get_main_queue(), {
+            self.collectionView.reloadData()
+            return
+        })
+    }
+    
     func performGetRequest(targetURL: NSURL!, completion: (data: NSData?, HTTPStatusCode: Int, error: NSError?) -> Void) {
         let request = NSMutableURLRequest(URL: targetURL)
         request.HTTPMethod = "GET"
@@ -226,7 +227,7 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
                         let video = YTVideo()
                         video.ID = (items[i] as Dictionary<NSObject, AnyObject>)["id"] as! String
                         video.title = videoSnippetDict["title"] as! String
-                        video.thumbnail = ((videoSnippetDict["thumbnails"] as! Dictionary<NSObject, AnyObject>)["medium"] as! Dictionary<NSObject, AnyObject>)["url"] as! String
+                        video.thumbnailUrl = ((videoSnippetDict["thumbnails"] as! Dictionary<NSObject, AnyObject>)["medium"] as! Dictionary<NSObject, AnyObject>)["url"] as! String
                         video.thumbnailWidth = ((videoSnippetDict["thumbnails"] as! Dictionary<NSObject, AnyObject>)["medium"] as! Dictionary<NSObject, AnyObject>)["width"] as! Int
                         video.thumbnailHeight = ((videoSnippetDict["thumbnails"] as! Dictionary<NSObject, AnyObject>)["medium"] as! Dictionary<NSObject, AnyObject>)["height"] as! Int
                         video.description = videoSnippetDict["description"] as! String
@@ -234,13 +235,13 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
                         video.viewCount = Int(videoStatDict["viewCount"] as! String)!
                         video.likeCount = videoStatDict["likeCount"] as! String
                         
-                        self.YTVideosArray.append(video)
-                        
+                        self.gridHelper.YTVideosArray.append(video)
                         
                         self.videoIndex+=1
                         if self.videoIndex == self.videoArray.count{
                             //self.YTVideosArray.sortInPlace({$0.viewCount > $1.viewCount});
-                            self.collectionView.reloadData()
+                            self.gridHelper.read()
+                            self.do_grid_refresh()
                         }
                     }
                 }

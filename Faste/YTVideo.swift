@@ -14,21 +14,23 @@ class YTVideo {
     var description : String
     var viewCount : Int
     var duration : String
-    var thumbnail : String
+    var thumbnailUrl : String
     var thumbnailWidth : Int
     var thumbnailHeight : Int
     var likeCount : String
     var playlist : Array<String>
+    var thumbnailImage : UIImage?
     init(){
         self.title = ""
         self.ID = ""
         self.description = ""
         self.viewCount = 0
         self.duration = ""
-        self.thumbnail = ""
+        self.thumbnailUrl = ""
         self.thumbnailWidth = 0
         self.thumbnailHeight = 0
         self.likeCount = ""
         self.playlist = []
+        self.thumbnailImage = nil
     }
 }

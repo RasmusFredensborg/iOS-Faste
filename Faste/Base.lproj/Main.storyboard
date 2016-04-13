@@ -44,7 +44,7 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WDh-uY-a3v">
                                                             <rect key="frame" x="0.0" y="120" width="200" height="70"/>
                                                             <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Shape-6.png" translatesAutoresizingMaskIntoConstraints="NO" id="qgR-Vl-XE5">
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Shape (øje).png" translatesAutoresizingMaskIntoConstraints="NO" id="qgR-Vl-XE5">
                                                                     <rect key="frame" x="15" y="41" width="20" height="13"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="20" id="2Qa-u5-8CJ"/>
@@ -196,7 +196,7 @@
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Shape-6.png" translatesAutoresizingMaskIntoConstraints="NO" id="Cq8-Gr-POH">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Shape (øje).png" translatesAutoresizingMaskIntoConstraints="NO" id="Cq8-Gr-POH">
                                         <rect key="frame" x="33" y="49" width="31" height="18"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="31" id="s96-8q-jZ9"/>
@@ -330,6 +330,6 @@
     </scenes>
     <resources>
         <image name="Profilbillede.png" width="110" height="110"/>
-        <image name="Shape-6.png" width="111" height="75"/>
+        <image name="Shape (øje).png" width="22" height="15"/>
     </resources>
 </document>
