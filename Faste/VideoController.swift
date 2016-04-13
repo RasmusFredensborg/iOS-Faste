@@ -10,7 +10,6 @@ import UIKit
 
 class VideoController: UIViewController, YTPlayerViewDelegate{
     
-    @IBOutlet weak var videoCollectionView: UICollectionView!
     @IBOutlet weak var playerView: YTPlayerView!
     @IBOutlet weak var playerHeight: NSLayoutConstraint!
     let playerVars = ["playsinline" : 0, "controls" : 1, "autohide" : 0, "showinfo" : 0, "autoplay" : 1, "fs" : 1, "rel" : 0, "modestbranding" : 1, "enablejsapi" : 1]
@@ -18,7 +17,8 @@ class VideoController: UIViewController, YTPlayerViewDelegate{
     var videoIndex = 0;
     
     @IBOutlet weak var descriptionView: DescriptionView!
-    @IBOutlet weak var personView: UIView!
+    @IBOutlet weak var personView: PersonView!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,14 +31,37 @@ class VideoController: UIViewController, YTPlayerViewDelegate{
         self.playerView.delegate = self
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(VideoController.rotated), name: UIDeviceOrientationDidChangeNotification, object: nil)
-        descriptionView.descriptionLabel?.numberOfLines = 0;
-        descriptionView.descriptionLabel?.lineBreakMode = .ByWordWrapping
-        descriptionView.descriptionLabel?.text = YTVideosArray[videoIndex].description
-        descriptionView.titleLabel?.text = YTVideosArray[videoIndex].title
+        updateView();
+        
         playerView.loadWithVideoId(YTVideosArray[videoIndex].ID, playerVars: playerVars)
         
         playerHeight.constant = UIScreen.mainScreen().bounds.width * (9/16)
         
+    }
+    
+    override func viewDidLayoutSubviews() {
+        descriptionView.layer.shadowColor = UIColor.grayColor().CGColor;
+        descriptionView.layer.shadowOffset = CGSizeMake(0, 2.0);
+        descriptionView.layer.shadowRadius = 3.0;
+        descriptionView.layer.shadowOpacity = 0.25;
+        descriptionView.layer.masksToBounds = false;
+        descriptionView.layer.shadowPath = UIBezierPath(roundedRect:descriptionView.bounds, cornerRadius: 0).CGPath;
+        
+        personView.layer.shadowColor = UIColor.grayColor().CGColor;
+        personView.layer.shadowOffset = CGSizeMake(0, 2.0);
+        personView.layer.shadowRadius = 3.0;
+        personView.layer.shadowOpacity = 0.25;
+        personView.layer.masksToBounds = false;
+        personView.layer.shadowPath = UIBezierPath(roundedRect:personView.bounds, cornerRadius: 0).CGPath;
+    }
+    
+    func updateView(){
+        var video = YTVideosArray[videoIndex];
+        descriptionView.descriptionLabel?.text = video.description
+        descriptionView.titleLabel?.text = video.title
+        descriptionView.viewLabel?.text = String(video.viewCount);
+        personView.nameLabel?.text = "Jannie"
+        personView.descriptionLabel?.text = "Sygeplejerske"
     }
     
     func nextVideoClick(gr:UITapGestureRecognizer)

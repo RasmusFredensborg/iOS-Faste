@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A8AB0521CBE28B400D9F10F /* PersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8AB0511CBE28B400D9F10F /* PersonView.swift */; };
 		3AF6C55B1CBD185C0065B447 /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AF6C55A1CBD185C0065B447 /* info.png */; };
 		3AF6C55D1CBD39380065B447 /* DescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF6C55C1CBD39380065B447 /* DescriptionView.swift */; };
 		3E05B78D1C90197B00E0B739 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E05B78C1C90197B00E0B739 /* AppDelegate.swift */; };
@@ -46,6 +47,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3A8AB0511CBE28B400D9F10F /* PersonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonView.swift; sourceTree = "<group>"; };
 		3AF6C55A1CBD185C0065B447 /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
 		3AF6C55C1CBD39380065B447 /* DescriptionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DescriptionView.swift; sourceTree = "<group>"; };
 		3E05B7891C90197B00E0B739 /* Faste.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Faste.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,6 +140,7 @@
 				3E05B7BA1C901BD000E0B739 /* Faste-Bridging-Header.h */,
 				3E5863571C9831FF0096DCD8 /* YTVideo.swift */,
 				3AF6C55C1CBD39380065B447 /* DescriptionView.swift */,
+				3A8AB0511CBE28B400D9F10F /* PersonView.swift */,
 			);
 			path = Faste;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 				3E5863581C9831FF0096DCD8 /* YTVideo.swift in Sources */,
 				3E05B78D1C90197B00E0B739 /* AppDelegate.swift in Sources */,
 				3E05B7BD1C901BF800E0B739 /* YTPlayerView.m in Sources */,
+				3A8AB0521CBE28B400D9F10F /* PersonView.swift in Sources */,
 				3E05B7C51C901CFD00E0B739 /* VideoController.swift in Sources */,
 				3E05B7C71C901D7800E0B739 /* ThumbnailCell.swift in Sources */,
 			);

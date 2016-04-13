@@ -1,18 +1,18 @@
 //
-//  DescriptionView.swift
+//  PersonView.swift
 //  Faste
 //
-//  Created by Rasmus Fredensborg Jensen on 12/04/16.
+//  Created by Rasmus Fredensborg Jensen on 13/04/16.
 //  Copyright © 2016 Emento. All rights reserved.
 //
 
 import UIKit
 
-class DescriptionView: UIView
+class PersonView: UIView
 {
-    @IBOutlet weak var titleLabel : UILabel?
+    @IBOutlet weak var nameLabel : UILabel?
     @IBOutlet weak var descriptionLabel : UILabel?
-    @IBOutlet weak var viewLabel : UILabel?
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
