@@ -23,6 +23,9 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
     var viewLoaded = false
     var newHeight : CGFloat = 0
     var ratio : CGFloat = 0
+    let device = UIDevice.currentDevice().model
+    var layout = UICollectionViewFlowLayout()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController!.navigationBar.translucent = false;
@@ -32,20 +35,36 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         let infoImage = UIImage(named: "info.png")
         let imgWidth = Int(30)
         let imgHeight = Int(30)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(GridController.orientation), name: UIDeviceOrientationDidChangeNotification, object: nil)
+        
         let infoButton:UIButton = UIButton(frame: CGRect(x: 0, y: 0, width: imgWidth, height: imgHeight))
         infoButton.setBackgroundImage(infoImage, forState: .Normal)
         infoButton.addTarget(self, action: #selector(GridController.infoTapped), forControlEvents: UIControlEvents.TouchUpInside)
+        
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: infoButton)
-        let layout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         var size = CGSize()
-        size.height = 240
-        size.width = 300
-        layout.minimumLineSpacing = 10
-        layout.minimumInteritemSpacing = 10
+        layout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        
+        if(device == "iPad"){
+            size.height = 239
+            size.width = 300
+            layout.minimumLineSpacing = 10
+            layout.minimumInteritemSpacing = 10
+        }
+        
+        if(device == "iPhone"){
+            size.width = 180
+            size.height = 171
+            layout.minimumLineSpacing = 5
+            layout.minimumInteritemSpacing = 5
+        }
+        
         layout.itemSize = size
         
         collectionView.dataSource = self
         collectionView.delegate = self
+        
         var videos = "";
         for i in 0 ..< videoArray.count {
             videos += videoArray[i];
@@ -56,6 +75,26 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         getVideos(videos);
     }
     
+    func orientation(){
+        if(device == "iPad"){
+            if(UIDevice.currentDevice().orientation.isLandscape){
+                layout.sectionInset.left = 30
+                layout.sectionInset.right = 30
+                layout.sectionInset.top = 10
+            }
+            else if(UIDevice.currentDevice().orientation.isPortrait){
+                layout.sectionInset.left = 77
+                layout.sectionInset.right = 77
+                layout.sectionInset.top = 10
+            }
+        }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        orientation()
+    }
+
+        
     func infoTapped(){
         let alert = UIAlertController(title: "Emento", message: "Contact: developer@emento.dk", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
@@ -69,30 +108,6 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return YTVideosArray.count
     }
-    
-//    func collectionView( collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize{
-//        let layout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-//        var size : CGSize = layout.itemSize
-//        var rect = CGRect()
-//        size.height = self.newHeight
-//        if(viewLoaded){
-//            size.width = self.newHeight/self.ratio
-//        }
-//        let visibleCells = layout.collectionView!.visibleCells()
-//        if(visibleCells.count != 0){
-//            for cell in visibleCells{
-//                rect.size = size
-//                cell.layer.shadowColor = UIColor.grayColor().CGColor;
-//                cell.layer.shadowOffset = CGSizeMake(0, 2.0);
-//                cell.layer.shadowRadius = 3.0;
-//                cell.layer.shadowOpacity = 0.25;
-//                cell.layer.masksToBounds = false;
-//                cell.layer.shadowPath = UIBezierPath(roundedRect:rect, cornerRadius: 0).CGPath;
-//            }
-//        }
-//        
-//        return size
-//    }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell: ThumbnailCell = collectionView.dequeueReusableCellWithReuseIdentifier("ThumbnailCell", forIndexPath: indexPath) as! ThumbnailCell
@@ -108,7 +123,6 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
             completionHandler: {(response: NSURLResponse?,data: NSData?,error: NSError?) -> Void in
                 if error == nil {
                     cell.thumbnailImg.image = UIImage(data: data!)!
-//                    cell.thumbnailImg.bounds = bounds;
                     
                 }
         })

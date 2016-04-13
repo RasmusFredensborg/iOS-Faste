@@ -12,13 +12,12 @@ class VideoController: UIViewController, YTPlayerViewDelegate{
     
     @IBOutlet weak var playerView: YTPlayerView!
     @IBOutlet weak var playerHeight: NSLayoutConstraint!
-    let playerVars = ["playsinline" : 0, "controls" : 1, "autohide" : 0, "showinfo" : 0, "autoplay" : 1, "fs" : 1, "rel" : 0, "modestbranding" : 1, "enablejsapi" : 1]
+    let playerVars = ["playsinline" : 1, "controls" : 1, "autohide" : 0, "showinfo" : 0, "autoplay" : 1, "fs" : 1, "rel" : 0, "modestbranding" : 1, "enablejsapi" : 1]
     var YTVideosArray : Array<YTVideo> = []
     var videoIndex = 0;
     
     @IBOutlet weak var descriptionView: DescriptionView!
     @IBOutlet weak var personView: PersonView!
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +55,7 @@ class VideoController: UIViewController, YTPlayerViewDelegate{
     }
     
     func updateView(){
-        var video = YTVideosArray[videoIndex];
+        let video = YTVideosArray[videoIndex];
         descriptionView.descriptionLabel?.text = video.description
         descriptionView.titleLabel?.text = video.title
         descriptionView.viewLabel?.text = String(video.viewCount);
@@ -64,14 +63,13 @@ class VideoController: UIViewController, YTPlayerViewDelegate{
         personView.descriptionLabel?.text = "Sygeplejerske"
     }
     
-    func nextVideoClick(gr:UITapGestureRecognizer)
-    {
+    @IBAction func nextVideoPressed(sender: AnyObject) {
         if(videoIndex < YTVideosArray.count-1){
             videoIndex+=1;
             self.playerView.loadWithVideoId(YTVideosArray[videoIndex].ID, playerVars: playerVars)
+            updateView()
         }
     }
-    
     
     func playerViewDidBecomeReady(playerView: YTPlayerView!) {
         playerView.playVideo()
