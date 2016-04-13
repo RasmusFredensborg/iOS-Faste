@@ -23,7 +23,6 @@ class GridDataHelper
         
         let url:NSURL = NSURL(string: urlString)!
         let session = NSURLSession.sharedSession()
-        
         let task = session.downloadTaskWithURL(url) {
             (
             let location, let response, let error) in
@@ -64,7 +63,6 @@ class GridDataHelper
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             let managedContext = appDelegate.managedObjectContext!
             let fetchRequest = NSFetchRequest(entityName: "Images")
-            
             let fetchedResults = try managedContext.executeFetchRequest(fetchRequest)
             
             for i in 0 ..< fetchedResults.count

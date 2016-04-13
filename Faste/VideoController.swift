@@ -29,13 +29,17 @@ class VideoController: UIViewController, YTPlayerViewDelegate{
         
         self.playerView.delegate = self
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(VideoController.rotated), name: UIDeviceOrientationDidChangeNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(VideoController.orientation), name: UIDeviceOrientationDidChangeNotification, object: nil)
         updateView();
         
         playerView.loadWithVideoId(YTVideosArray[videoIndex].ID, playerVars: playerVars)
         
         playerHeight.constant = UIScreen.mainScreen().bounds.width * (9/16)
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        orientation()
     }
     
     override func viewDidLayoutSubviews() {
@@ -80,9 +84,9 @@ class VideoController: UIViewController, YTPlayerViewDelegate{
         print("Error")
     }
     
-    func rotated(){
+    func orientation(){
         if(UIDevice.currentDevice().orientation.isLandscape){
-            playerHeight.constant = UIScreen.mainScreen().bounds.height
+            playerHeight.constant = UIScreen.mainScreen().bounds.height  - (self.navigationController?.navigationBar.bounds.height)!
         }
         else if(UIDevice.currentDevice().orientation.isPortrait){
             playerHeight.constant = UIScreen.mainScreen().bounds.width * (9/16)

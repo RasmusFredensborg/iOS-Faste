@@ -8,6 +8,22 @@
 
 import UIKit
 
+struct ScreenSize
+{
+    static let SCREEN_WIDTH = UIScreen.mainScreen().bounds.size.width
+    static let SCREEN_HEIGHT = UIScreen.mainScreen().bounds.size.height
+    static let SCREEN_MAX_LENGTH = max(ScreenSize.SCREEN_WIDTH, ScreenSize.SCREEN_HEIGHT)
+    static let SCREEN_MIN_LENGTH = min(ScreenSize.SCREEN_WIDTH, ScreenSize.SCREEN_HEIGHT)
+}
+
+struct DeviceType
+{
+    static let IS_IPHONE_4_OR_LESS =  UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.SCREEN_MAX_LENGTH < 568.0
+    static let IS_IPHONE_5 = UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.SCREEN_MAX_LENGTH == 568.0
+    static let IS_IPHONE_6 = UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.SCREEN_MAX_LENGTH == 667.0
+    static let IS_IPHONE_6P = UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.SCREEN_MAX_LENGTH == 736.0
+}
+
 class GridController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -47,15 +63,21 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
             size.width = 300
             layout.minimumLineSpacing = 10
             layout.minimumInteritemSpacing = 10
+        }else{
+            
+            if(DeviceType.IS_IPHONE_6){
+                size.width = 180
+                size.height = 171
+                layout.minimumLineSpacing = 5
+                layout.minimumInteritemSpacing = 5
+            }
+            if(DeviceType.IS_IPHONE_5){
+                size.width = 152
+                size.height = 156
+                layout.minimumLineSpacing = 5
+                layout.minimumInteritemSpacing = 5
+            }
         }
-        
-        if(device == "iPhone"){
-            size.width = 180
-            size.height = 171
-            layout.minimumLineSpacing = 5
-            layout.minimumInteritemSpacing = 5
-        }
-        
         layout.itemSize = size
         
         collectionView.dataSource = self
