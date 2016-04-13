@@ -11,7 +11,7 @@ import UIKit
 class GridController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     @IBOutlet weak var collectionView: UICollectionView!
     
-    let videoArray = ["DtrcDz-yUKU", "QBWwWP_5Nc8", "vsbxs8tYXxM", "kZOCBths2lY", "BNdFm-stES0", "QBWwWP_5Nc8", "vsbxs8tYXxM", "kZOCBths2lY", "BNdFm-stES0", "QBWwWP_5Nc8", "vsbxs8tYXxM", "kZOCBths2lY", "BNdFm-stES0", "QBWwWP_5Nc8", "vsbxs8tYXxM", "kZOCBths2lY", "BNdFm-stES0", "QBWwWP_5Nc8", "vsbxs8tYXxM", "kZOCBths2lY", "BNdFm-stES0", "QBWwWP_5Nc8", "vsbxs8tYXxM", "kZOCBths2lY", "BNdFm-stES0", "QBWwWP_5Nc8", "vsbxs8tYXxM", "kZOCBths2lY", "BNdFm-stES0", "QBWwWP_5Nc8", "vsbxs8tYXxM", "kZOCBths2lY", "BNdFm-stES0"]
+    let videoArray = ["DtrcDz-yUKU", "QBWwWP_5Nc8", "vsbxs8tYXxM", "kZOCBths2lY", "BNdFm-stES0", "QBWwWP_5Nc8", "vsbxs8tYXxM", "kZOCBths2lY", "BNdFm-stES0", "QBWwWP_5Nc8", "vsbxs8tYXxM", "kZOCBths2lY", "BNdFm-stES0", "QBWwWP_5Nc8", "vsbxs8tYXxM", "kZOCBths2lY", "BNdFm-stES0", "QBWwWP_5Nc8", "vsbxs8tYXxM", "kZOCBths2lY", "BNdFm-stES0", "QBWwWP_5Nc8", "vsbxs8tYXxM", "kZOCBths2lY", "BNdFm-stES0", "QBWwWP_5Nc8", "vsbxs8tYXxM", "kZOCBths2lY", "BNdFm-stES0", "QBWwWP_5Nc8", "vsbxs8tYXxM", "kZOCBths2lY"]
     
     let apiKey: String = "AIzaSyBrA9OpNqp6u_wnMKfTaT3sBkjnmflmAuc"
     
@@ -77,11 +77,13 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
                 layout.sectionInset.left = 30
                 layout.sectionInset.right = 30
                 layout.sectionInset.top = 10
+                layout.sectionInset.bottom = 10
             }
             else if(UIDevice.currentDevice().orientation.isPortrait){
                 layout.sectionInset.left = 77
                 layout.sectionInset.right = 77
                 layout.sectionInset.top = 10
+                layout.sectionInset.bottom = 10
             }
         }
     }
@@ -107,7 +109,10 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell: ThumbnailCell = collectionView.dequeueReusableCellWithReuseIdentifier("ThumbnailCell", forIndexPath: indexPath) as! ThumbnailCell
-
+        
+        cell.layer.shouldRasterize = true
+        cell.layer.rasterizationScale = UIScreen.mainScreen().scale
+        
         let video = gridHelper.YTVideosArray[indexPath.row]
         cell.titleLbl.text = video.title
         
@@ -129,6 +134,7 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         cell.layer.shadowOpacity = 0.25;
         cell.layer.masksToBounds = false;
         cell.layer.shadowPath = UIBezierPath(roundedRect:cell.bounds, cornerRadius: 0).CGPath;
+        
         return cell;
     }
     
@@ -240,8 +246,13 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
                         self.videoIndex+=1
                         if self.videoIndex == self.videoArray.count{
                             //self.YTVideosArray.sortInPlace({$0.viewCount > $1.viewCount});
-                            self.gridHelper.read()
-                            self.do_grid_refresh()
+                            do{
+                                try self.gridHelper.read()
+                                self.do_grid_refresh()
+                            }
+                            catch _{
+                                
+                            }
                         }
                     }
                 }
@@ -251,7 +262,7 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
             }
             else{
                 print("HTTP Status Code = \(HTTPStatusCode)")
-                print("Error while loading channel videos: \(error)")
+                print("Error while loading videos: \(error)")
             }
         })
     }

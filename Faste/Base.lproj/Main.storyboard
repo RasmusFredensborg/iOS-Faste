@@ -71,7 +71,7 @@
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="23" id="u88-5I-piQ"/>
                                                                     </constraints>
-                                                                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="16"/>
+                                                                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="20"/>
                                                                     <color key="textColor" red="0.32941176470588235" green="0.32549019607843138" blue="0.32549019607843138" alpha="1" colorSpace="deviceRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>

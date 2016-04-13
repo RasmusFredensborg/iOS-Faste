@@ -13,55 +13,77 @@ class GridDataHelper
 {
     var YTVideosArray: Array<YTVideo> = []
     
+    enum ErrorHandler:ErrorType
+    {
+        case ErrorFetchingResults
+    }
+    
     func load_image(urlString:String, imageview:UIImageView, index:NSInteger)
     {
         
-        var imgURL: NSURL = NSURL(string: urlString)!
-        let request: NSURLRequest = NSURLRequest(URL: imgURL)
-        NSURLConnection.sendAsynchronousRequest(
-            request, queue: NSOperationQueue.mainQueue(),
-            completionHandler: {(response: NSURLResponse?,data: NSData?,error: NSError?) -> Void in
-                if error == nil {
-                    self.YTVideosArray[index].thumbnailImage = UIImage(data: data!)
-                    self.save(index,image: self.YTVideosArray[index].thumbnailImage!)
-                    
-                    imageview.image = self.YTVideosArray[index].thumbnailImage
-                }
-        })
+        let url:NSURL = NSURL(string: urlString)!
+        let session = NSURLSession.sharedSession()
+        
+        let task = session.downloadTaskWithURL(url) {
+            (
+            let location, let response, let error) in
+            
+            guard let _:NSURL = location, let _:NSURLResponse = response  where error == nil else {
+                print("error")
+                return
+            }
+            
+            let imageData = NSData(contentsOfURL: location!)
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                
+                
+                self.YTVideosArray[index].thumbnailImage = UIImage(data: imageData!)
+                self.save(index,image: self.YTVideosArray[index].thumbnailImage!)
+                
+                imageview.image = self.YTVideosArray[index].thumbnailImage
+                return
+            })
+            
+            
+        }
+        
+        task.resume()
+        
         
     }
     
     
     
     
-    func read()
+    func read() throws
     {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let managedContext = appDelegate.managedObjectContext
-        let fetchRequest = NSFetchRequest(entityName: "Images")
         
-        var error: NSError?
-        do{
+        do
+        {
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            let managedContext = appDelegate.managedObjectContext!
+            let fetchRequest = NSFetchRequest(entityName: "Images")
             
-            let fetchedResults = try managedContext!.executeFetchRequest(fetchRequest)
-                as [AnyObject]?
+            let fetchedResults = try managedContext.executeFetchRequest(fetchRequest)
             
-            if let results = fetchedResults
+            for i in 0 ..< fetchedResults.count
             {
-                for i in 0 ..< results.count
-                {
-                    let single_result = results[i]
-                    let index = single_result.valueForKey("index") as! NSInteger
-                    let img: NSData? = single_result.valueForKey("image") as? NSData
-                    
-                    YTVideosArray[index].thumbnailImage = UIImage(data: img!)
-                    
-                }
+                let single_result = fetchedResults[i]
+                let index = single_result.valueForKey("index") as! NSInteger
+                let img: NSData? = single_result.valueForKey("image") as? NSData
+                
+                YTVideosArray[index].thumbnailImage = UIImage(data: img!)
+                
             }
-        }
-        catch _{
             
         }
+        catch
+        {
+            print("error")
+            throw ErrorHandler.ErrorFetchingResults
+        }
+        
     }
     
     func save(id:Int,image:UIImage)
@@ -79,11 +101,11 @@ class GridDataHelper
         options.setValue(id, forKey: "index")
         options.setValue(newImageData, forKey: "image")
         
-        var error: NSError?
         do {
             try managedContext.save()
-        } catch let error1 as NSError {
-            error = error1
+        } catch
+        {
+            print("error")
         }
         
     }
