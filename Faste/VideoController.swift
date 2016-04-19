@@ -17,6 +17,8 @@ class VideoController: UIViewController, YTPlayerViewDelegate{
     
     @IBOutlet weak var descriptionView: DescriptionView!
     @IBOutlet weak var personView: PersonView!
+    @IBOutlet weak var relatedView: UIView!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var playerHeight: NSLayoutConstraint!
     override func viewDidLoad() {
@@ -42,19 +44,32 @@ class VideoController: UIViewController, YTPlayerViewDelegate{
     }
     
     override func viewDidLayoutSubviews() {
+        descriptionView.layer.rasterizationScale = UIScreen.mainScreen().scale;
+        descriptionView.layer.shouldRasterize = true
         descriptionView.layer.shadowColor = UIColor.grayColor().CGColor;
         descriptionView.layer.shadowOffset = CGSizeMake(0, 2.0);
         descriptionView.layer.shadowRadius = 3.0;
         descriptionView.layer.shadowOpacity = 0.25;
         descriptionView.layer.masksToBounds = false;
-        descriptionView.layer.shadowPath = UIBezierPath(roundedRect:descriptionView.bounds, cornerRadius: 0).CGPath;
+//        descriptionView.layer.shadowPath = UIBezierPath(roundedRect:descriptionView.bounds, cornerRadius: 0).CGPath;
 
+        personView.layer.rasterizationScale = UIScreen.mainScreen().scale;
+        personView.layer.shouldRasterize = true
         personView.layer.shadowColor = UIColor.grayColor().CGColor;
         personView.layer.shadowOffset = CGSizeMake(0, 2.0);
         personView.layer.shadowRadius = 3.0;
         personView.layer.shadowOpacity = 0.25;
         personView.layer.masksToBounds = false;
-        personView.layer.shadowPath = UIBezierPath(roundedRect:personView.bounds, cornerRadius: 0).CGPath;
+//        personView.layer.shadowPath = UIBezierPath(roundedRect:personView.bounds, cornerRadius: 0).CGPath;
+        
+        relatedView.layer.rasterizationScale = UIScreen.mainScreen().scale;
+        relatedView.layer.shouldRasterize = true
+        relatedView.layer.shadowColor = UIColor.grayColor().CGColor;
+        relatedView.layer.shadowOffset = CGSizeMake(0, 2.0);
+        relatedView.layer.shadowRadius = 3.0;
+        relatedView.layer.shadowOpacity = 0.25;
+        relatedView.layer.masksToBounds = false;
+//        relatedView.layer.shadowPath = UIBezierPath(roundedRect:relatedView.bounds, cornerRadius: 0).CGPath;
     }
     
     func updateView(){
@@ -86,9 +101,11 @@ class VideoController: UIViewController, YTPlayerViewDelegate{
     func orientation(){
         if(UIDevice.currentDevice().orientation.isLandscape){
             playerHeight.constant = UIScreen.mainScreen().bounds.height  - (self.navigationController?.navigationBar.bounds.height)!
+            self.scrollView.scrollEnabled = false
         }
         else if(UIDevice.currentDevice().orientation.isPortrait){
             playerHeight.constant = UIScreen.mainScreen().bounds.width * (9/16)
+            self.scrollView.scrollEnabled = true
         }
     }
 }

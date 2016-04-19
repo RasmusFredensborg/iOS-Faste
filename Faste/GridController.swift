@@ -75,7 +75,7 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
             }
             if(DeviceType.IS_IPHONE_5){
                 size.width = 152
-                size.height = 156
+                size.height = 155
                 layout.minimumLineSpacing = 5
                 layout.minimumInteritemSpacing = 5
             }
