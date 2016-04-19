@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class GridDataHelper
+class YTImgCache
 {
     var YTVideosArray: Array<YTVideo> = []
     
@@ -64,6 +64,16 @@ class GridDataHelper
             let managedContext = appDelegate.managedObjectContext!
             let fetchRequest = NSFetchRequest(entityName: "Images")
             let fetchedResults = try managedContext.executeFetchRequest(fetchRequest)
+            
+            if(fetchedResults.count != YTVideosArray.count)
+            {
+                for i in 0 ..< fetchedResults.count
+                {
+                    managedContext.deleteObject(fetchedResults[i] as! NSManagedObject)
+                }
+                
+                return
+            }
             
             for i in 0 ..< fetchedResults.count
             {

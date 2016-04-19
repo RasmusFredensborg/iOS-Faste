@@ -27,7 +27,7 @@ struct DeviceType
 class GridController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     @IBOutlet weak var collectionView: UICollectionView!
     
-    let videoArray = ["DtrcDz-yUKU", "QBWwWP_5Nc8", "vsbxs8tYXxM", "kZOCBths2lY", "BNdFm-stES0", "QBWwWP_5Nc8", "vsbxs8tYXxM", "kZOCBths2lY", "BNdFm-stES0", "QBWwWP_5Nc8", "vsbxs8tYXxM", "kZOCBths2lY", "BNdFm-stES0", "QBWwWP_5Nc8", "vsbxs8tYXxM", "kZOCBths2lY", "BNdFm-stES0", "QBWwWP_5Nc8", "vsbxs8tYXxM", "kZOCBths2lY", "BNdFm-stES0", "QBWwWP_5Nc8", "vsbxs8tYXxM", "kZOCBths2lY", "BNdFm-stES0", "QBWwWP_5Nc8", "vsbxs8tYXxM", "kZOCBths2lY", "BNdFm-stES0", "QBWwWP_5Nc8", "vsbxs8tYXxM", "kZOCBths2lY"]
+    let videoArray = ["DtrcDz-yUKU", "QBWwWP_5Nc8", "vsbxs8tYXxM", "kZOCBths2lY", "BNdFm-stES0"]//, "QBWwWP_5Nc8", "vsbxs8tYXxM", "kZOCBths2lY", "BNdFm-stES0", "QBWwWP_5Nc8", "vsbxs8tYXxM", "kZOCBths2lY", "BNdFm-stES0", "QBWwWP_5Nc8", "vsbxs8tYXxM", "kZOCBths2lY", "BNdFm-stES0", "QBWwWP_5Nc8", "vsbxs8tYXxM", "kZOCBths2lY", "BNdFm-stES0", "QBWwWP_5Nc8", "vsbxs8tYXxM", "kZOCBths2lY", "BNdFm-stES0", "QBWwWP_5Nc8", "vsbxs8tYXxM", "kZOCBths2lY", "BNdFm-stES0", "QBWwWP_5Nc8", "vsbxs8tYXxM", "kZOCBths2lY"]
     
     let apiKey: String = "AIzaSyBrA9OpNqp6u_wnMKfTaT3sBkjnmflmAuc"
     
@@ -36,7 +36,7 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
     var selectedVideoIndex: Int!
     let device = UIDevice.currentDevice().model
     var layout = UICollectionViewFlowLayout()
-    let gridHelper = GridDataHelper()
+    let ytImgCache = YTImgCache()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,19 +48,21 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         let imgWidth = Int(30)
         let imgHeight = Int(30)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(GridController.orientation), name: UIDeviceOrientationDidChangeNotification, object: nil)
-        
         let infoButton:UIButton = UIButton(frame: CGRect(x: 0, y: 0, width: imgWidth, height: imgHeight))
         infoButton.setBackgroundImage(infoImage, forState: .Normal)
         infoButton.addTarget(self, action: #selector(GridController.infoTapped), forControlEvents: UIControlEvents.TouchUpInside)
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: infoButton)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(GridController.orientation), name: UIDeviceOrientationDidChangeNotification, object: nil)
+        
         var size = CGSize()
         layout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         
         if(device == "iPad"){
             size.height = 239
             size.width = 300
+            
             layout.minimumLineSpacing = 10
             layout.minimumInteritemSpacing = 10
         }else{
@@ -82,6 +84,7 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         
         collectionView.dataSource = self
         collectionView.delegate = self
+        collectionView.registerNib(UINib(nibName: "ThumbnailCell", bundle: nil), forCellWithReuseIdentifier: "ThumbnailCell")
         
         var videos = "";
         for i in 0 ..< videoArray.count {
@@ -126,7 +129,7 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return gridHelper.YTVideosArray.count
+        return ytImgCache.YTVideosArray.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -135,12 +138,18 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         cell.layer.shouldRasterize = true
         cell.layer.rasterizationScale = UIScreen.mainScreen().scale
         
-        let video = gridHelper.YTVideosArray[indexPath.row]
+        let video = ytImgCache.YTVideosArray[indexPath.row]
         cell.titleLbl.text = video.title
         
         if(video.thumbnailImage == nil)
         {
-            gridHelper.load_image(video.thumbnailUrl, imageview: cell.thumbnailImg!, index: indexPath.row)
+            cell.alpha = 0;
+            
+            ytImgCache.load_image(video.thumbnailUrl, imageview: cell.thumbnailImg!, index: indexPath.row)
+            
+            UIView.animateWithDuration(0.5) {
+                cell.alpha = 1.0
+            }
         }
         else
         {
@@ -169,7 +178,7 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         
         if segue.identifier == "idSeguePlayer" {
             let playerViewController = segue.destinationViewController as! VideoController
-            playerViewController.YTVideosArray = gridHelper.YTVideosArray
+            playerViewController.YTVideosArray = ytImgCache.YTVideosArray
             playerViewController.videoIndex = selectedVideoIndex
         }
         
@@ -263,13 +272,13 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
                         video.viewCount = Int(videoStatDict["viewCount"] as! String)!
                         video.likeCount = videoStatDict["likeCount"] as! String
                         
-                        self.gridHelper.YTVideosArray.append(video)
+                        self.ytImgCache.YTVideosArray.append(video)
                         
                         self.videoIndex+=1
                         if self.videoIndex == self.videoArray.count{
-                            //self.YTVideosArray.sortInPlace({$0.viewCount > $1.viewCount});
+                            //self.YTVideosArray.sortInPlace({$0.viewCount > $1.viewCount}); // Sorting algorithm
                             do{
-                                try self.gridHelper.read()
+                                try self.ytImgCache.read()
                                 self.do_grid_refresh()
                             }
                             catch _{
