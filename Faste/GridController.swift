@@ -44,7 +44,7 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         self.navigationController!.navigationBar.barStyle = UIBarStyle.Black
         self.navigationController!.navigationBar.barTintColor = UIColor.darkGrayColor();
         
-        let font = UIFont(name: "Roboto-Regular", size: 22)
+        let font = UIFont(name: "Roboto-Regular", size: 18)
         if let font = font {
             self.navigationController!.navigationBar.titleTextAttributes = [NSFontAttributeName : font, NSForegroundColorAttributeName : UIColor.whiteColor()]
             self.title = "FASTEREGLER"

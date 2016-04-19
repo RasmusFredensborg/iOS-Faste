@@ -28,7 +28,11 @@ class VideoController: UIViewController, YTPlayerViewDelegate{
         self.navigationController!.navigationBar.barStyle = UIBarStyle.Black
         self.navigationController!.navigationBar.barTintColor = UIColor.darkGrayColor();
         self.navigationController!.navigationBar.tintColor = UIColor.whiteColor();
-        
+        let font = UIFont(name: "Roboto-Regular", size: 18)
+        if let font = font {
+            UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName : font, NSForegroundColorAttributeName : UIColor.whiteColor()], forState: UIControlState.Normal)
+            
+        }
         self.playerView.delegate = self
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(VideoController.orientation), name: UIDeviceOrientationDidChangeNotification, object: nil)
