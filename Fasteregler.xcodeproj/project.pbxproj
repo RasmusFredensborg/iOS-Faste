@@ -10,6 +10,7 @@
 		3A6A886D1CBE6BBA0089FE95 /* GridDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3A6A886B1CBE6BBA0089FE95 /* GridDataModel.xcdatamodeld */; };
 		3A8AB0521CBE28B400D9F10F /* PersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8AB0511CBE28B400D9F10F /* PersonView.swift */; };
 		3A8AB0541CBE5C1100D9F10F /* YTImgCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8AB0531CBE5C1100D9F10F /* YTImgCache.swift */; };
+		3AC3F90A1CC66D2300657AC4 /* Roboto in Resources */ = {isa = PBXBuildFile; fileRef = 3AC3F9091CC66D2300657AC4 /* Roboto */; };
 		3AC6ACA81CC6219C00F203CF /* ThumbnailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AC6ACA71CC6219C00F203CF /* ThumbnailCell.xib */; };
 		3AC6ACAA1CC63F0100F203CF /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AC6ACA91CC63F0100F203CF /* info.png */; };
 		3AF6C55D1CBD39380065B447 /* DescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF6C55C1CBD39380065B447 /* DescriptionView.swift */; };
@@ -53,18 +54,19 @@
 		3A6A886C1CBE6BBA0089FE95 /* GridDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GridDataModel.xcdatamodel; sourceTree = "<group>"; };
 		3A8AB0511CBE28B400D9F10F /* PersonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonView.swift; sourceTree = "<group>"; };
 		3A8AB0531CBE5C1100D9F10F /* YTImgCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YTImgCache.swift; sourceTree = "<group>"; };
+		3AC3F9091CC66D2300657AC4 /* Roboto */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Roboto; sourceTree = "<group>"; };
 		3AC6ACA71CC6219C00F203CF /* ThumbnailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThumbnailCell.xib; sourceTree = "<group>"; };
 		3AC6ACA91CC63F0100F203CF /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
 		3AF6C55C1CBD39380065B447 /* DescriptionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DescriptionView.swift; sourceTree = "<group>"; };
-		3E05B7891C90197B00E0B739 /* Faste.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Faste.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E05B7891C90197B00E0B739 /* Fasteregler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fasteregler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E05B78C1C90197B00E0B739 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3E05B7931C90197B00E0B739 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3E05B7961C90197B00E0B739 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3E05B7981C90197B00E0B739 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3E05B79D1C90197B00E0B739 /* FasteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FasteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E05B79D1C90197B00E0B739 /* Fasteregler.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Fasteregler.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E05B7A11C90197B00E0B739 /* FasteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FasteTests.swift; sourceTree = "<group>"; };
 		3E05B7A31C90197B00E0B739 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3E05B7A81C90197B00E0B739 /* FasteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FasteUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E05B7A81C90197B00E0B739 /* Fasteregler.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Fasteregler.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E05B7AC1C90197B00E0B739 /* FasteUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FasteUITests.swift; sourceTree = "<group>"; };
 		3E05B7AE1C90197B00E0B739 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3E05B7BA1C901BD000E0B739 /* Faste-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Faste-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -111,8 +113,9 @@
 		3E05B7801C90197B00E0B739 = {
 			isa = PBXGroup;
 			children = (
+				3AC3F9091CC66D2300657AC4 /* Roboto */,
 				3E05B7D01C905A9200E0B739 /* Assets */,
-				3E05B78B1C90197B00E0B739 /* Faste */,
+				3E05B78B1C90197B00E0B739 /* Fasteregler */,
 				3E05B7A01C90197B00E0B739 /* FasteTests */,
 				3E05B7AB1C90197B00E0B739 /* FasteUITests */,
 				3E05B78A1C90197B00E0B739 /* Products */,
@@ -124,14 +127,14 @@
 		3E05B78A1C90197B00E0B739 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3E05B7891C90197B00E0B739 /* Faste.app */,
-				3E05B79D1C90197B00E0B739 /* FasteTests.xctest */,
-				3E05B7A81C90197B00E0B739 /* FasteUITests.xctest */,
+				3E05B7891C90197B00E0B739 /* Fasteregler.app */,
+				3E05B79D1C90197B00E0B739 /* Fasteregler.xctest */,
+				3E05B7A81C90197B00E0B739 /* Fasteregler.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		3E05B78B1C90197B00E0B739 /* Faste */ = {
+		3E05B78B1C90197B00E0B739 /* Fasteregler */ = {
 			isa = PBXGroup;
 			children = (
 				3E58635D1C983B000096DCD8 /* Images */,
@@ -151,6 +154,7 @@
 				3A8AB0511CBE28B400D9F10F /* PersonView.swift */,
 				3A8AB0531CBE5C1100D9F10F /* YTImgCache.swift */,
 			);
+			name = Fasteregler;
 			path = Faste;
 			sourceTree = "<group>";
 		};
@@ -188,9 +192,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3E05B7881C90197B00E0B739 /* Faste */ = {
+		3E05B7881C90197B00E0B739 /* Fasteregler */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3E05B7B11C90197B00E0B739 /* Build configuration list for PBXNativeTarget "Faste" */;
+			buildConfigurationList = 3E05B7B11C90197B00E0B739 /* Build configuration list for PBXNativeTarget "Fasteregler" */;
 			buildPhases = (
 				3E05B7851C90197B00E0B739 /* Sources */,
 				3E05B7861C90197B00E0B739 /* Frameworks */,
@@ -200,14 +204,14 @@
 			);
 			dependencies = (
 			);
-			name = Faste;
+			name = Fasteregler;
 			productName = Faste;
-			productReference = 3E05B7891C90197B00E0B739 /* Faste.app */;
+			productReference = 3E05B7891C90197B00E0B739 /* Fasteregler.app */;
 			productType = "com.apple.product-type.application";
 		};
-		3E05B79C1C90197B00E0B739 /* FasteTests */ = {
+		3E05B79C1C90197B00E0B739 /* FastereglerTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3E05B7B41C90197B00E0B739 /* Build configuration list for PBXNativeTarget "FasteTests" */;
+			buildConfigurationList = 3E05B7B41C90197B00E0B739 /* Build configuration list for PBXNativeTarget "FastereglerTests" */;
 			buildPhases = (
 				3E05B7991C90197B00E0B739 /* Sources */,
 				3E05B79A1C90197B00E0B739 /* Frameworks */,
@@ -218,14 +222,14 @@
 			dependencies = (
 				3E05B79F1C90197B00E0B739 /* PBXTargetDependency */,
 			);
-			name = FasteTests;
+			name = FastereglerTests;
 			productName = FasteTests;
-			productReference = 3E05B79D1C90197B00E0B739 /* FasteTests.xctest */;
+			productReference = 3E05B79D1C90197B00E0B739 /* Fasteregler.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		3E05B7A71C90197B00E0B739 /* FasteUITests */ = {
+		3E05B7A71C90197B00E0B739 /* FastereglerUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3E05B7B71C90197B00E0B739 /* Build configuration list for PBXNativeTarget "FasteUITests" */;
+			buildConfigurationList = 3E05B7B71C90197B00E0B739 /* Build configuration list for PBXNativeTarget "FastereglerUITests" */;
 			buildPhases = (
 				3E05B7A41C90197B00E0B739 /* Sources */,
 				3E05B7A51C90197B00E0B739 /* Frameworks */,
@@ -236,9 +240,9 @@
 			dependencies = (
 				3E05B7AA1C90197B00E0B739 /* PBXTargetDependency */,
 			);
-			name = FasteUITests;
+			name = FastereglerUITests;
 			productName = FasteUITests;
-			productReference = 3E05B7A81C90197B00E0B739 /* FasteUITests.xctest */;
+			productReference = 3E05B7A81C90197B00E0B739 /* Fasteregler.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -267,7 +271,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 3E05B7841C90197B00E0B739 /* Build configuration list for PBXProject "Faste" */;
+			buildConfigurationList = 3E05B7841C90197B00E0B739 /* Build configuration list for PBXProject "Fasteregler" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -280,9 +284,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3E05B7881C90197B00E0B739 /* Faste */,
-				3E05B79C1C90197B00E0B739 /* FasteTests */,
-				3E05B7A71C90197B00E0B739 /* FasteUITests */,
+				3E05B7881C90197B00E0B739 /* Fasteregler */,
+				3E05B79C1C90197B00E0B739 /* FastereglerTests */,
+				3E05B7A71C90197B00E0B739 /* FastereglerUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -303,6 +307,7 @@
 				3E05B7941C90197B00E0B739 /* Assets.xcassets in Resources */,
 				3AC6ACA81CC6219C00F203CF /* ThumbnailCell.xib in Resources */,
 				3EF0BB581CAAB044006B6152 /* grey line.png in Resources */,
+				3AC3F90A1CC66D2300657AC4 /* Roboto in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,12 +366,12 @@
 /* Begin PBXTargetDependency section */
 		3E05B79F1C90197B00E0B739 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 3E05B7881C90197B00E0B739 /* Faste */;
+			target = 3E05B7881C90197B00E0B739 /* Fasteregler */;
 			targetProxy = 3E05B79E1C90197B00E0B739 /* PBXContainerItemProxy */;
 		};
 		3E05B7AA1C90197B00E0B739 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 3E05B7881C90197B00E0B739 /* Faste */;
+			target = 3E05B7881C90197B00E0B739 /* Fasteregler */;
 			targetProxy = 3E05B7A91C90197B00E0B739 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -480,9 +485,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Faste/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = dk.emento.Faste;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = dk.emento.Fasteregler;
+				PRODUCT_NAME = Fasteregler;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Faste/Faste-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -498,9 +504,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Faste/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = dk.emento.Faste;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = dk.emento.Fasteregler;
+				PRODUCT_NAME = Fasteregler;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Faste/Faste-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -514,9 +521,9 @@
 				INFOPLIST_FILE = FasteTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = dk.emento.FasteTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Fasteregler;
 				SWIFT_OBJC_BRIDGING_HEADER = "Faste/Faste-Bridging-Header.h";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Faste.app/Faste";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Fasteregler.app/Fasteregler";
 			};
 			name = Debug;
 		};
@@ -527,9 +534,9 @@
 				INFOPLIST_FILE = FasteTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = dk.emento.FasteTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Fasteregler;
 				SWIFT_OBJC_BRIDGING_HEADER = "Faste/Faste-Bridging-Header.h";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Faste.app/Faste";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Fasteregler.app/Fasteregler";
 			};
 			name = Release;
 		};
@@ -539,7 +546,7 @@
 				INFOPLIST_FILE = FasteUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = dk.emento.FasteUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Fasteregler;
 				TEST_TARGET_NAME = Faste;
 				USES_XCTRUNNER = YES;
 			};
@@ -551,7 +558,7 @@
 				INFOPLIST_FILE = FasteUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = dk.emento.FasteUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Fasteregler;
 				TEST_TARGET_NAME = Faste;
 				USES_XCTRUNNER = YES;
 			};
@@ -560,7 +567,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3E05B7841C90197B00E0B739 /* Build configuration list for PBXProject "Faste" */ = {
+		3E05B7841C90197B00E0B739 /* Build configuration list for PBXProject "Fasteregler" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3E05B7AF1C90197B00E0B739 /* Debug */,
@@ -569,7 +576,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3E05B7B11C90197B00E0B739 /* Build configuration list for PBXNativeTarget "Faste" */ = {
+		3E05B7B11C90197B00E0B739 /* Build configuration list for PBXNativeTarget "Fasteregler" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3E05B7B21C90197B00E0B739 /* Debug */,
@@ -578,7 +585,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3E05B7B41C90197B00E0B739 /* Build configuration list for PBXNativeTarget "FasteTests" */ = {
+		3E05B7B41C90197B00E0B739 /* Build configuration list for PBXNativeTarget "FastereglerTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3E05B7B51C90197B00E0B739 /* Debug */,
@@ -587,7 +594,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3E05B7B71C90197B00E0B739 /* Build configuration list for PBXNativeTarget "FasteUITests" */ = {
+		3E05B7B71C90197B00E0B739 /* Build configuration list for PBXNativeTarget "FastereglerUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3E05B7B81C90197B00E0B739 /* Debug */,

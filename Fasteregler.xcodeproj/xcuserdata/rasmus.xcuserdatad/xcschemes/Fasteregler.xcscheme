@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3E05B7881C90197B00E0B739"
-               BuildableName = "Faste.app"
-               BlueprintName = "Faste"
-               ReferencedContainer = "container:Faste.xcodeproj">
+               BuildableName = "Fasteregler.app"
+               BlueprintName = "Fasteregler"
+               ReferencedContainer = "container:Fasteregler.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3E05B79C1C90197B00E0B739"
-               BuildableName = "FasteTests.xctest"
-               BlueprintName = "FasteTests"
-               ReferencedContainer = "container:Faste.xcodeproj">
+               BuildableName = "Fasteregler.xctest"
+               BlueprintName = "FastereglerTests"
+               ReferencedContainer = "container:Fasteregler.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3E05B7A71C90197B00E0B739"
-               BuildableName = "FasteUITests.xctest"
-               BlueprintName = "FasteUITests"
-               ReferencedContainer = "container:Faste.xcodeproj">
+               BuildableName = "Fasteregler.xctest"
+               BlueprintName = "FastereglerUITests"
+               ReferencedContainer = "container:Fasteregler.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -53,9 +53,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3E05B7881C90197B00E0B739"
-            BuildableName = "Faste.app"
-            BlueprintName = "Faste"
-            ReferencedContainer = "container:Faste.xcodeproj">
+            BuildableName = "Fasteregler.app"
+            BlueprintName = "Fasteregler"
+            ReferencedContainer = "container:Fasteregler.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -76,9 +76,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3E05B7881C90197B00E0B739"
-            BuildableName = "Faste.app"
-            BlueprintName = "Faste"
-            ReferencedContainer = "container:Faste.xcodeproj">
+            BuildableName = "Fasteregler.app"
+            BlueprintName = "Fasteregler"
+            ReferencedContainer = "container:Fasteregler.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -95,9 +95,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3E05B7881C90197B00E0B739"
-            BuildableName = "Faste.app"
-            BlueprintName = "Faste"
-            ReferencedContainer = "container:Faste.xcodeproj">
+            BuildableName = "Fasteregler.app"
+            BlueprintName = "Fasteregler"
+            ReferencedContainer = "container:Fasteregler.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
