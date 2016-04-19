@@ -43,7 +43,14 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         self.navigationController!.navigationBar.translucent = false;
         self.navigationController!.navigationBar.barStyle = UIBarStyle.Black
         self.navigationController!.navigationBar.barTintColor = UIColor.darkGrayColor();
-        self.title = "FASTEREGLER"
+        
+        let font = UIFont(name: "Roboto-Regular", size: 22)
+        if let font = font {
+            self.navigationController!.navigationBar.titleTextAttributes = [NSFontAttributeName : font, NSForegroundColorAttributeName : UIColor.whiteColor()]
+            self.title = "FASTEREGLER"
+        }
+        
+        
         let infoImage = UIImage(named: "info.png")
         let imgWidth = Int(30)
         let imgHeight = Int(30)
