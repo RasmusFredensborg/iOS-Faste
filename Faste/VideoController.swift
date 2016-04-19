@@ -11,7 +11,6 @@ import UIKit
 class VideoController: UIViewController, YTPlayerViewDelegate{
     
     @IBOutlet weak var playerView: YTPlayerView!
-    @IBOutlet weak var playerHeight: NSLayoutConstraint!
     let playerVars = ["playsinline" : 1, "controls" : 1, "autohide" : 0, "showinfo" : 0, "autoplay" : 1, "fs" : 1, "rel" : 0, "modestbranding" : 1, "enablejsapi" : 1]
     var YTVideosArray : Array<YTVideo> = []
     var videoIndex = 0;
@@ -19,6 +18,7 @@ class VideoController: UIViewController, YTPlayerViewDelegate{
     @IBOutlet weak var descriptionView: DescriptionView!
     @IBOutlet weak var personView: PersonView!
     
+    @IBOutlet weak var playerHeight: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController!.navigationBar.translucent = false;
