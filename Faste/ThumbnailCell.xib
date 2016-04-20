@@ -32,10 +32,12 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qt5-g7-5GY">
                                 <rect key="frame" x="0.0" y="120" width="200" height="70"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Shape (øje).png" translatesAutoresizingMaskIntoConstraints="NO" id="no6-vI-by2">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Shape (øje).png" translatesAutoresizingMaskIntoConstraints="NO" id="no6-vI-by2">
                                         <rect key="frame" x="15" y="41" width="20" height="13"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="20" id="SlR-9d-p2h"/>
+                                            <constraint firstAttribute="width" constant="20" id="SlR-9d-p2h">
+                                                <variation key="widthClass=compact" constant="14"/>
+                                            </constraint>
                                             <constraint firstAttribute="height" constant="13" id="e1V-Bd-DPY"/>
                                         </constraints>
                                     </imageView>
@@ -47,6 +49,9 @@
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
                                         <color key="textColor" red="0.43137254899999999" green="0.80000000000000004" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
+                                        <variation key="widthClass=compact">
+                                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
+                                        </variation>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="S3g-AS-0D3" userLabel="Title Label">
                                         <rect key="frame" x="15" y="8" width="176" height="23"/>
@@ -56,27 +61,46 @@
                                         <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="20"/>
                                         <color key="textColor" red="0.3294117647" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="deviceRGB"/>
                                         <nil key="highlightedColor"/>
+                                        <variation key="widthClass=compact">
+                                            <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="14"/>
+                                        </variation>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="LUJ-Ss-NRP" userLabel="Duration Label">
-                                        <rect key="frame" x="138" y="39" width="42" height="19"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="LUJ-Ss-NRP" userLabel="Duration Label">
+                                        <rect key="frame" x="140" y="39" width="40" height="19"/>
                                         <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="16"/>
                                         <color key="textColor" red="0.4039215686" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
+                                        <variation key="widthClass=compact">
+                                            <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="12"/>
+                                        </variation>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="LUJ-Ss-NRP" secondAttribute="trailing" constant="20" id="0BL-Lc-ZYQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="LUJ-Ss-NRP" secondAttribute="trailing" constant="20" id="0BL-Lc-ZYQ">
+                                        <variation key="widthClass=compact" constant="8"/>
+                                    </constraint>
                                     <constraint firstItem="S3g-AS-0D3" firstAttribute="top" secondItem="Qt5-g7-5GY" secondAttribute="top" constant="8" id="0S5-xE-ZsB"/>
                                     <constraint firstAttribute="trailing" secondItem="S3g-AS-0D3" secondAttribute="trailing" constant="9" id="3fu-RY-G4N"/>
-                                    <constraint firstAttribute="bottom" secondItem="Wst-al-99T" secondAttribute="bottom" constant="14" id="3q3-Cx-nIF"/>
+                                    <constraint firstAttribute="bottom" secondItem="Wst-al-99T" secondAttribute="bottom" constant="14" id="3q3-Cx-nIF">
+                                        <variation key="widthClass=compact" constant="8"/>
+                                    </constraint>
                                     <constraint firstItem="no6-vI-by2" firstAttribute="top" secondItem="S3g-AS-0D3" secondAttribute="bottom" constant="10" id="919-Fb-3Rs"/>
-                                    <constraint firstItem="no6-vI-by2" firstAttribute="leading" secondItem="Qt5-g7-5GY" secondAttribute="leading" constant="15" id="Ep4-kp-TGT"/>
-                                    <constraint firstItem="Wst-al-99T" firstAttribute="leading" secondItem="no6-vI-by2" secondAttribute="trailing" constant="8" id="LBn-bB-BVX"/>
+                                    <constraint firstItem="no6-vI-by2" firstAttribute="leading" secondItem="Qt5-g7-5GY" secondAttribute="leading" constant="15" id="Ep4-kp-TGT">
+                                        <variation key="widthClass=compact" constant="8"/>
+                                    </constraint>
+                                    <constraint firstItem="Wst-al-99T" firstAttribute="leading" secondItem="no6-vI-by2" secondAttribute="trailing" constant="8" id="LBn-bB-BVX">
+                                        <variation key="widthClass=compact" constant="4"/>
+                                    </constraint>
                                     <constraint firstItem="no6-vI-by2" firstAttribute="centerY" secondItem="Wst-al-99T" secondAttribute="centerY" id="LGu-hz-Cy0"/>
                                     <constraint firstItem="LUJ-Ss-NRP" firstAttribute="top" secondItem="S3g-AS-0D3" secondAttribute="bottom" constant="8" id="NC1-GH-H0Q"/>
-                                    <constraint firstItem="S3g-AS-0D3" firstAttribute="leading" secondItem="Qt5-g7-5GY" secondAttribute="leading" constant="15" id="TN7-5p-aho"/>
+                                    <constraint firstItem="S3g-AS-0D3" firstAttribute="leading" secondItem="Qt5-g7-5GY" secondAttribute="leading" constant="15" id="TN7-5p-aho">
+                                        <variation key="widthClass=compact" constant="8"/>
+                                    </constraint>
                                     <constraint firstItem="Wst-al-99T" firstAttribute="top" secondItem="S3g-AS-0D3" secondAttribute="bottom" constant="8" id="UJn-Rl-Hqg"/>
+                                    <constraint firstAttribute="height" constant="70" id="Z2W-Gf-uQn">
+                                        <variation key="widthClass=compact" constant="57"/>
+                                    </constraint>
                                 </constraints>
                             </view>
                         </subviews>
