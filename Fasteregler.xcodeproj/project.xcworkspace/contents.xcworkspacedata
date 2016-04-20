@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Faste.xcodeproj">
+      location = "self:/Users/rasmus/Dev/iOS-Faste/Fasteregler.xcodeproj">
    </FileRef>
 </Workspace>

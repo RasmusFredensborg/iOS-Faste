@@ -64,7 +64,6 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
             size.width = 300
             
             layout.minimumLineSpacing = 10
-            layout.minimumInteritemSpacing = 10
         }else{
             
             if(DeviceType.IS_IPHONE_6){
@@ -105,10 +104,10 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
                 layout.sectionInset.bottom = 10
             }
             else if(UIDevice.currentDevice().orientation.isPortrait){
-                layout.sectionInset.left = 77
-                layout.sectionInset.right = 77
-                layout.sectionInset.top = 10
-                layout.sectionInset.bottom = 10
+                layout.sectionInset.left = 57
+                layout.sectionInset.right = layout.sectionInset.left
+                layout.sectionInset.top = 57
+                layout.sectionInset.bottom = 57
             }
         }
     }
