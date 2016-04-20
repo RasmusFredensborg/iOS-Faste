@@ -63,7 +63,7 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
             size.height = 239
             size.width = 300
             
-            layout.minimumLineSpacing = 10
+            layout.minimumLineSpacing = 57
         }else{
             
             if(DeviceType.IS_IPHONE_6){

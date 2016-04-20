@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3A6A886D1CBE6BBA0089FE95 /* GridDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3A6A886B1CBE6BBA0089FE95 /* GridDataModel.xcdatamodeld */; };
+		3A72CEB51CC7CE4B00082E53 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3A72CEB31CC7CE4B00082E53 /* Roboto-Bold.ttf */; };
+		3A72CEB61CC7CE4B00082E53 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3A72CEB41CC7CE4B00082E53 /* Roboto-Regular.ttf */; };
 		3A8AB0521CBE28B400D9F10F /* PersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8AB0511CBE28B400D9F10F /* PersonView.swift */; };
 		3A8AB0541CBE5C1100D9F10F /* YTImgCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8AB0531CBE5C1100D9F10F /* YTImgCache.swift */; };
 		3AC6ACA81CC6219C00F203CF /* ThumbnailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AC6ACA71CC6219C00F203CF /* ThumbnailCell.xib */; };
@@ -51,6 +53,8 @@
 
 /* Begin PBXFileReference section */
 		3A6A886C1CBE6BBA0089FE95 /* GridDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GridDataModel.xcdatamodel; sourceTree = "<group>"; };
+		3A72CEB31CC7CE4B00082E53 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Bold.ttf"; path = "../../../Downloads/Roboto/Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		3A72CEB41CC7CE4B00082E53 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Regular.ttf"; path = "../../../Downloads/Roboto/Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		3A8AB0511CBE28B400D9F10F /* PersonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonView.swift; sourceTree = "<group>"; };
 		3A8AB0531CBE5C1100D9F10F /* YTImgCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YTImgCache.swift; sourceTree = "<group>"; };
 		3AC6ACA71CC6219C00F203CF /* ThumbnailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThumbnailCell.xib; sourceTree = "<group>"; };
@@ -137,6 +141,8 @@
 				3E58635D1C983B000096DCD8 /* Images */,
 				3E05B78C1C90197B00E0B739 /* AppDelegate.swift */,
 				3E05B7C01C901C8A00E0B739 /* GridController.swift */,
+				3A72CEB31CC7CE4B00082E53 /* Roboto-Bold.ttf */,
+				3A72CEB41CC7CE4B00082E53 /* Roboto-Regular.ttf */,
 				3E58635E1C9857C30096DCD8 /* Main.storyboard */,
 				3AC6ACA71CC6219C00F203CF /* ThumbnailCell.xib */,
 				3E05B7C61C901D7800E0B739 /* ThumbnailCell.swift */,
@@ -294,6 +300,7 @@
 			files = (
 				3E05B7D11C905A9200E0B739 /* Assets in Resources */,
 				3E894DC31C96CAAF00E74F00 /* Shape (øje).png in Resources */,
+				3A72CEB51CC7CE4B00082E53 /* Roboto-Bold.ttf in Resources */,
 				3E39C0B21C99C47E006C90B4 /* Shape-6.png in Resources */,
 				3AC6ACAA1CC63F0100F203CF /* info.png in Resources */,
 				3E39C0B01C99BB67006C90B4 /* Profilbillede@3x.png in Resources */,
@@ -301,6 +308,7 @@
 				3E5863601C9857C30096DCD8 /* Main.storyboard in Resources */,
 				3E05B7971C90197B00E0B739 /* LaunchScreen.storyboard in Resources */,
 				3E05B7941C90197B00E0B739 /* Assets.xcassets in Resources */,
+				3A72CEB61CC7CE4B00082E53 /* Roboto-Regular.ttf in Resources */,
 				3AC6ACA81CC6219C00F203CF /* ThumbnailCell.xib in Resources */,
 				3EF0BB581CAAB044006B6152 /* grey line.png in Resources */,
 			);
