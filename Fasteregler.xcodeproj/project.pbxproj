@@ -489,7 +489,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Faste/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = dk.emento.Faste;
+				PRODUCT_BUNDLE_IDENTIFIER = dk.emento.Fasteregler;
 				PRODUCT_NAME = Fasteregler;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Faste/Faste-Bridging-Header.h";
@@ -507,7 +507,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Faste/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = dk.emento.Faste;
+				PRODUCT_BUNDLE_IDENTIFIER = dk.emento.Fasteregler;
 				PRODUCT_NAME = Fasteregler;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Faste/Faste-Bridging-Header.h";
