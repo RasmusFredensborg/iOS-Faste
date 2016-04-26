@@ -107,7 +107,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="i9X-rP-PrD">
-                                                        <rect key="frame" x="33" y="81" width="567" height="23"/>
+                                                        <rect key="frame" x="33" y="81" width="534" height="23"/>
                                                         <accessibility key="accessibilityConfiguration">
                                                             <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
                                                         </accessibility>
@@ -139,7 +139,7 @@
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstItem="i9X-rP-PrD" firstAttribute="bottom" secondItem="lKX-Xl-4ZF" secondAttribute="bottomMargin" id="3Ff-GB-Lhq"/>
-                                                    <constraint firstAttribute="trailing" secondItem="i9X-rP-PrD" secondAttribute="trailing" id="7I9-93-U73"/>
+                                                    <constraint firstAttribute="trailing" secondItem="i9X-rP-PrD" secondAttribute="trailing" constant="33" id="7I9-93-U73"/>
                                                     <constraint firstItem="i9X-rP-PrD" firstAttribute="leading" secondItem="lKX-Xl-4ZF" secondAttribute="leading" constant="33" id="Agz-7Q-WtQ"/>
                                                     <constraint firstItem="Cq8-Gr-POH" firstAttribute="top" secondItem="tck-DW-emZ" secondAttribute="bottom" constant="8" id="Awb-Zj-ojf"/>
                                                     <constraint firstItem="u4v-kV-lDT" firstAttribute="top" secondItem="lKX-Xl-4ZF" secondAttribute="top" constant="12" id="Mdc-ib-9pJ"/>
