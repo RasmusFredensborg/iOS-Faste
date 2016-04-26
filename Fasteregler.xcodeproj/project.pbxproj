@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3A4780C71CCF509D005CFE41 /* YTHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4780C61CCF509D005CFE41 /* YTHelper.swift */; };
+		3A4780CA1CCFA438005CFE41 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4780C91CCFA438005CFE41 /* Reachability.m */; };
 		3A6A886D1CBE6BBA0089FE95 /* GridDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3A6A886B1CBE6BBA0089FE95 /* GridDataModel.xcdatamodeld */; };
 		3A72CEB51CC7CE4B00082E53 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3A72CEB31CC7CE4B00082E53 /* Roboto-Bold.ttf */; };
 		3A72CEB61CC7CE4B00082E53 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3A72CEB41CC7CE4B00082E53 /* Roboto-Regular.ttf */; };
@@ -54,6 +55,8 @@
 
 /* Begin PBXFileReference section */
 		3A4780C61CCF509D005CFE41 /* YTHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YTHelper.swift; sourceTree = "<group>"; };
+		3A4780C81CCFA438005CFE41 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		3A4780C91CCFA438005CFE41 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		3A6A886C1CBE6BBA0089FE95 /* GridDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GridDataModel.xcdatamodel; sourceTree = "<group>"; };
 		3A72CEB31CC7CE4B00082E53 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Bold.ttf"; path = "../../../Downloads/Roboto/Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		3A72CEB41CC7CE4B00082E53 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Regular.ttf"; path = "../../../Downloads/Roboto/Roboto-Regular.ttf"; sourceTree = "<group>"; };
@@ -152,9 +155,11 @@
 				3E05B7C41C901CFD00E0B739 /* VideoController.swift */,
 				3E05B7931C90197B00E0B739 /* Assets.xcassets */,
 				3E05B7951C90197B00E0B739 /* LaunchScreen.storyboard */,
+				3A4780C91CCFA438005CFE41 /* Reachability.m */,
 				3E05B7981C90197B00E0B739 /* Info.plist */,
 				3A6A886B1CBE6BBA0089FE95 /* GridDataModel.xcdatamodeld */,
 				3E05B7BA1C901BD000E0B739 /* Faste-Bridging-Header.h */,
+				3A4780C81CCFA438005CFE41 /* Reachability.h */,
 				3E5863571C9831FF0096DCD8 /* YTVideo.swift */,
 				3AF6C55C1CBD39380065B447 /* DescriptionView.swift */,
 				3A8AB0511CBE28B400D9F10F /* PersonView.swift */,
@@ -348,6 +353,7 @@
 				3A4780C71CCF509D005CFE41 /* YTHelper.swift in Sources */,
 				3A8AB0541CBE5C1100D9F10F /* YTImgCache.swift in Sources */,
 				3E05B7C51C901CFD00E0B739 /* VideoController.swift in Sources */,
+				3A4780CA1CCFA438005CFE41 /* Reachability.m in Sources */,
 				3E05B7C71C901D7800E0B739 /* ThumbnailCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

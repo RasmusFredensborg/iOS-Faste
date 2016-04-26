@@ -52,6 +52,8 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(GridController.orientation), name: UIDeviceOrientationDidChangeNotification, object: nil)
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(GridController.didBecomeReachable), name: "Reachable", object: nil)
+        
         var size = CGSize()
         layout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         
@@ -67,12 +69,14 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
                 size.height = 171
                 layout.minimumLineSpacing = 5
                 layout.minimumInteritemSpacing = 5
+                layout.sectionInset.top = 5
             }
             if(DeviceType.IS_IPHONE_5){
                 size.width = 152
                 size.height = 155
                 layout.minimumLineSpacing = 5
                 layout.minimumInteritemSpacing = 5
+                layout.sectionInset.top = 5
             }
         }
         
@@ -83,6 +87,13 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         collectionView.registerNib(UINib(nibName: "ThumbnailCell", bundle: nil), forCellWithReuseIdentifier: "ThumbnailCell")
         
         ytHelper.getVideos(self);
+    }
+    
+    @objc func didBecomeReachable(note: NSNotification){
+        if(ytHelper.ytImgCache.YTVideosArray.count == 0)
+        {
+            self.ytHelper.getVideos(self)
+        }
     }
     
     func orientation(){
@@ -111,10 +122,6 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         let alert = UIAlertController(title: "Emento", message: "Contact: developer@emento.dk", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

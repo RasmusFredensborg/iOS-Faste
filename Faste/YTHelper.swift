@@ -43,7 +43,14 @@ class YTHelper
         
         let session = NSURLSession(configuration: sessionConfiguration)
         
-        let task = session.dataTaskWithRequest(request, completionHandler: { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in dispatch_async(dispatch_get_main_queue(), { () -> Void in completion(data: data, HTTPStatusCode: (response as! NSHTTPURLResponse).statusCode, error: error)
+        let task = session.dataTaskWithRequest(request, completionHandler: { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            if(error == nil){
+                completion(data: data, HTTPStatusCode: (response as! NSHTTPURLResponse).statusCode, error: error)
+            }
+            else{
+                print("Offline!")
+                completion(data: data, HTTPStatusCode: 0, error: error)
+            }
         })
         })
         
@@ -96,12 +103,16 @@ class YTHelper
                     }
                 }
                 catch _{
-                    
+                    print("Error")
                 }
             }
             else{
                 print("HTTP Status Code = \(HTTPStatusCode)")
                 print("Error while loading videos: \(error)")
+                
+                let alert = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                parent.presentViewController(alert, animated: true, completion: nil)
             }
         })
     }
