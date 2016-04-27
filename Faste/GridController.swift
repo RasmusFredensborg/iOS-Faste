@@ -26,6 +26,7 @@ struct DeviceType
 
 class GridController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet var backgroundView: UIView!
     
     var videoIndex = 0
     
@@ -50,37 +51,37 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: infoButton)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(GridController.orientation), name: UIDeviceOrientationDidChangeNotification, object: nil)
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(GridController.orientation), name: UIDeviceOrientationDidChangeNotification, object: nil)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(GridController.didBecomeReachable), name: "Reachable", object: nil)
-        
+        collectionView.backgroundView = UIImageView(image: UIImage(named: "background.png"))
         var size = CGSize()
         layout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         
-        if(device == "iPad"){
-            size.height = 239
-            size.width = 300
-            
-            layout.minimumLineSpacing = 57
-        }else{
-            
-            if(DeviceType.IS_IPHONE_6){
-                size.width = 180
-                size.height = 171
-                layout.minimumLineSpacing = 5
-                layout.minimumInteritemSpacing = 5
-                layout.sectionInset.top = 5
-            }
-            if(DeviceType.IS_IPHONE_5){
-                size.width = 152
-                size.height = 155
-                layout.minimumLineSpacing = 5
-                layout.minimumInteritemSpacing = 5
-                layout.sectionInset.top = 5
-            }
-        }
-        
-        layout.itemSize = size
+//        if(device == "iPad"){
+//            size.height = 239
+//            size.width = 300
+//            
+//            layout.minimumLineSpacing = 57
+//        }else{
+//            
+//            if(DeviceType.IS_IPHONE_6){
+//                size.width = 180
+//                size.height = 171
+//                layout.minimumLineSpacing = 5
+//                layout.minimumInteritemSpacing = 5
+//                layout.sectionInset.top = 5
+//            }
+//            if(DeviceType.IS_IPHONE_5){
+//                size.width = 152
+//                size.height = 155
+//                layout.minimumLineSpacing = 5
+//                layout.minimumInteritemSpacing = 5
+//                layout.sectionInset.top = 5
+//            }
+//        }
+//        
+//        layout.itemSize = size
         
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -96,25 +97,25 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         }
     }
     
-    func orientation(){
-        if(device == "iPad"){
-            if(UIDevice.currentDevice().orientation.isLandscape){
-                layout.sectionInset.left = 30
-                layout.sectionInset.right = 30
-                layout.sectionInset.top = 10
-                layout.sectionInset.bottom = 10
-            }
-            else if(UIDevice.currentDevice().orientation.isPortrait){
-                layout.sectionInset.left = 57
-                layout.sectionInset.right = layout.sectionInset.left
-                layout.sectionInset.top = 57
-                layout.sectionInset.bottom = 57
-            }
-        }
-    }
+//    func orientation(){
+//        if(device == "iPad"){
+//            if(UIDevice.currentDevice().orientation.isLandscape){
+//                layout.sectionInset.left = 30
+//                layout.sectionInset.right = 30
+//                layout.sectionInset.top = 10
+//                layout.sectionInset.bottom = 10
+//            }
+//            else if(UIDevice.currentDevice().orientation.isPortrait){
+//                layout.sectionInset.left = 57
+//                layout.sectionInset.right = layout.sectionInset.left
+//                layout.sectionInset.top = 57
+//                layout.sectionInset.bottom = 57
+//            }
+//        }
+//    }
     
     override func viewWillAppear(animated: Bool) {
-        orientation()
+//        orientation()
     }
 
         
@@ -135,7 +136,7 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         cell.layer.rasterizationScale = UIScreen.mainScreen().scale
         
         let video = ytHelper.ytImgCache.YTVideosArray[indexPath.row]
-        cell.titleLbl.text = video.title
+        cell.titleLbl.text = video.title.capitalizedString
         
         if(video.thumbnailImage == nil)
         {

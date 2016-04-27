@@ -13,6 +13,4 @@ class ThumbnailCell: UICollectionViewCell {
     @IBOutlet var titleLbl: UILabel!
     @IBOutlet var durationLbl: UILabel!
     @IBOutlet var viewLbl: UILabel!
-    
-    @IBOutlet weak var descriptionView: UIView!
 }
