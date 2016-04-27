@@ -40,18 +40,8 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         self.navigationController!.navigationBar.translucent = false;
         self.navigationController!.navigationBar.barTintColor = UIColor(red: 0xfb/255,green: 0xbc/255,blue: 0x00/255,alpha: 1.0)
         self.title = "FASTEREGLER"
-//        let infoImage = UIImage(named: "info.png")
-//        let imgWidth = Int(30)
-//        let imgHeight = Int(30)
-//        let infoButton:UIButton = UIButton(frame: CGRect(x: 0, y: 0, width: imgWidth, height: imgHeight))
-//        infoButton.setBackgroundImage(infoImage, forState: .Normal)
-//        infoButton.addTarget(self, action: #selector(GridController.infoTapped), forControlEvents: UIControlEvents.TouchUpInside)
-//        
-//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: infoButton)
-        
         
         self.navigationItem.titleView = constructTitle();
-//        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(GridController.orientation), name: UIDeviceOrientationDidChangeNotification, object: nil)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(GridController.didBecomeReachable), name: "Reachable", object: nil)
         collectionView.backgroundView = UIImageView(image: UIImage(named: "background.png"))
@@ -70,27 +60,6 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         {
             self.ytHelper.getVideos(self)
         }
-    }
-    
-//    func orientation(){
-//        if(device == "iPad"){
-//            if(UIDevice.currentDevice().orientation.isLandscape){
-//                layout.sectionInset.left = 30
-//                layout.sectionInset.right = 30
-//                layout.sectionInset.top = 10
-//                layout.sectionInset.bottom = 10
-//            }
-//            else if(UIDevice.currentDevice().orientation.isPortrait){
-//                layout.sectionInset.left = 57
-//                layout.sectionInset.right = layout.sectionInset.left
-//                layout.sectionInset.top = 57
-//                layout.sectionInset.bottom = 57
-//            }
-//        }
-//    }
-    
-    override func viewWillAppear(animated: Bool) {
-//        orientation()
     }
 
     func constructTitle() -> UIView

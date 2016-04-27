@@ -49,7 +49,6 @@ class VideoController: UIViewController, YTPlayerViewDelegate{
         descriptionView.layer.shadowRadius = 3.0;
         descriptionView.layer.shadowOpacity = 0.25;
         descriptionView.layer.masksToBounds = false;
-//        descriptionView.layer.shadowPath = UIBezierPath(roundedRect:descriptionView.bounds, cornerRadius: 0).CGPath;
 
         personView.layer.rasterizationScale = UIScreen.mainScreen().scale;
         personView.layer.shouldRasterize = true
@@ -58,7 +57,6 @@ class VideoController: UIViewController, YTPlayerViewDelegate{
         personView.layer.shadowRadius = 3.0;
         personView.layer.shadowOpacity = 0.25;
         personView.layer.masksToBounds = false;
-//        personView.layer.shadowPath = UIBezierPath(roundedRect:personView.bounds, cornerRadius: 0).CGPath;
         
         relatedView.layer.rasterizationScale = UIScreen.mainScreen().scale;
         relatedView.layer.shouldRasterize = true
@@ -67,7 +65,6 @@ class VideoController: UIViewController, YTPlayerViewDelegate{
         relatedView.layer.shadowRadius = 3.0;
         relatedView.layer.shadowOpacity = 0.25;
         relatedView.layer.masksToBounds = false;
-//        relatedView.layer.shadowPath = UIBezierPath(roundedRect:relatedView.bounds, cornerRadius: 0).CGPath;
     }
     
     func constructTitle() -> UIView
