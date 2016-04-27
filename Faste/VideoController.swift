@@ -23,12 +23,10 @@ class VideoController: UIViewController, YTPlayerViewDelegate{
     @IBOutlet weak var playerHeight: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController!.navigationBar.translucent = false;
-        UINavigationBar.appearance().translucent = true
-        self.navigationController!.navigationBar.barStyle = UIBarStyle.Black
-        self.navigationController!.navigationBar.barTintColor = UIColor.darkGrayColor();
         self.navigationController!.navigationBar.tintColor = UIColor.whiteColor();
-        
+        self.navigationController!.navigationBar.barTintColor = UIColor(red: 0xfb/255,green: 0xbc/255,blue: 0x00/255,alpha: 1.0)
+
+        self.navigationItem.titleView = constructTitle()
         self.playerView.delegate = self
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(VideoController.orientation), name: UIDeviceOrientationDidChangeNotification, object: nil)
@@ -70,6 +68,27 @@ class VideoController: UIViewController, YTPlayerViewDelegate{
         relatedView.layer.shadowOpacity = 0.25;
         relatedView.layer.masksToBounds = false;
 //        relatedView.layer.shadowPath = UIBezierPath(roundedRect:relatedView.bounds, cornerRadius: 0).CGPath;
+    }
+    
+    func constructTitle() -> UIView
+    {
+        let titleLabel = UILabel(frame: CGRectMake(0, 0, 0, 0))
+        titleLabel.text = "FASTE"
+        titleLabel.font = UIFont(name: "AvenirNext-Heavy", size: 24)
+        titleLabel.textColor = UIColor.whiteColor()
+        titleLabel.sizeToFit();
+        titleLabel.textAlignment = NSTextAlignment.Center
+        
+        let titleLabel2 = UILabel(frame: CGRectMake(titleLabel.frame.size.width, 0, 0, 0))
+        titleLabel2.text = "regler"
+        titleLabel2.font = UIFont(name: "AvenirNext-Medium", size: 24)
+        titleLabel2.textColor = UIColor.whiteColor()
+        titleLabel2.sizeToFit();
+        titleLabel2.textAlignment = NSTextAlignment.Center
+        let twoSegmentTitleView = UIView(frame: CGRectMake(0, 0, titleLabel.frame.size.width+titleLabel2.frame.size.width, titleLabel.frame.size.height));
+        twoSegmentTitleView.addSubview(titleLabel)
+        twoSegmentTitleView.addSubview(titleLabel2)
+        return twoSegmentTitleView;
     }
     
     func updateView(){

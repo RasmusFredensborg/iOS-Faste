@@ -38,35 +38,19 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController!.navigationBar.translucent = false;
-        self.navigationController!.navigationBar.barStyle = UIBarStyle.Black
         self.navigationController!.navigationBar.barTintColor = UIColor(red: 0xfb/255,green: 0xbc/255,blue: 0x00/255,alpha: 1.0)
         self.title = "FASTEREGLER"
-        let infoImage = UIImage(named: "info.png")
-        let imgWidth = Int(30)
-        let imgHeight = Int(30)
+//        let infoImage = UIImage(named: "info.png")
+//        let imgWidth = Int(30)
+//        let imgHeight = Int(30)
 //        let infoButton:UIButton = UIButton(frame: CGRect(x: 0, y: 0, width: imgWidth, height: imgHeight))
 //        infoButton.setBackgroundImage(infoImage, forState: .Normal)
 //        infoButton.addTarget(self, action: #selector(GridController.infoTapped), forControlEvents: UIControlEvents.TouchUpInside)
 //        
 //        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: infoButton)
         
-        let titleLabel = UILabel(frame: CGRectMake(0, 0, 0, 0))
-        titleLabel.text = "FASTE"
-        titleLabel.font = UIFont(name: "AvenirNext-Heavy", size: 24)
-        titleLabel.textColor = UIColor.whiteColor()
-        titleLabel.sizeToFit();
-        titleLabel.textAlignment = NSTextAlignment.Center
         
-        let titleLabel2 = UILabel(frame: CGRectMake(titleLabel.frame.size.width, 0, 0, 0))
-        titleLabel2.text = "regler"
-        titleLabel2.font = UIFont(name: "AvenirNext-Medium", size: 24)
-        titleLabel2.textColor = UIColor.whiteColor()
-        titleLabel2.sizeToFit();
-        titleLabel2.textAlignment = NSTextAlignment.Center
-        let twoSegmentTitleView = UIView(frame: CGRectMake(0, 0, titleLabel.frame.size.width+titleLabel2.frame.size.width, titleLabel.frame.size.height));
-        twoSegmentTitleView.addSubview(titleLabel)
-        twoSegmentTitleView.addSubview(titleLabel2)
-        self.navigationItem.titleView = twoSegmentTitleView
+        self.navigationItem.titleView = constructTitle();
 //        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(GridController.orientation), name: UIDeviceOrientationDidChangeNotification, object: nil)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(GridController.didBecomeReachable), name: "Reachable", object: nil)
@@ -109,7 +93,27 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
 //        orientation()
     }
 
+    func constructTitle() -> UIView
+    {
+        let titleLabel = UILabel(frame: CGRectMake(0, 0, 0, 0))
+        titleLabel.text = "FASTE"
+        titleLabel.font = UIFont(name: "AvenirNext-Heavy", size: 24)
+        titleLabel.textColor = UIColor.whiteColor()
+        titleLabel.sizeToFit();
+        titleLabel.textAlignment = NSTextAlignment.Center
         
+        let titleLabel2 = UILabel(frame: CGRectMake(titleLabel.frame.size.width, 0, 0, 0))
+        titleLabel2.text = "regler"
+        titleLabel2.font = UIFont(name: "AvenirNext-Medium", size: 24)
+        titleLabel2.textColor = UIColor.whiteColor()
+        titleLabel2.sizeToFit();
+        titleLabel2.textAlignment = NSTextAlignment.Center
+        let twoSegmentTitleView = UIView(frame: CGRectMake(0, 0, titleLabel.frame.size.width+titleLabel2.frame.size.width, titleLabel.frame.size.height));
+        twoSegmentTitleView.addSubview(titleLabel)
+        twoSegmentTitleView.addSubview(titleLabel2)
+        return twoSegmentTitleView;
+    }
+    
     func infoTapped(){
         let alert = UIAlertController(title: "Emento", message: "Contact: developer@emento.dk", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
