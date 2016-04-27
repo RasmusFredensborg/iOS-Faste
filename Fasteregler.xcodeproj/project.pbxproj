@@ -14,6 +14,7 @@
 		3A72CEB51CC7CE4B00082E53 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3A72CEB31CC7CE4B00082E53 /* Roboto-Bold.ttf */; };
 		3A72CEB61CC7CE4B00082E53 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3A72CEB41CC7CE4B00082E53 /* Roboto-Regular.ttf */; };
 		3A84BD501CD0FFE7006220E6 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A84BD4F1CD0FFE7006220E6 /* background.png */; };
+		3A84BD521CD11FA9006220E6 /* ic_visibility.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 3A84BD511CD11FA9006220E6 /* ic_visibility.pdf */; };
 		3A8AB0521CBE28B400D9F10F /* PersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8AB0511CBE28B400D9F10F /* PersonView.swift */; };
 		3A8AB0541CBE5C1100D9F10F /* YTImgCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8AB0531CBE5C1100D9F10F /* YTImgCache.swift */; };
 		3AC6ACA81CC6219C00F203CF /* ThumbnailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AC6ACA71CC6219C00F203CF /* ThumbnailCell.xib */; };
@@ -64,6 +65,7 @@
 		3A72CEB31CC7CE4B00082E53 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Bold.ttf"; path = "../../../Downloads/Roboto/Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		3A72CEB41CC7CE4B00082E53 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Regular.ttf"; path = "../../../Downloads/Roboto/Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		3A84BD4F1CD0FFE7006220E6 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		3A84BD511CD11FA9006220E6 /* ic_visibility.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ic_visibility.pdf; sourceTree = "<group>"; };
 		3A8AB0511CBE28B400D9F10F /* PersonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonView.swift; sourceTree = "<group>"; };
 		3A8AB0531CBE5C1100D9F10F /* YTImgCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YTImgCache.swift; sourceTree = "<group>"; };
 		3AC6ACA71CC6219C00F203CF /* ThumbnailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThumbnailCell.xib; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 				3A1F8D921CD09BBE00D53236 /* eyecon.png */,
 				3E39C0AF1C99BB67006C90B4 /* Profilbillede@3x.png */,
 				3E39C0B11C99C47E006C90B4 /* Shape-6.png */,
+				3A84BD511CD11FA9006220E6 /* ic_visibility.pdf */,
 				3EF0BB571CAAB044006B6152 /* grey line.png */,
 				3A84BD4F1CD0FFE7006220E6 /* background.png */,
 				3E894DC21C96CAAF00E74F00 /* Shape (øje).png */,
@@ -324,6 +327,7 @@
 				3E05B7971C90197B00E0B739 /* LaunchScreen.storyboard in Resources */,
 				3E05B7941C90197B00E0B739 /* Assets.xcassets in Resources */,
 				3A72CEB61CC7CE4B00082E53 /* Roboto-Regular.ttf in Resources */,
+				3A84BD521CD11FA9006220E6 /* ic_visibility.pdf in Resources */,
 				3AC6ACA81CC6219C00F203CF /* ThumbnailCell.xib in Resources */,
 				3EF0BB581CAAB044006B6152 /* grey line.png in Resources */,
 				3A84BD501CD0FFE7006220E6 /* background.png in Resources */,

@@ -19,6 +19,7 @@ class VideoController: UIViewController, YTPlayerViewDelegate{
     @IBOutlet weak var personView: PersonView!
     @IBOutlet weak var relatedView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var profile: UIImageView!
     
     @IBOutlet weak var playerHeight: NSLayoutConstraint!
     override func viewDidLoad() {
@@ -33,8 +34,9 @@ class VideoController: UIViewController, YTPlayerViewDelegate{
         updateView();
         
         playerView.loadWithVideoId(YTVideosArray[videoIndex].ID, playerVars: playerVars)
-        
+        playerView.addSubview(UIImageView(image:  UIImage(named: "Profilbillede.png")))
         playerHeight.constant = UIScreen.mainScreen().bounds.width * (9/16)
+//        descriptionView.bringSubviewToFront(profile)
     }
     
     override func viewWillAppear(animated: Bool) {
