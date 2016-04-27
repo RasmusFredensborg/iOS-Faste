@@ -32,27 +32,51 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
     
     var selectedVideoIndex: Int!
     let device = UIDevice.currentDevice().model
-    var layout = UICollectionViewFlowLayout()
     let ytHelper = YTHelper()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController!.navigationBar.translucent = false;
         self.navigationController!.navigationBar.barTintColor = UIColor(red: 0xfb/255,green: 0xbc/255,blue: 0x00/255,alpha: 1.0)
-        self.title = "FASTEREGLER"
         
         self.navigationItem.titleView = constructTitle();
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(GridController.didBecomeReachable), name: "Reachable", object: nil)
-        collectionView.backgroundView = UIImageView(image: UIImage(named: "background.png"))
-        var size = CGSize()
-        layout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.registerNib(UINib(nibName: "ThumbnailCell", bundle: nil), forCellWithReuseIdentifier: "ThumbnailCell")
         
         ytHelper.getVideos(self);
+    }
+    
+    override func viewDidLayoutSubviews() {
+        var collectionSize = collectionView.collectionViewLayout.collectionViewContentSize()        
+        
+        let topImage = UIImage(named: "background.png")
+        var bottomImage = UIImage()
+        let rect = CGRectMake(0, 0, collectionSize.width, collectionSize.height)
+        UIGraphicsBeginImageContextWithOptions(collectionSize, false, 0)
+        
+        var color = UIColor(red: 0x18/255,green: 0x1F/255,blue: 0x59/255,alpha: 1.0)
+        color.setFill()
+        UIRectFill(rect)
+        bottomImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        backgroundView.backgroundColor = color;
+        
+        let size = CGSizeMake(topImage!.size.width, topImage!.size.height + bottomImage.size.height)
+        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
+        
+        [topImage!.drawInRect(CGRectMake(0,0,size.width, topImage!.size.height))];
+        [bottomImage.drawInRect(CGRectMake(0,topImage!.size.height,size.width, bottomImage.size.height))];
+        
+        let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        //        collectionView.backgroundView = backgroundImage
+        collectionView.backgroundColor = UIColor(patternImage: newImage)
     }
     
     @objc func didBecomeReachable(note: NSNotification){
