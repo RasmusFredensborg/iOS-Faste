@@ -39,49 +39,40 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         super.viewDidLoad()
         self.navigationController!.navigationBar.translucent = false;
         self.navigationController!.navigationBar.barStyle = UIBarStyle.Black
-        self.navigationController!.navigationBar.barTintColor = UIColor.darkGrayColor();
+        self.navigationController!.navigationBar.barTintColor = UIColor(red: 0xfb/255,green: 0xbc/255,blue: 0x00/255,alpha: 1.0)
         self.title = "FASTEREGLER"
         let infoImage = UIImage(named: "info.png")
         let imgWidth = Int(30)
         let imgHeight = Int(30)
+//        let infoButton:UIButton = UIButton(frame: CGRect(x: 0, y: 0, width: imgWidth, height: imgHeight))
+//        infoButton.setBackgroundImage(infoImage, forState: .Normal)
+//        infoButton.addTarget(self, action: #selector(GridController.infoTapped), forControlEvents: UIControlEvents.TouchUpInside)
+//        
+//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: infoButton)
         
-        let infoButton:UIButton = UIButton(frame: CGRect(x: 0, y: 0, width: imgWidth, height: imgHeight))
-        infoButton.setBackgroundImage(infoImage, forState: .Normal)
-        infoButton.addTarget(self, action: #selector(GridController.infoTapped), forControlEvents: UIControlEvents.TouchUpInside)
+        let titleLabel = UILabel(frame: CGRectMake(0, 0, 0, 0))
+        titleLabel.text = "FASTE"
+        titleLabel.font = UIFont(name: "AvenirNext-Heavy", size: 24)
+        titleLabel.textColor = UIColor.whiteColor()
+        titleLabel.sizeToFit();
+        titleLabel.textAlignment = NSTextAlignment.Center
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: infoButton)
-        
+        let titleLabel2 = UILabel(frame: CGRectMake(titleLabel.frame.size.width, 0, 0, 0))
+        titleLabel2.text = "regler"
+        titleLabel2.font = UIFont(name: "AvenirNext-Medium", size: 24)
+        titleLabel2.textColor = UIColor.whiteColor()
+        titleLabel2.sizeToFit();
+        titleLabel2.textAlignment = NSTextAlignment.Center
+        let twoSegmentTitleView = UIView(frame: CGRectMake(0, 0, titleLabel.frame.size.width+titleLabel2.frame.size.width, titleLabel.frame.size.height));
+        twoSegmentTitleView.addSubview(titleLabel)
+        twoSegmentTitleView.addSubview(titleLabel2)
+        self.navigationItem.titleView = twoSegmentTitleView
 //        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(GridController.orientation), name: UIDeviceOrientationDidChangeNotification, object: nil)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(GridController.didBecomeReachable), name: "Reachable", object: nil)
         collectionView.backgroundView = UIImageView(image: UIImage(named: "background.png"))
         var size = CGSize()
         layout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        
-//        if(device == "iPad"){
-//            size.height = 239
-//            size.width = 300
-//            
-//            layout.minimumLineSpacing = 57
-//        }else{
-//            
-//            if(DeviceType.IS_IPHONE_6){
-//                size.width = 180
-//                size.height = 171
-//                layout.minimumLineSpacing = 5
-//                layout.minimumInteritemSpacing = 5
-//                layout.sectionInset.top = 5
-//            }
-//            if(DeviceType.IS_IPHONE_5){
-//                size.width = 152
-//                size.height = 155
-//                layout.minimumLineSpacing = 5
-//                layout.minimumInteritemSpacing = 5
-//                layout.sectionInset.top = 5
-//            }
-//        }
-//        
-//        layout.itemSize = size
         
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -136,7 +127,7 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         cell.layer.rasterizationScale = UIScreen.mainScreen().scale
         
         let video = ytHelper.ytImgCache.YTVideosArray[indexPath.row]
-        cell.titleLbl.text = video.title.capitalizedString
+        cell.titleLbl.text = video.title.uppercaseString
         
         if(video.thumbnailImage == nil)
         {
