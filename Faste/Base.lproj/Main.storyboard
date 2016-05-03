@@ -5,13 +5,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <mutableArray key="Roboto-Regular.ttf">
-            <string>Roboto-Regular</string>
-            <string>Roboto-Regular</string>
-            <string>Roboto-Regular</string>
-        </mutableArray>
-    </customFonts>
     <scenes>
         <!--Grid Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -99,7 +92,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lKX-Xl-4ZF" customClass="PersonView" customModule="Fasteregler" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="128" width="600" height="68"/>
+                                                <rect key="frame" x="0.0" y="128" width="600" height="71"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="46" placeholderIntrinsicHeight="28" text="Title" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.20000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="tck-DW-emZ">
                                                         <rect key="frame" x="108" y="8" width="314" height="28"/>
@@ -108,21 +101,14 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="XiI-99-6bE">
-                                                        <rect key="frame" x="507" y="37" width="46" height="23"/>
-                                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="19"/>
+                                                        <rect key="frame" x="519" y="37" width="48" height="26"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="19"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                         <variation key="widthClass=compact" misplaced="YES">
                                                             <rect key="frame" x="72" y="47" width="47" height="23"/>
                                                         </variation>
                                                     </label>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Shape (øje).png" translatesAutoresizingMaskIntoConstraints="NO" id="Cq8-Gr-POH">
-                                                        <rect key="frame" x="561" y="40" width="31" height="18"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="31" id="s96-8q-jZ9"/>
-                                                            <constraint firstAttribute="height" constant="18" id="z0J-LO-Saw"/>
-                                                        </constraints>
-                                                    </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="74" placeholderIntrinsicHeight="30" preservesSuperviewLayoutMargins="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u4v-kV-lDT">
                                                         <rect key="frame" x="475" y="12" width="92" height="30"/>
                                                         <constraints>
@@ -144,35 +130,42 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Description" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="i9X-rP-PrD">
-                                                        <rect key="frame" x="108" y="37" width="391" height="23"/>
+                                                        <rect key="frame" x="108" y="37" width="364" height="26"/>
                                                         <accessibility key="accessibilityConfiguration">
                                                             <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
                                                         </accessibility>
-                                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="19"/>
-                                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="19"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Shape (øje).png" translatesAutoresizingMaskIntoConstraints="NO" id="Cq8-Gr-POH">
+                                                        <rect key="frame" x="480" y="40" width="31" height="18"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="31" id="s96-8q-jZ9"/>
+                                                            <constraint firstAttribute="height" constant="18" id="z0J-LO-Saw"/>
+                                                        </constraints>
+                                                    </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.094117647058823528" green="0.12156862745098039" blue="0.34901960784313724" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstItem="tck-DW-emZ" firstAttribute="leading" secondItem="B0p-fm-uPR" secondAttribute="trailing" constant="8" id="1PJ-y4-Vab"/>
+                                                    <constraint firstItem="Cq8-Gr-POH" firstAttribute="leading" secondItem="i9X-rP-PrD" secondAttribute="trailing" constant="8" id="1Uc-49-NGx"/>
                                                     <constraint firstItem="i9X-rP-PrD" firstAttribute="bottom" secondItem="lKX-Xl-4ZF" secondAttribute="bottomMargin" id="3Ff-GB-Lhq"/>
                                                     <constraint firstItem="i9X-rP-PrD" firstAttribute="baseline" secondItem="XiI-99-6bE" secondAttribute="baseline" id="8cR-65-Xhs"/>
                                                     <constraint firstItem="i9X-rP-PrD" firstAttribute="leading" secondItem="lKX-Xl-4ZF" secondAttribute="leading" constant="108" id="Agz-7Q-WtQ"/>
                                                     <constraint firstItem="Cq8-Gr-POH" firstAttribute="top" secondItem="tck-DW-emZ" secondAttribute="bottom" constant="4" id="Awb-Zj-ojf"/>
                                                     <constraint firstItem="B0p-fm-uPR" firstAttribute="top" secondItem="lKX-Xl-4ZF" secondAttribute="top" constant="-32" id="BqP-cJ-hnB"/>
+                                                    <constraint firstItem="XiI-99-6bE" firstAttribute="leading" secondItem="Cq8-Gr-POH" secondAttribute="trailing" constant="8" id="CZx-RV-phs"/>
                                                     <constraint firstItem="Cq8-Gr-POH" firstAttribute="top" secondItem="u4v-kV-lDT" secondAttribute="bottom" constant="-2" id="Drk-vH-zXA"/>
                                                     <constraint firstItem="u4v-kV-lDT" firstAttribute="top" secondItem="lKX-Xl-4ZF" secondAttribute="top" constant="12" id="Mdc-ib-9pJ"/>
                                                     <constraint firstAttribute="trailing" secondItem="u4v-kV-lDT" secondAttribute="trailing" constant="33" id="U20-2C-ba2"/>
-                                                    <constraint firstItem="Cq8-Gr-POH" firstAttribute="leading" secondItem="XiI-99-6bE" secondAttribute="trailing" constant="8" id="aXe-vw-AjH"/>
+                                                    <constraint firstAttribute="trailing" secondItem="XiI-99-6bE" secondAttribute="trailing" constant="33" id="Vvn-fE-dis"/>
                                                     <constraint firstItem="B0p-fm-uPR" firstAttribute="leading" secondItem="lKX-Xl-4ZF" secondAttribute="leading" constant="8" id="c5m-Ag-o2C"/>
                                                     <constraint firstItem="XiI-99-6bE" firstAttribute="top" secondItem="u4v-kV-lDT" secondAttribute="bottom" constant="-5" id="cLE-Xw-GSh"/>
-                                                    <constraint firstItem="XiI-99-6bE" firstAttribute="leading" secondItem="i9X-rP-PrD" secondAttribute="trailing" constant="8" id="fmj-cY-vy8"/>
                                                     <constraint firstAttribute="bottom" secondItem="i9X-rP-PrD" secondAttribute="bottom" constant="8" id="kyT-zd-l6n"/>
                                                     <constraint firstItem="XiI-99-6bE" firstAttribute="top" secondItem="tck-DW-emZ" secondAttribute="bottom" constant="1" id="phY-CB-up1"/>
                                                     <constraint firstItem="tck-DW-emZ" firstAttribute="top" secondItem="lKX-Xl-4ZF" secondAttribute="top" constant="8" id="unI-it-Oqe"/>
                                                     <constraint firstItem="u4v-kV-lDT" firstAttribute="leading" secondItem="tck-DW-emZ" secondAttribute="trailing" constant="53" id="vw3-RC-eVE"/>
-                                                    <constraint firstAttribute="trailing" secondItem="Cq8-Gr-POH" secondAttribute="trailing" constant="8" id="xOh-gh-ZkW"/>
                                                     <constraint firstItem="i9X-rP-PrD" firstAttribute="leading" secondItem="tck-DW-emZ" secondAttribute="leading" id="y75-fm-VPL"/>
                                                 </constraints>
                                                 <connections>
@@ -182,11 +175,11 @@
                                                 </connections>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MGZ-uv-2QM" customClass="DescriptionView" customModule="Fasteregler" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="196" width="600" height="340"/>
+                                                <rect key="frame" x="0.0" y="199" width="600" height="337"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="749" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="45M-RF-IOE">
-                                                        <rect key="frame" x="8" y="8" width="584" height="20"/>
-                                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                                                        <rect key="frame" x="8" y="8" width="584" height="24"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
