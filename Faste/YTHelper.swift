@@ -57,7 +57,7 @@ class YTHelper
         task.resume()
     }
     
-    func getVideos(parent : GridController) {
+    func getVideos(parent : UIViewController) {
         // Form the request URL string.
         let urlString = "https://www.googleapis.com/youtube/v3/videos?id=\(videos)&part=snippet,contentDetails,statistics&key=\(apiKey)"
         
@@ -94,7 +94,13 @@ class YTHelper
                             //self.YTVideosArray.sortInPlace({$0.viewCount > $1.viewCount}); // Sorting algorithm
                             do{
                                 try self.ytImgCache.read()
-                                parent.do_grid_refresh()
+                                
+                                if(parent.isKindOfClass(GridController)){
+                                    (parent as! GridController).do_grid_refresh()
+                                }
+                                else{
+                                    (parent as! GridControlleriPad).do_grid_refresh()
+                                }
                             }
                             catch _{
                                 

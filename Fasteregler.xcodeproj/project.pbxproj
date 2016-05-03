@@ -20,9 +20,11 @@
 		3AC6ACA81CC6219C00F203CF /* ThumbnailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AC6ACA71CC6219C00F203CF /* ThumbnailCell.xib */; };
 		3AC6ACAA1CC63F0100F203CF /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AC6ACA91CC63F0100F203CF /* info.png */; };
 		3AF6C55D1CBD39380065B447 /* DescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF6C55C1CBD39380065B447 /* DescriptionView.swift */; };
+		3AFB00B71CD8E065009C2E98 /* MainiPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AFB00B61CD8E065009C2E98 /* MainiPad.storyboard */; };
+		3AFB00BA1CD8E327009C2E98 /* GridControlleriPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFB00B91CD8E327009C2E98 /* GridControlleriPad.swift */; };
+		3AFB00BC1CD8E53A009C2E98 /* ThumbnailCelliPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AFB00BB1CD8E53A009C2E98 /* ThumbnailCelliPad.xib */; };
 		3E05B78D1C90197B00E0B739 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E05B78C1C90197B00E0B739 /* AppDelegate.swift */; };
 		3E05B7941C90197B00E0B739 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E05B7931C90197B00E0B739 /* Assets.xcassets */; };
-		3E05B7971C90197B00E0B739 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E05B7951C90197B00E0B739 /* LaunchScreen.storyboard */; };
 		3E05B7A21C90197B00E0B739 /* FasteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E05B7A11C90197B00E0B739 /* FasteTests.swift */; };
 		3E05B7AD1C90197B00E0B739 /* FasteUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E05B7AC1C90197B00E0B739 /* FasteUITests.swift */; };
 		3E05B7BD1C901BF800E0B739 /* YTPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E05B7BC1C901BF800E0B739 /* YTPlayerView.m */; };
@@ -71,10 +73,12 @@
 		3AC6ACA71CC6219C00F203CF /* ThumbnailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThumbnailCell.xib; sourceTree = "<group>"; };
 		3AC6ACA91CC63F0100F203CF /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
 		3AF6C55C1CBD39380065B447 /* DescriptionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DescriptionView.swift; sourceTree = "<group>"; };
+		3AFB00B61CD8E065009C2E98 /* MainiPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainiPad.storyboard; sourceTree = "<group>"; };
+		3AFB00B91CD8E327009C2E98 /* GridControlleriPad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridControlleriPad.swift; sourceTree = "<group>"; };
+		3AFB00BB1CD8E53A009C2E98 /* ThumbnailCelliPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThumbnailCelliPad.xib; sourceTree = "<group>"; };
 		3E05B7891C90197B00E0B739 /* Fasteregler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fasteregler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E05B78C1C90197B00E0B739 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3E05B7931C90197B00E0B739 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		3E05B7961C90197B00E0B739 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3E05B7981C90197B00E0B739 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3E05B79D1C90197B00E0B739 /* Fasteregler.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Fasteregler.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E05B7A11C90197B00E0B739 /* FasteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FasteTests.swift; sourceTree = "<group>"; };
@@ -123,6 +127,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3AFB00B81CD8E199009C2E98 /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+				3AFB00B61CD8E065009C2E98 /* MainiPad.storyboard */,
+				3AFB00B91CD8E327009C2E98 /* GridControlleriPad.swift */,
+				3AFB00BB1CD8E53A009C2E98 /* ThumbnailCelliPad.xib */,
+			);
+			name = iPad;
+			sourceTree = "<group>";
+		};
 		3E05B7801C90197B00E0B739 = {
 			isa = PBXGroup;
 			children = (
@@ -156,11 +170,11 @@
 				3A72CEB31CC7CE4B00082E53 /* Roboto-Bold.ttf */,
 				3A72CEB41CC7CE4B00082E53 /* Roboto-Regular.ttf */,
 				3E58635E1C9857C30096DCD8 /* Main.storyboard */,
+				3AFB00B81CD8E199009C2E98 /* iPad */,
 				3AC6ACA71CC6219C00F203CF /* ThumbnailCell.xib */,
 				3E05B7C61C901D7800E0B739 /* ThumbnailCell.swift */,
 				3E05B7C41C901CFD00E0B739 /* VideoController.swift */,
 				3E05B7931C90197B00E0B739 /* Assets.xcassets */,
-				3E05B7951C90197B00E0B739 /* LaunchScreen.storyboard */,
 				3A4780C91CCFA438005CFE41 /* Reachability.m */,
 				3E05B7981C90197B00E0B739 /* Info.plist */,
 				3A6A886B1CBE6BBA0089FE95 /* GridDataModel.xcdatamodeld */,
@@ -321,10 +335,11 @@
 				3A72CEB51CC7CE4B00082E53 /* Roboto-Bold.ttf in Resources */,
 				3E39C0B21C99C47E006C90B4 /* Shape-6.png in Resources */,
 				3AC6ACAA1CC63F0100F203CF /* info.png in Resources */,
+				3AFB00B71CD8E065009C2E98 /* MainiPad.storyboard in Resources */,
 				3E39C0B01C99BB67006C90B4 /* Profilbillede@3x.png in Resources */,
 				3E58635C1C983AF80096DCD8 /* Profilbillede.png in Resources */,
+				3AFB00BC1CD8E53A009C2E98 /* ThumbnailCelliPad.xib in Resources */,
 				3E5863601C9857C30096DCD8 /* Main.storyboard in Resources */,
-				3E05B7971C90197B00E0B739 /* LaunchScreen.storyboard in Resources */,
 				3E05B7941C90197B00E0B739 /* Assets.xcassets in Resources */,
 				3A72CEB61CC7CE4B00082E53 /* Roboto-Regular.ttf in Resources */,
 				3A84BD521CD11FA9006220E6 /* ic_visibility.pdf in Resources */,
@@ -356,6 +371,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E05B7C11C901C8A00E0B739 /* GridController.swift in Sources */,
+				3AFB00BA1CD8E327009C2E98 /* GridControlleriPad.swift in Sources */,
 				3AF6C55D1CBD39380065B447 /* DescriptionView.swift in Sources */,
 				3E5863581C9831FF0096DCD8 /* YTVideo.swift in Sources */,
 				3E05B78D1C90197B00E0B739 /* AppDelegate.swift in Sources */,
@@ -402,14 +418,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		3E05B7951C90197B00E0B739 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3E05B7961C90197B00E0B739 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
 		3E58635E1C9857C30096DCD8 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
