@@ -19,8 +19,8 @@ class VideoController: UIViewController, YTPlayerViewDelegate{
     @IBOutlet weak var personView: PersonView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var profile: UIImageView!
-    
     @IBOutlet weak var playerHeight: NSLayoutConstraint!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController!.navigationBar.tintColor = UIColor.whiteColor();

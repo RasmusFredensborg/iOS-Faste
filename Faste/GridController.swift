@@ -33,7 +33,7 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
     var selectedVideoIndex: Int!
     let device = UIDevice.currentDevice().model
     let ytHelper = YTHelper()
-    
+    var layout = UICollectionViewFlowLayout();
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController!.navigationBar.translucent = false;
@@ -46,6 +46,29 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.registerNib(UINib(nibName: "ThumbnailCell", bundle: nil), forCellWithReuseIdentifier: "ThumbnailCell")
+        var size = CGSize()
+        
+        layout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        
+        
+        if(DeviceType.IS_IPHONE_6){
+            size.width = 180
+            size.height = 180
+            layout.minimumLineSpacing = 5
+            layout.minimumInteritemSpacing = 5
+            layout.sectionInset.top = 5
+        }
+        if(DeviceType.IS_IPHONE_5){
+            size.width = 150
+            size.height = 150
+            layout.minimumLineSpacing = 5
+            layout.minimumInteritemSpacing = 5
+            layout.sectionInset.top = 5
+        }
+        
+        
+        layout.itemSize = size
+        
         
         ytHelper.getVideos(self);
     }
