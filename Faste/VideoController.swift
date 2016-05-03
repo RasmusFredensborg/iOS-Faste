@@ -17,7 +17,6 @@ class VideoController: UIViewController, YTPlayerViewDelegate{
     
     @IBOutlet weak var descriptionView: DescriptionView!
     @IBOutlet weak var personView: PersonView!
-    @IBOutlet weak var relatedView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var profile: UIImageView!
     
@@ -27,14 +26,13 @@ class VideoController: UIViewController, YTPlayerViewDelegate{
         self.navigationController!.navigationBar.tintColor = UIColor.whiteColor();
         self.navigationController!.navigationBar.barTintColor = UIColor(red: 0xfb/255,green: 0xbc/255,blue: 0x00/255,alpha: 1.0)
 
-        self.navigationItem.titleView = constructTitle()
+        self.navigationItem.titleView = constructTitle(YTVideosArray[videoIndex].title.uppercaseString)
         self.playerView.delegate = self
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(VideoController.orientation), name: UIDeviceOrientationDidChangeNotification, object: nil)
         updateView();
         
         playerView.loadWithVideoId(YTVideosArray[videoIndex].ID, playerVars: playerVars)
-        playerView.addSubview(UIImageView(image:  UIImage(named: "Profilbillede.png")))
         playerHeight.constant = UIScreen.mainScreen().bounds.width * (9/16)
 //        descriptionView.bringSubviewToFront(profile)
     }
@@ -59,44 +57,30 @@ class VideoController: UIViewController, YTPlayerViewDelegate{
         personView.layer.shadowRadius = 3.0;
         personView.layer.shadowOpacity = 0.25;
         personView.layer.masksToBounds = false;
-        
-        relatedView.layer.rasterizationScale = UIScreen.mainScreen().scale;
-        relatedView.layer.shouldRasterize = true
-        relatedView.layer.shadowColor = UIColor.grayColor().CGColor;
-        relatedView.layer.shadowOffset = CGSizeMake(0, 2.0);
-        relatedView.layer.shadowRadius = 3.0;
-        relatedView.layer.shadowOpacity = 0.25;
-        relatedView.layer.masksToBounds = false;
+
     }
     
-    func constructTitle() -> UIView
+    func constructTitle(title: String) -> UIView
     {
         let titleLabel = UILabel(frame: CGRectMake(0, 0, 0, 0))
-        titleLabel.text = "FASTE"
+        titleLabel.text = title.uppercaseString
         titleLabel.font = UIFont(name: "AvenirNext-Heavy", size: 24)
         titleLabel.textColor = UIColor.whiteColor()
         titleLabel.sizeToFit();
         titleLabel.textAlignment = NSTextAlignment.Center
-        
-        let titleLabel2 = UILabel(frame: CGRectMake(titleLabel.frame.size.width, 0, 0, 0))
-        titleLabel2.text = "regler"
-        titleLabel2.font = UIFont(name: "AvenirNext-Medium", size: 24)
-        titleLabel2.textColor = UIColor.whiteColor()
-        titleLabel2.sizeToFit();
-        titleLabel2.textAlignment = NSTextAlignment.Center
-        let twoSegmentTitleView = UIView(frame: CGRectMake(0, 0, titleLabel.frame.size.width+titleLabel2.frame.size.width, titleLabel.frame.size.height));
-        twoSegmentTitleView.addSubview(titleLabel)
-        twoSegmentTitleView.addSubview(titleLabel2)
-        return twoSegmentTitleView;
+  
+        let titleView = UIView(frame: CGRectMake(0, 0, titleLabel.frame.size.width, titleLabel.frame.size.height));
+        titleView.addSubview(titleLabel)
+        return titleView;
     }
     
     func updateView(){
         let video = YTVideosArray[videoIndex];
         descriptionView.descriptionLabel?.text = video.description
-        descriptionView.titleLabel?.text = video.title
-        descriptionView.viewLabel?.text = String(video.viewCount);
-        personView.nameLabel?.text = "Jannie"
-        personView.descriptionLabel?.text = "Sygeplejerske"
+        self.navigationItem.titleView = constructTitle(video.title.uppercaseString)
+        personView.viewsLabel?.text = String(video.viewCount);
+        personView.nameLabel?.text = "Jannie Falk Bjerregaard"
+        personView.descriptionLabel?.text = "Narkose-sygeplejerske, Regionshospitalet Randers"
     }
     
     @IBAction func nextVideoPressed(sender: AnyObject) {
@@ -117,14 +101,8 @@ class VideoController: UIViewController, YTPlayerViewDelegate{
     }
     
     func orientation(){
-        if(UIDevice.currentDevice().orientation.isLandscape){
-            playerHeight.constant = UIScreen.mainScreen().bounds.height  - (self.navigationController?.navigationBar.bounds.height)!
-            self.scrollView.scrollEnabled = false
-        }
-        else if(UIDevice.currentDevice().orientation.isPortrait){
-            playerHeight.constant = UIScreen.mainScreen().bounds.width * (9/16)
-            self.scrollView.scrollEnabled = true
-        }
+        playerHeight.constant = UIScreen.mainScreen().bounds.width * (9/16)
+
     }
 }
 

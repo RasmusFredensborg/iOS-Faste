@@ -10,9 +10,7 @@ import UIKit
 
 class DescriptionView: UIView
 {
-    @IBOutlet weak var titleLabel : UILabel?
     @IBOutlet weak var descriptionLabel : UILabel?
-    @IBOutlet weak var viewLabel : UILabel?
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
