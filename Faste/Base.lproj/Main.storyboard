@@ -92,7 +92,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AGM-w3-7yH" customClass="PersonView" customModule="Fasteregler" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="128" width="600" height="41"/>
+                                                <rect key="frame" x="0.0" y="128" width="600" height="37.5"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profilbillede.png" translatesAutoresizingMaskIntoConstraints="NO" id="o90-jh-RXQ">
                                                         <rect key="frame" x="8" y="-23" width="45" height="45"/>
@@ -102,9 +102,8 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jqk-yu-94O">
-                                                        <rect key="frame" x="61" y="14.5" width="175" height="26.5"/>
+                                                        <rect key="frame" x="61" y="14" width="175" height="15.5"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="26.5" id="9qn-gx-oqA"/>
                                                             <constraint firstAttribute="width" constant="175" id="RPK-TI-lxD"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="11"/>
@@ -129,7 +128,7 @@
                                                     <constraint firstItem="jqk-yu-94O" firstAttribute="top" secondItem="e3H-wa-Usp" secondAttribute="bottom" constant="-3" id="62h-aN-L2s"/>
                                                     <constraint firstItem="e3H-wa-Usp" firstAttribute="top" secondItem="AGM-w3-7yH" secondAttribute="top" constant="1" id="I62-ZC-ueZ"/>
                                                     <constraint firstItem="o90-jh-RXQ" firstAttribute="leading" secondItem="AGM-w3-7yH" secondAttribute="leading" constant="8" id="I6Y-s2-uZh"/>
-                                                    <constraint firstAttribute="bottom" secondItem="jqk-yu-94O" secondAttribute="bottom" id="ZKG-BA-EDz"/>
+                                                    <constraint firstItem="jqk-yu-94O" firstAttribute="bottom" secondItem="AGM-w3-7yH" secondAttribute="bottomMargin" id="ZKG-BA-EDz"/>
                                                     <constraint firstItem="o90-jh-RXQ" firstAttribute="top" secondItem="AGM-w3-7yH" secondAttribute="top" constant="-23" id="bEr-su-4HQ"/>
                                                     <constraint firstItem="PHP-5U-qcd" firstAttribute="top" secondItem="AGM-w3-7yH" secondAttribute="top" constant="19" id="hDn-wV-87J"/>
                                                     <constraint firstItem="jqk-yu-94O" firstAttribute="leading" secondItem="o90-jh-RXQ" secondAttribute="trailing" constant="8" id="jNg-cH-ILk"/>
@@ -143,7 +142,7 @@
                                                 </connections>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MGZ-uv-2QM" customClass="DescriptionView" customModule="Fasteregler" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="169" width="600" height="431"/>
+                                                <rect key="frame" x="0.0" y="165.5" width="600" height="434.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="749" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="45M-RF-IOE">
                                                         <rect key="frame" x="8" y="8" width="584" height="17"/>
