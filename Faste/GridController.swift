@@ -149,15 +149,15 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         let video = ytHelper.ytImgCache.YTVideosArray[indexPath.row]
         cell.titleLbl.text = video.title.uppercaseString
         
+        cell.alpha = 0;
+        
+        UIView.animateWithDuration(0.5) {
+            cell.alpha = 1.0
+        }
         if(video.thumbnailImage == nil)
         {
-            cell.alpha = 0;
-            
             ytHelper.loadImage(video.thumbnailUrl, imageview: cell.thumbnailImg!, index: indexPath.row)
-            
-            UIView.animateWithDuration(0.5) {
-                cell.alpha = 1.0
-            }
+
         }
         else
         {
