@@ -64,7 +64,7 @@ class VideoController: UIViewController, YTPlayerViewDelegate{
     {
         let titleLabel = UILabel(frame: CGRectMake(0, 0, 0, 0))
         titleLabel.text = title.uppercaseString
-        titleLabel.font = UIFont(name: "AvenirNext-Heavy", size: 24)
+        titleLabel.font = UIFont(name: "AvenirNext-Heavy", size: 12)
         titleLabel.textColor = UIColor.whiteColor()
         titleLabel.sizeToFit();
         titleLabel.textAlignment = NSTextAlignment.Center

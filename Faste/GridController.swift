@@ -113,14 +113,14 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
     {
         let titleLabel = UILabel(frame: CGRectMake(0, 0, 0, 0))
         titleLabel.text = "FASTE"
-        titleLabel.font = UIFont(name: "AvenirNext-Heavy", size: 24)
+        titleLabel.font = UIFont(name: "AvenirNext-Heavy", size: 12)
         titleLabel.textColor = UIColor.whiteColor()
         titleLabel.sizeToFit();
         titleLabel.textAlignment = NSTextAlignment.Center
         
         let titleLabel2 = UILabel(frame: CGRectMake(titleLabel.frame.size.width, 0, 0, 0))
         titleLabel2.text = "regler"
-        titleLabel2.font = UIFont(name: "AvenirNext-Medium", size: 24)
+        titleLabel2.font = UIFont(name: "AvenirNext-Medium", size: 12)
         titleLabel2.textColor = UIColor.whiteColor()
         titleLabel2.sizeToFit();
         titleLabel2.textAlignment = NSTextAlignment.Center

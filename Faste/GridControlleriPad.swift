@@ -23,8 +23,7 @@ class GridControlleriPad: UIViewController, UICollectionViewDataSource, UICollec
         self.navigationController!.navigationBar.translucent = false;
         self.navigationController!.navigationBar.barTintColor = UIColor(red: 0xfb/255,green: 0xbc/255,blue: 0x00/255,alpha: 1.0)
         
-//        self.navigationItem.titleView = constructTitle();
-        self.title = "This is iPAD"
+        self.navigationItem.titleView = constructTitle();
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(GridController.didBecomeReachable), name: "Reachable", object: nil)
         
         collectionView.dataSource = self
