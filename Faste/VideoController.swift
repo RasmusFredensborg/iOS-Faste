@@ -80,7 +80,7 @@ class VideoController: UIViewController, YTPlayerViewDelegate{
         self.navigationItem.titleView = constructTitle(video.title.uppercaseString)
         personView.viewsLabel?.text = String(video.viewCount);
         personView.nameLabel?.text = "Jannie Falk Bjerregaard"
-        personView.descriptionLabel?.text = "Narkose-sygeplejerske, Regionshospitalet Randers"
+        personView.descriptionLabel?.text = "Narkose-sygeplejerske, Regionshospitalet Randers asdflkj asdlfkj asdflkj asdflkj"
     }
     
     @IBAction func nextVideoPressed(sender: AnyObject) {

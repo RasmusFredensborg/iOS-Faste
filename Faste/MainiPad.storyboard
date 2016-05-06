@@ -184,7 +184,6 @@
                                                     <constraint firstItem="f8D-Oe-ymq" firstAttribute="leading" secondItem="ndz-Ni-EgF" secondAttribute="trailing" constant="8" id="cLQ-uH-5cq"/>
                                                     <constraint firstItem="f8D-Oe-ymq" firstAttribute="top" secondItem="oPY-jY-KdC" secondAttribute="bottom" constant="4" id="goa-5J-jRi"/>
                                                     <constraint firstItem="96B-nc-63E" firstAttribute="top" secondItem="oPY-jY-KdC" secondAttribute="bottom" constant="1" id="i9a-Xp-AkA"/>
-                                                    <constraint firstAttribute="bottom" secondItem="ndz-Ni-EgF" secondAttribute="bottom" constant="8" id="lid-vO-JDZ"/>
                                                 </constraints>
                                                 <connections>
                                                     <outlet property="descriptionLabel" destination="ndz-Ni-EgF" id="HYE-dm-6Q1"/>
@@ -192,8 +191,8 @@
                                                     <outlet property="viewsLabel" destination="96B-nc-63E" id="KNo-hc-7nC"/>
                                                 </connections>
                                             </view>
-                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iLb-kp-oM8" customClass="DescriptionView" customModule="Fasteregler" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="199" width="600" height="401"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iLb-kp-oM8" customClass="DescriptionView" customModule="Fasteregler" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="199" width="600" height="337"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="749" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="iZg-Ui-Q0d">
                                                         <rect key="frame" x="8" y="8" width="584" height="24"/>

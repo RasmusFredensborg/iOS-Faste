@@ -11,8 +11,6 @@
 		3A4780C71CCF509D005CFE41 /* YTHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4780C61CCF509D005CFE41 /* YTHelper.swift */; };
 		3A4780CA1CCFA438005CFE41 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4780C91CCFA438005CFE41 /* Reachability.m */; };
 		3A6A886D1CBE6BBA0089FE95 /* GridDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3A6A886B1CBE6BBA0089FE95 /* GridDataModel.xcdatamodeld */; };
-		3A72CEB51CC7CE4B00082E53 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3A72CEB31CC7CE4B00082E53 /* Roboto-Bold.ttf */; };
-		3A72CEB61CC7CE4B00082E53 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3A72CEB41CC7CE4B00082E53 /* Roboto-Regular.ttf */; };
 		3A84BD501CD0FFE7006220E6 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A84BD4F1CD0FFE7006220E6 /* background.png */; };
 		3A84BD521CD11FA9006220E6 /* ic_visibility.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 3A84BD511CD11FA9006220E6 /* ic_visibility.pdf */; };
 		3A8AB0521CBE28B400D9F10F /* PersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8AB0511CBE28B400D9F10F /* PersonView.swift */; };
@@ -64,8 +62,6 @@
 		3A4780C81CCFA438005CFE41 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		3A4780C91CCFA438005CFE41 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		3A6A886C1CBE6BBA0089FE95 /* GridDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GridDataModel.xcdatamodel; sourceTree = "<group>"; };
-		3A72CEB31CC7CE4B00082E53 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Bold.ttf"; path = "../../../Downloads/Roboto/Roboto-Bold.ttf"; sourceTree = "<group>"; };
-		3A72CEB41CC7CE4B00082E53 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Regular.ttf"; path = "../../../Downloads/Roboto/Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		3A84BD4F1CD0FFE7006220E6 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		3A84BD511CD11FA9006220E6 /* ic_visibility.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ic_visibility.pdf; sourceTree = "<group>"; };
 		3A8AB0511CBE28B400D9F10F /* PersonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonView.swift; sourceTree = "<group>"; };
@@ -167,8 +163,6 @@
 				3E05B78C1C90197B00E0B739 /* AppDelegate.swift */,
 				3E05B7C01C901C8A00E0B739 /* GridController.swift */,
 				3A4780C61CCF509D005CFE41 /* YTHelper.swift */,
-				3A72CEB31CC7CE4B00082E53 /* Roboto-Bold.ttf */,
-				3A72CEB41CC7CE4B00082E53 /* Roboto-Regular.ttf */,
 				3E58635E1C9857C30096DCD8 /* Main.storyboard */,
 				3AFB00B81CD8E199009C2E98 /* iPad */,
 				3AC6ACA71CC6219C00F203CF /* ThumbnailCell.xib */,
@@ -332,7 +326,6 @@
 				3A1F8D931CD09BBE00D53236 /* eyecon.png in Resources */,
 				3E05B7D11C905A9200E0B739 /* Assets in Resources */,
 				3E894DC31C96CAAF00E74F00 /* Shape (øje).png in Resources */,
-				3A72CEB51CC7CE4B00082E53 /* Roboto-Bold.ttf in Resources */,
 				3E39C0B21C99C47E006C90B4 /* Shape-6.png in Resources */,
 				3AC6ACAA1CC63F0100F203CF /* info.png in Resources */,
 				3AFB00B71CD8E065009C2E98 /* MainiPad.storyboard in Resources */,
@@ -341,7 +334,6 @@
 				3AFB00BC1CD8E53A009C2E98 /* ThumbnailCelliPad.xib in Resources */,
 				3E5863601C9857C30096DCD8 /* Main.storyboard in Resources */,
 				3E05B7941C90197B00E0B739 /* Assets.xcassets in Resources */,
-				3A72CEB61CC7CE4B00082E53 /* Roboto-Regular.ttf in Resources */,
 				3A84BD521CD11FA9006220E6 /* ic_visibility.pdf in Resources */,
 				3AC6ACA81CC6219C00F203CF /* ThumbnailCell.xib in Resources */,
 				3EF0BB581CAAB044006B6152 /* grey line.png in Resources */,
