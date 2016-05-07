@@ -18,7 +18,6 @@ class VideoController: UIViewController, YTPlayerViewDelegate{
     @IBOutlet weak var descriptionView: DescriptionView!
     @IBOutlet weak var personView: PersonView!
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var profile: UIImageView!
     @IBOutlet weak var playerHeight: NSLayoutConstraint!
     
     override func viewDidLoad() {
@@ -62,9 +61,17 @@ class VideoController: UIViewController, YTPlayerViewDelegate{
     
     func constructTitle(title: String) -> UIView
     {
+        
         let titleLabel = UILabel(frame: CGRectMake(0, 0, 0, 0))
         titleLabel.text = title.uppercaseString
-        titleLabel.font = UIFont(name: "AvenirNext-Heavy", size: 12)
+        if(UIDevice.currentDevice().model=="iPad")
+        {
+            titleLabel.font = UIFont(name: "AvenirNext-Heavy", size: 24)
+        }
+        else
+        {
+            titleLabel.font = UIFont(name: "AvenirNext-Heavy", size: 12)
+        }
         titleLabel.textColor = UIColor.whiteColor()
         titleLabel.sizeToFit();
         titleLabel.textAlignment = NSTextAlignment.Center
@@ -76,7 +83,7 @@ class VideoController: UIViewController, YTPlayerViewDelegate{
     
     func updateView(){
         let video = YTVideosArray[videoIndex];
-        descriptionView.descriptionLabel?.text = video.description
+        descriptionView.descriptionLabel?.text = video.description + " Test: asdæflkjasdæflkjasdfælk asdfælkj sdflk jdslfkjds fslksdj fsldkfj sdflksjd flsdkfj sdflkjsdf sdlkfj sdflkjsd flksjdf lskdjfasædlkfja sflkjqwe flkqwjef asdlkfj asdpvijas dvoasjd vpasdkvoj asdpvojasdv posadkjv pasdv sdokv jpsokdvj dsokvj sdpokjv kopdsj vok sdv jds vd sv jopsdkj vpoksdjv podsk vopksdv posdj vpokj sdpv j asdæflkjasdæflkjasdfælk asdfælkj sdflk jdslfkjds fslksdj fsldkfj sdflksjd flsdkfj sdflkjsdf sdlkfj sdflkjsd flksjdf lskdjfasædlkfja sflkjqwe flkqwjef asdlkfj asdpvijas dvoasjd vpasdkvoj asdpvojasdv posadkjv pasdv sdokv jpsokdvj dsokvj sdpokjv kopdsj vok sdv jds vd sv jopsdkj vpoksdjv podsk vopksdv posdj vpokj sdpv j";
         self.navigationItem.titleView = constructTitle(video.title.uppercaseString)
         personView.viewsLabel?.text = String(video.viewCount);
         personView.nameLabel?.text = "Jannie Falk Bjerregaard"

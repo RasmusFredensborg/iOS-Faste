@@ -31,10 +31,12 @@ class GridControlleriPad: UIViewController, UICollectionViewDataSource, UICollec
         collectionView.registerNib(UINib(nibName: "ThumbnailCelliPad", bundle: nil), forCellWithReuseIdentifier: "ThumbnailCelliPad")
         
         ytHelper.getVideos(self);
-    }
-    
-    override func viewDidLayoutSubviews() {
-        let collectionSize = collectionView.collectionViewLayout.collectionViewContentSize()
+        
+        
+        
+        
+        
+        let collectionSize = CGSize(width:  UIScreen.mainScreen().bounds.size.width, height: UIScreen.mainScreen().bounds.size.height + (self.navigationController?.navigationBar.bounds.size.height)!)
         
         let topImage = UIImage(named: "background.png")
         var bottomImage = UIImage()
@@ -58,8 +60,40 @@ class GridControlleriPad: UIViewController, UICollectionViewDataSource, UICollec
         let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        //        collectionView.backgroundView = backgroundImage
         collectionView.backgroundColor = UIColor(patternImage: newImage)
+        
+        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        if(collectionView.numberOfItemsInSection(0) > 0)
+        {
+            let collectionSize = collectionView.collectionViewLayout.collectionViewContentSize()
+            
+            let topImage = UIImage(named: "background.png")
+            var bottomImage = UIImage()
+            let rect = CGRectMake(0, 0, collectionSize.width, collectionSize.height)
+            UIGraphicsBeginImageContextWithOptions(collectionSize, false, 0)
+            
+            let color = UIColor(red: 0x18/255,green: 0x1F/255,blue: 0x59/255,alpha: 1.0)
+            color.setFill()
+            UIRectFill(rect)
+            bottomImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            
+            backgroundView.backgroundColor = color;
+            
+            let size = CGSizeMake(topImage!.size.width, topImage!.size.height + bottomImage.size.height)
+            UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
+            
+            [topImage!.drawInRect(CGRectMake(0,0,size.width, topImage!.size.height))];
+            [bottomImage.drawInRect(CGRectMake(0,topImage!.size.height,size.width, bottomImage.size.height))];
+            
+            let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            
+            collectionView.backgroundColor = UIColor(patternImage: newImage)
+        }
     }
     
     @objc func didBecomeReachable(note: NSNotification){
@@ -90,12 +124,6 @@ class GridControlleriPad: UIViewController, UICollectionViewDataSource, UICollec
         return twoSegmentTitleView;
     }
     
-    func infoTapped(){
-        let alert = UIAlertController(title: "Emento", message: "Contact: developer@emento.dk", preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-        self.presentViewController(alert, animated: true, completion: nil)
-    }
-    
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return ytHelper.ytImgCache.YTVideosArray.count
     }
@@ -108,16 +136,14 @@ class GridControlleriPad: UIViewController, UICollectionViewDataSource, UICollec
         
         let video = ytHelper.ytImgCache.YTVideosArray[indexPath.row]
         cell.titleLbl.text = video.title.uppercaseString
+        cell.alpha = 0;
+        UIView.animateWithDuration(0.5) {
+            cell.alpha = 1.0
+        }
         
         if(video.thumbnailImage == nil)
         {
-            cell.alpha = 0;
-            
             ytHelper.loadImage(video.thumbnailUrl, imageview: cell.thumbnailImg!, index: indexPath.row)
-            
-            UIView.animateWithDuration(0.5) {
-                cell.alpha = 1.0
-            }
         }
         else
         {
