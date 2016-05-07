@@ -96,7 +96,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="un7-SR-drK">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="753" verticalCompressionResistancePriority="753" translatesAutoresizingMaskIntoConstraints="NO" id="un7-SR-drK">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eWM-IY-MAj">
@@ -212,7 +212,6 @@
                                             <constraint firstAttribute="bottom" secondItem="WeK-Zx-hwY" secondAttribute="bottom" id="MO7-8K-zGf"/>
                                             <constraint firstItem="17P-sM-nbd" firstAttribute="leading" secondItem="eWM-IY-MAj" secondAttribute="leading" id="Ufl-Xr-IpW"/>
                                             <constraint firstItem="WeK-Zx-hwY" firstAttribute="top" secondItem="17P-sM-nbd" secondAttribute="bottom" id="V84-Wd-phU"/>
-                                            <constraint firstAttribute="height" constant="600" id="cOu-Hv-pO9"/>
                                             <constraint firstItem="gwQ-Ww-uha" firstAttribute="top" secondItem="eWM-IY-MAj" secondAttribute="top" id="dec-er-tTy"/>
                                             <constraint firstItem="gwQ-Ww-uha" firstAttribute="leading" secondItem="eWM-IY-MAj" secondAttribute="leading" id="jG3-3q-arW"/>
                                             <constraint firstItem="17P-sM-nbd" firstAttribute="top" secondItem="gwQ-Ww-uha" secondAttribute="bottom" id="qga-N5-Ief"/>
@@ -223,6 +222,7 @@
                                     <constraint firstItem="eWM-IY-MAj" firstAttribute="centerX" secondItem="un7-SR-drK" secondAttribute="centerX" id="D2M-ca-E90"/>
                                     <constraint firstAttribute="trailing" secondItem="eWM-IY-MAj" secondAttribute="trailing" id="HpS-mf-V2S"/>
                                     <constraint firstAttribute="bottom" secondItem="eWM-IY-MAj" secondAttribute="bottom" id="Jxp-p5-Z99"/>
+                                    <constraint firstItem="eWM-IY-MAj" firstAttribute="height" secondItem="un7-SR-drK" secondAttribute="height" id="OZ2-yP-adR"/>
                                     <constraint firstItem="eWM-IY-MAj" firstAttribute="top" secondItem="un7-SR-drK" secondAttribute="top" id="Rn9-ca-VPr"/>
                                     <constraint firstItem="eWM-IY-MAj" firstAttribute="leading" secondItem="un7-SR-drK" secondAttribute="leading" id="ebI-KE-gsk"/>
                                 </constraints>

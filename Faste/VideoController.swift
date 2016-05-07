@@ -56,7 +56,6 @@ class VideoController: UIViewController, YTPlayerViewDelegate{
         personView.layer.shadowRadius = 3.0;
         personView.layer.shadowOpacity = 0.25;
         personView.layer.masksToBounds = false;
-
     }
     
     func constructTitle(title: String) -> UIView
