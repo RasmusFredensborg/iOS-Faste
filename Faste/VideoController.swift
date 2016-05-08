@@ -82,7 +82,7 @@ class VideoController: UIViewController, YTPlayerViewDelegate{
     
     func updateView(){
         let video = YTVideosArray[videoIndex];
-        descriptionView.descriptionLabel?.text = video.description + " Test: asdæflkjasdæflkjasdfælk asdfælkj sdflk jdslfkjds fslksdj fsldkfj sdflksjd flsdkfj sdflkjsdf sdlkfj sdflkjsd flksjdf lskdjfasædlkfja sflkjqwe flkqwjef asdlkfj asdpvijas dvoasjd vpasdkvoj asdpvojasdv posadkjv pasdv sdokv jpsokdvj dsokvj sdpokjv kopdsj vok sdv jds vd sv jopsdkj vpoksdjv podsk vopksdv posdj vpokj sdpv j asdæflkjasdæflkjasdfælk asdfælkj sdflk jdslfkjds fslksdj fsldkfj sdflksjd flsdkfj sdflkjsdf sdlkfj sdflkjsd flksjdf lskdjfasædlkfja sflkjqwe flkqwjef asdlkfj asdpvijas dvoasjd vpasdkvoj asdpvojasdv posadkjv pasdv sdokv jpsokdvj dsokvj sdpokjv kopdsj vok sdv jds vd sv jopsdkj vpoksdjv podsk vopksdv posdj vpokj sdpv j";
+        descriptionView.descriptionLabel?.text = video.description;
         self.navigationItem.titleView = constructTitle(video.title.uppercaseString)
         personView.viewsLabel?.text = String(video.viewCount);
         personView.nameLabel?.text = "Jannie Falk Bjerregaard"
