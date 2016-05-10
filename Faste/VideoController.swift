@@ -40,24 +40,6 @@ class VideoController: UIViewController, YTPlayerViewDelegate{
         orientation()
     }
     
-    override func viewDidLayoutSubviews() {
-        descriptionView.layer.rasterizationScale = UIScreen.mainScreen().scale;
-        descriptionView.layer.shouldRasterize = true
-        descriptionView.layer.shadowColor = UIColor.grayColor().CGColor;
-        descriptionView.layer.shadowOffset = CGSizeMake(0, 2.0);
-        descriptionView.layer.shadowRadius = 3.0;
-        descriptionView.layer.shadowOpacity = 0.25;
-        descriptionView.layer.masksToBounds = false;
-
-        personView.layer.rasterizationScale = UIScreen.mainScreen().scale;
-        personView.layer.shouldRasterize = true
-        personView.layer.shadowColor = UIColor.grayColor().CGColor;
-        personView.layer.shadowOffset = CGSizeMake(0, 2.0);
-        personView.layer.shadowRadius = 3.0;
-        personView.layer.shadowOpacity = 0.25;
-        personView.layer.masksToBounds = false;
-    }
-    
     func constructTitle(title: String) -> UIView
     {
         
@@ -108,7 +90,7 @@ class VideoController: UIViewController, YTPlayerViewDelegate{
     
     func orientation(){
         if(UIDevice.currentDevice().orientation.isLandscape){
-            if(UIDevice.currentDevice() == "iPhone"){
+            if(UIDevice.currentDevice().model == "iPhone"){
                 self.navigationController?.navigationBarHidden = true;
             }
             playerHeight.constant = UIScreen.mainScreen().bounds.width * (9/16)

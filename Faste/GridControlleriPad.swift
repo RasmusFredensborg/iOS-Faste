@@ -63,7 +63,14 @@ class GridControlleriPad: UIViewController, UICollectionViewDataSource, UICollec
         
         collectionView.backgroundColor = UIColor(patternImage: newImage)
         
+        let infoImage = UIImage(named: "ic_info_outline_white_2x.png")
+        let imgWidth = Int(30)
+        let imgHeight = Int(30)
+        let infoButton:UIButton = UIButton(frame: CGRect(x: 0, y: 0, width: imgWidth, height: imgHeight))
+        infoButton.setBackgroundImage(infoImage, forState: .Normal)
+        infoButton.addTarget(self, action: #selector(GridControlleriPad.infoTapped), forControlEvents: UIControlEvents.TouchUpInside)
         
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: infoButton)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -148,10 +155,10 @@ class GridControlleriPad: UIViewController, UICollectionViewDataSource, UICollec
         
         if(cellsLoaded<ytHelper.ytImgCache.YTVideosArray.count){
             if(translation.x > 0){
-                cell.frame = CGRectMake(finalCellFrame.origin.x, UIScreen.mainScreen().bounds.size.height + CGFloat(indexPath.item * 75), 0, 0)
+                cell.frame = CGRectMake(finalCellFrame.origin.x, UIScreen.mainScreen().bounds.size.height + CGFloat(indexPath.item * 75), finalCellFrame.size.width,  finalCellFrame.size.height)
             }
             else{
-                cell.frame = CGRectMake(finalCellFrame.origin.x, UIScreen.mainScreen().bounds.size.height + CGFloat(indexPath.item * 75), 0,  0)
+                cell.frame = CGRectMake(finalCellFrame.origin.x, UIScreen.mainScreen().bounds.size.height + CGFloat(indexPath.item * 75), finalCellFrame.size.width,  finalCellFrame.size.height)
             }
             UIView.animateWithDuration(0.8+Double(indexPath.item)/10) {
                 
@@ -171,13 +178,6 @@ class GridControlleriPad: UIViewController, UICollectionViewDataSource, UICollec
         
         cell.viewLbl.text = String(video.viewCount)
         cell.durationLbl.text = video.duration
-        
-        cell.layer.shadowColor = UIColor.grayColor().CGColor;
-        cell.layer.shadowOffset = CGSizeMake(0, 2.0);
-        cell.layer.shadowRadius = 3.0;
-        cell.layer.shadowOpacity = 0.25;
-        cell.layer.masksToBounds = false;
-        cell.layer.shadowPath = UIBezierPath(roundedRect:cell.bounds, cornerRadius: 0).CGPath;
         
         cellsLoaded += 1;
         return cell;
@@ -214,6 +214,12 @@ class GridControlleriPad: UIViewController, UICollectionViewDataSource, UICollec
             self.collectionView.reloadData()
             return
         })
+    }
+    
+    func infoTapped(){
+        let alert = UIAlertController(title: "Emento", message: "Contact: developer@emento.dk", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
 }
 

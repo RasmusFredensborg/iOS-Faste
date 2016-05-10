@@ -34,12 +34,6 @@
                                     <constraint firstItem="rXT-Kq-TBI" firstAttribute="centerY" secondItem="g8u-zU-YT4" secondAttribute="centerY" id="cOb-vG-y2E"/>
                                 </constraints>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" semanticContentAttribute="playback" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ikr-Cx-32R">
-                                <rect key="frame" x="0.0" y="15" width="150" height="120"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="120" id="QPT-1x-vCY"/>
-                                </constraints>
-                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="owI-6F-pqs">
                                 <rect key="frame" x="0.0" y="135" width="150" height="15"/>
                                 <subviews>
@@ -68,7 +62,6 @@
                                     <constraint firstAttribute="height" constant="15" id="0Ys-qe-DsY"/>
                                     <constraint firstItem="Pnh-ja-2dq" firstAttribute="top" secondItem="owI-6F-pqs" secondAttribute="top" constant="1" id="EZj-Hh-alR"/>
                                     <constraint firstAttribute="bottom" secondItem="hvu-PB-XM7" secondAttribute="bottom" id="OQo-sU-mX1"/>
-                                    <constraint firstItem="hvu-PB-XM7" firstAttribute="centerY" secondItem="owI-6F-pqs" secondAttribute="centerY" id="QBx-zC-4HV"/>
                                     <constraint firstAttribute="trailing" secondItem="2Gh-fS-2bR" secondAttribute="trailing" constant="5" id="fYW-1l-N82"/>
                                     <constraint firstItem="2Gh-fS-2bR" firstAttribute="top" secondItem="owI-6F-pqs" secondAttribute="top" constant="1" id="fpe-Ue-GIK"/>
                                     <constraint firstItem="2Gh-fS-2bR" firstAttribute="centerY" secondItem="owI-6F-pqs" secondAttribute="centerY" id="kEB-Aa-bAb"/>
@@ -78,6 +71,12 @@
                                     <constraint firstItem="hvu-PB-XM7" firstAttribute="top" secondItem="owI-6F-pqs" secondAttribute="top" constant="1" id="xRB-ny-P58"/>
                                 </constraints>
                             </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" semanticContentAttribute="playback" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ikr-Cx-32R">
+                                <rect key="frame" x="0.0" y="15" width="150" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="QPT-1x-vCY"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -86,6 +85,7 @@
                             <constraint firstAttribute="bottom" secondItem="owI-6F-pqs" secondAttribute="bottom" id="8Ji-7X-hQy"/>
                             <constraint firstItem="Ikr-Cx-32R" firstAttribute="top" secondItem="g8u-zU-YT4" secondAttribute="bottom" id="BN1-Ab-h7X"/>
                             <constraint firstAttribute="trailing" secondItem="Ikr-Cx-32R" secondAttribute="trailing" id="Dw1-6i-puD"/>
+                            <constraint firstItem="Ikr-Cx-32R" firstAttribute="centerX" secondItem="0ob-ei-wIo" secondAttribute="centerX" id="E8h-bU-YN3"/>
                             <constraint firstItem="g8u-zU-YT4" firstAttribute="top" secondItem="0ob-ei-wIo" secondAttribute="top" id="NSK-g2-RDr"/>
                             <constraint firstItem="owI-6F-pqs" firstAttribute="top" secondItem="Ikr-Cx-32R" secondAttribute="bottom" id="QaW-fy-da4"/>
                             <constraint firstItem="Ikr-Cx-32R" firstAttribute="leading" secondItem="0ob-ei-wIo" secondAttribute="leading" id="d2B-UZ-O0L"/>

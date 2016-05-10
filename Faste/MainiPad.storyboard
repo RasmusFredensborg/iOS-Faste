@@ -233,7 +233,7 @@
                             <constraint firstItem="un7-SR-drK" firstAttribute="leading" secondItem="zss-JC-uMv" secondAttribute="leading" id="3qX-j5-uYG"/>
                             <constraint firstItem="un7-SR-drK" firstAttribute="top" secondItem="zss-JC-uMv" secondAttribute="top" id="RYe-1o-i8u"/>
                             <constraint firstAttribute="trailing" secondItem="un7-SR-drK" secondAttribute="trailing" id="UH3-zU-cPw"/>
-                            <constraint firstItem="un7-SR-drK" firstAttribute="bottom" secondItem="0zl-ni-104" secondAttribute="top" id="e2i-dR-sFi"/>
+                            <constraint firstItem="0zl-ni-104" firstAttribute="top" secondItem="un7-SR-drK" secondAttribute="bottom" id="e2i-dR-sFi"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Ocl-B5-avi"/>

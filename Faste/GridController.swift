@@ -71,6 +71,15 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         
         
         ytHelper.getVideos(self);
+        
+        let infoImage = UIImage(named: "ic_info_outline_white_2x.png")
+        let imgWidth = Int(20)
+        let imgHeight = Int(20)
+        let infoButton:UIButton = UIButton(frame: CGRect(x: 0, y: 0, width: imgWidth, height: imgHeight))
+        infoButton.setBackgroundImage(infoImage, forState: .Normal)
+        infoButton.addTarget(self, action: #selector(GridController.infoTapped), forControlEvents: UIControlEvents.TouchUpInside)
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: infoButton)
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
@@ -101,7 +110,6 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        //        collectionView.backgroundView = backgroundImage
         collectionView.backgroundColor = UIColor(patternImage: newImage)
     }
     
@@ -149,25 +157,18 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         let finalCellFrame = cell.frame;
         let translation = collectionView.panGestureRecognizer.translationInView(collectionView.superview);
         
-        if(translation.x > 0){
-            cell.frame = CGRectMake(finalCellFrame.origin.x, CGFloat(500 + indexPath.item * 75), 0, 0)
-        }
-        else{
-            cell.frame = CGRectMake(finalCellFrame.origin.x, CGFloat(500 + indexPath.item * 75), 0,  0)
-        }
+        let video = ytHelper.ytImgCache.YTVideosArray[indexPath.row]
+        cell.titleLbl.text = video.title.uppercaseString
         
         cell.layer.shouldRasterize = true
         cell.layer.rasterizationScale = UIScreen.mainScreen().scale
         
-        let video = ytHelper.ytImgCache.YTVideosArray[indexPath.row]
-        cell.titleLbl.text = video.title.uppercaseString
-        
         if(cellsLoaded<ytHelper.ytImgCache.YTVideosArray.count){
             if(translation.x > 0){
-                cell.frame = CGRectMake(finalCellFrame.origin.x, UIScreen.mainScreen().bounds.size.height + CGFloat(indexPath.item * 75), 0, 0)
+                cell.frame = CGRectMake(finalCellFrame.origin.x, UIScreen.mainScreen().bounds.size.height + CGFloat(indexPath.item * 75), finalCellFrame.size.width,  finalCellFrame.size.height)
             }
             else{
-                cell.frame = CGRectMake(finalCellFrame.origin.x, UIScreen.mainScreen().bounds.size.height + CGFloat(indexPath.item * 75), 0,  0)
+                cell.frame = CGRectMake(finalCellFrame.origin.x, UIScreen.mainScreen().bounds.size.height + CGFloat(indexPath.item * 75), finalCellFrame.size.width,  finalCellFrame.size.height)
             }
             UIView.animateWithDuration(0.8+Double(indexPath.item)/10) {
                 cell.frame = finalCellFrame;
@@ -186,13 +187,7 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         
         cell.viewLbl.text = String(video.viewCount)
         cell.durationLbl.text = video.duration
-        
-        cell.layer.shadowColor = UIColor.grayColor().CGColor;
-        cell.layer.shadowOffset = CGSizeMake(0, 2.0);
-        cell.layer.shadowRadius = 3.0;
-        cell.layer.shadowOpacity = 0.25;
-        cell.layer.masksToBounds = false;
-        cell.layer.shadowPath = UIBezierPath(roundedRect:cell.bounds, cornerRadius: 0).CGPath;
+
         cellsLoaded += 1;
         return cell;
     }
