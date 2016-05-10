@@ -202,6 +202,7 @@
                                                 <constraints>
                                                     <constraint firstItem="t8G-6p-YOb" firstAttribute="trailing" secondItem="WeK-Zx-hwY" secondAttribute="trailingMargin" id="8PF-sR-JAm"/>
                                                     <constraint firstItem="t8G-6p-YOb" firstAttribute="top" secondItem="WeK-Zx-hwY" secondAttribute="topMargin" id="GEL-6a-8yZ"/>
+                                                    <constraint firstAttribute="height" constant="363" id="LCm-Fd-2wF"/>
                                                     <constraint firstItem="t8G-6p-YOb" firstAttribute="leading" secondItem="WeK-Zx-hwY" secondAttribute="leading" constant="20" id="nvD-1v-adp"/>
                                                 </constraints>
                                                 <connections>
@@ -209,7 +210,7 @@
                                                 </connections>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="jk0-M4-dgI" secondAttribute="trailing" id="3m0-CI-3g7"/>
                                             <constraint firstItem="17P-sM-nbd" firstAttribute="top" secondItem="jk0-M4-dgI" secondAttribute="bottom" id="6cb-8V-tog"/>
@@ -228,19 +229,18 @@
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="eWM-IY-MAj" firstAttribute="centerX" secondItem="un7-SR-drK" secondAttribute="centerX" id="D2M-ca-E90"/>
+                                    <constraint firstItem="eWM-IY-MAj" firstAttribute="width" secondItem="un7-SR-drK" secondAttribute="width" id="6se-51-Uqh"/>
                                     <constraint firstAttribute="trailing" secondItem="eWM-IY-MAj" secondAttribute="trailing" id="HpS-mf-V2S"/>
                                     <constraint firstAttribute="bottom" secondItem="eWM-IY-MAj" secondAttribute="bottom" id="Jxp-p5-Z99"/>
-                                    <constraint firstItem="eWM-IY-MAj" firstAttribute="height" secondItem="un7-SR-drK" secondAttribute="height" id="OZ2-yP-adR"/>
                                     <constraint firstItem="eWM-IY-MAj" firstAttribute="top" secondItem="un7-SR-drK" secondAttribute="top" id="Rn9-ca-VPr"/>
                                     <constraint firstItem="eWM-IY-MAj" firstAttribute="leading" secondItem="un7-SR-drK" secondAttribute="leading" id="ebI-KE-gsk"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="un7-SR-drK" firstAttribute="leading" secondItem="zss-JC-uMv" secondAttribute="leading" id="3qX-j5-uYG"/>
-                            <constraint firstItem="un7-SR-drK" firstAttribute="top" secondItem="zss-JC-uMv" secondAttribute="top" id="RYe-1o-i8u"/>
+                            <constraint firstItem="un7-SR-drK" firstAttribute="top" secondItem="zss-JC-uMv" secondAttribute="topMargin" id="RYe-1o-i8u"/>
                             <constraint firstAttribute="trailing" secondItem="un7-SR-drK" secondAttribute="trailing" id="UH3-zU-cPw"/>
                             <constraint firstItem="0zl-ni-104" firstAttribute="top" secondItem="un7-SR-drK" secondAttribute="bottom" id="e2i-dR-sFi"/>
                         </constraints>

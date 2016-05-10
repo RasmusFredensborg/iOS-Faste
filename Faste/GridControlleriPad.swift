@@ -158,12 +158,12 @@ class GridControlleriPad: UIViewController, UICollectionViewDataSource, UICollec
             else{
                 cell.frame = CGRectMake(finalCellFrame.origin.x, UIScreen.mainScreen().bounds.size.height + CGFloat(indexPath.item * 75), finalCellFrame.size.width,  finalCellFrame.size.height)
             }
-            UIView.animateWithDuration(0.8+Double(indexPath.item)/10) {
-                
+            
+            UIView.animateWithDuration(0.8, delay: Double(indexPath.item)/10, options: .CurveEaseOut, animations: {
                 cell.frame = finalCellFrame;
+            }) { _ in
             }
         }
-
         
         if(video.thumbnailImage == nil)
         {
