@@ -107,8 +107,16 @@ class VideoController: UIViewController, YTPlayerViewDelegate{
     }
     
     func orientation(){
-        playerHeight.constant = UIScreen.mainScreen().bounds.width * (9/16)
-
+        if(UIDevice.currentDevice().orientation.isLandscape){
+            if(UIDevice.currentDevice() == "iPhone"){
+                self.navigationController?.navigationBarHidden = true;
+            }
+            playerHeight.constant = UIScreen.mainScreen().bounds.width * (9/16)
+        }
+        else if(UIDevice.currentDevice().orientation.isPortrait){
+            self.navigationController?.navigationBarHidden = false;
+            playerHeight.constant = UIScreen.mainScreen().bounds.width * (9/16)
+        }
     }
 }
 

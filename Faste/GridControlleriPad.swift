@@ -17,6 +17,7 @@ class GridControlleriPad: UIViewController, UICollectionViewDataSource, UICollec
     var selectedVideoIndex: Int!
     let device = UIDevice.currentDevice().model
     let ytHelper = YTHelper()
+    var cellsLoaded = 0;
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,6 +64,11 @@ class GridControlleriPad: UIViewController, UICollectionViewDataSource, UICollec
         collectionView.backgroundColor = UIColor(patternImage: newImage)
         
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        self.collectionView.reloadData()
     }
     
     override func viewDidLayoutSubviews() {
@@ -131,15 +137,28 @@ class GridControlleriPad: UIViewController, UICollectionViewDataSource, UICollec
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell: ThumbnailCell = collectionView.dequeueReusableCellWithReuseIdentifier("ThumbnailCelliPad", forIndexPath: indexPath) as! ThumbnailCell
         
+        let finalCellFrame = cell.frame;
+        let translation = collectionView.panGestureRecognizer.translationInView(collectionView.superview);
+        
         cell.layer.shouldRasterize = true
         cell.layer.rasterizationScale = UIScreen.mainScreen().scale
         
         let video = ytHelper.ytImgCache.YTVideosArray[indexPath.row]
         cell.titleLbl.text = video.title.uppercaseString
-        cell.alpha = 0;
-        UIView.animateWithDuration(0.5) {
-            cell.alpha = 1.0
+        
+        if(cellsLoaded<ytHelper.ytImgCache.YTVideosArray.count){
+            if(translation.x > 0){
+                cell.frame = CGRectMake(finalCellFrame.origin.x, UIScreen.mainScreen().bounds.size.height + CGFloat(indexPath.item * 75), 0, 0)
+            }
+            else{
+                cell.frame = CGRectMake(finalCellFrame.origin.x, UIScreen.mainScreen().bounds.size.height + CGFloat(indexPath.item * 75), 0,  0)
+            }
+            UIView.animateWithDuration(0.8+Double(indexPath.item)/10) {
+                
+                cell.frame = finalCellFrame;
+            }
         }
+
         
         if(video.thumbnailImage == nil)
         {
@@ -160,11 +179,13 @@ class GridControlleriPad: UIViewController, UICollectionViewDataSource, UICollec
         cell.layer.masksToBounds = false;
         cell.layer.shadowPath = UIBezierPath(roundedRect:cell.bounds, cornerRadius: 0).CGPath;
         
+        cellsLoaded += 1;
         return cell;
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         selectedVideoIndex = indexPath.row
+        cellsLoaded = 0;
         performSegueWithIdentifier("idSeguePlayer", sender: self)
     }
     

@@ -34,6 +34,7 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
     let device = UIDevice.currentDevice().model
     let ytHelper = YTHelper()
     var layout = UICollectionViewFlowLayout();
+    var cellsLoaded = 0;
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController!.navigationBar.translucent = false;
@@ -71,7 +72,10 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         
         ytHelper.getVideos(self);
     }
-    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        self.collectionView.reloadData()
+    }
     override func viewDidLayoutSubviews() {
         var collectionSize = collectionView.collectionViewLayout.collectionViewContentSize()        
         
@@ -135,12 +139,22 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
+    
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return ytHelper.ytImgCache.YTVideosArray.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell: ThumbnailCell = collectionView.dequeueReusableCellWithReuseIdentifier("ThumbnailCell", forIndexPath: indexPath) as! ThumbnailCell
+        let finalCellFrame = cell.frame;
+        let translation = collectionView.panGestureRecognizer.translationInView(collectionView.superview);
+        
+        if(translation.x > 0){
+            cell.frame = CGRectMake(finalCellFrame.origin.x, CGFloat(500 + indexPath.item * 75), 0, 0)
+        }
+        else{
+            cell.frame = CGRectMake(finalCellFrame.origin.x, CGFloat(500 + indexPath.item * 75), 0,  0)
+        }
         
         cell.layer.shouldRasterize = true
         cell.layer.rasterizationScale = UIScreen.mainScreen().scale
@@ -148,11 +162,18 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         let video = ytHelper.ytImgCache.YTVideosArray[indexPath.row]
         cell.titleLbl.text = video.title.uppercaseString
         
-        cell.alpha = 0;
-        
-        UIView.animateWithDuration(0.5) {
-            cell.alpha = 1.0
+        if(cellsLoaded<ytHelper.ytImgCache.YTVideosArray.count){
+            if(translation.x > 0){
+                cell.frame = CGRectMake(finalCellFrame.origin.x, UIScreen.mainScreen().bounds.size.height + CGFloat(indexPath.item * 75), 0, 0)
+            }
+            else{
+                cell.frame = CGRectMake(finalCellFrame.origin.x, UIScreen.mainScreen().bounds.size.height + CGFloat(indexPath.item * 75), 0,  0)
+            }
+            UIView.animateWithDuration(0.8+Double(indexPath.item)/10) {
+                cell.frame = finalCellFrame;
+            }
         }
+        
         if(video.thumbnailImage == nil)
         {
             ytHelper.loadImage(video.thumbnailUrl, imageview: cell.thumbnailImg!, index: indexPath.row)
@@ -172,12 +193,13 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         cell.layer.shadowOpacity = 0.25;
         cell.layer.masksToBounds = false;
         cell.layer.shadowPath = UIBezierPath(roundedRect:cell.bounds, cornerRadius: 0).CGPath;
-        
+        cellsLoaded += 1;
         return cell;
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         selectedVideoIndex = indexPath.row
+        cellsLoaded = 0;
         performSegueWithIdentifier("idSeguePlayer", sender: self)
     }
     
