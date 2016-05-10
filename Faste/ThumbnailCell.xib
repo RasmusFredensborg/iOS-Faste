@@ -20,7 +20,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g8u-zU-YT4">
                                 <rect key="frame" x="0.0" y="0.0" width="150" height="15"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HVAD ER FASTEREGLERNE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rXT-Kq-TBI">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HVAD ER FASTEREGLERNE" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rXT-Kq-TBI">
                                         <rect key="frame" x="5" y="2" width="140" height="11"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Heavy" family="Avenir Next" pointSize="8"/>
                                         <color key="textColor" red="0.99607843137254903" green="0.99607843137254903" blue="0.99607843137254903" alpha="1" colorSpace="calibratedRGB"/>
@@ -30,8 +30,10 @@
                                 <color key="backgroundColor" red="0.098039215690000001" green="0.12941176469999999" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="rXT-Kq-TBI" firstAttribute="leading" secondItem="g8u-zU-YT4" secondAttribute="leading" constant="5" id="3or-5A-itw"/>
+                                    <constraint firstItem="rXT-Kq-TBI" firstAttribute="top" secondItem="g8u-zU-YT4" secondAttribute="top" constant="2" id="8i9-YJ-TAg"/>
                                     <constraint firstAttribute="trailing" secondItem="rXT-Kq-TBI" secondAttribute="trailing" constant="5" id="YYd-Mp-Xk6"/>
                                     <constraint firstItem="rXT-Kq-TBI" firstAttribute="centerY" secondItem="g8u-zU-YT4" secondAttribute="centerY" id="cOb-vG-y2E"/>
+                                    <constraint firstAttribute="bottom" secondItem="rXT-Kq-TBI" secondAttribute="bottom" constant="2" id="n77-U6-XMg"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="owI-6F-pqs">

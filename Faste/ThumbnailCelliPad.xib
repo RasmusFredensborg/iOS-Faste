@@ -20,8 +20,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vM1-dl-1CT">
                                 <rect key="frame" x="0.0" y="0.0" width="275" height="34"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HVAD ER FASTEREGLERNE?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iLd-fz-cTJ">
-                                        <rect key="frame" x="11" y="9" width="264" height="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HVAD ER FASTEREGLERNE?" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iLd-fz-cTJ">
+                                        <rect key="frame" x="11" y="9" width="253" height="17"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Heavy" family="Avenir Next" pointSize="12"/>
                                         <color key="textColor" red="0.99607843139999996" green="0.99607843139999996" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="highlightedColor" red="0.99607843139999996" green="0.99607843139999996" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
@@ -30,7 +30,7 @@
                                 <color key="backgroundColor" red="0.098039215690000001" green="0.12941176469999999" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="iLd-fz-cTJ" firstAttribute="centerY" secondItem="vM1-dl-1CT" secondAttribute="centerY" id="OEf-rS-ALe"/>
-                                    <constraint firstAttribute="trailing" secondItem="iLd-fz-cTJ" secondAttribute="trailing" id="UW2-Lq-Ngg"/>
+                                    <constraint firstAttribute="trailing" secondItem="iLd-fz-cTJ" secondAttribute="trailing" constant="11" id="UW2-Lq-Ngg"/>
                                     <constraint firstItem="iLd-fz-cTJ" firstAttribute="leading" secondItem="vM1-dl-1CT" secondAttribute="leading" constant="11" id="ner-8L-U7K"/>
                                 </constraints>
                             </view>

@@ -18,9 +18,10 @@ class GridControlleriPad: UIViewController, UICollectionViewDataSource, UICollec
     let device = UIDevice.currentDevice().model
     let ytHelper = YTHelper()
     var cellsLoaded = 0;
-    
+    var layout = UICollectionViewFlowLayout();
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.navigationController!.navigationBar.translucent = false;
         self.navigationController!.navigationBar.barTintColor = UIColor(red: 0xfb/255,green: 0xbc/255,blue: 0x00/255,alpha: 1.0)
         
@@ -30,14 +31,11 @@ class GridControlleriPad: UIViewController, UICollectionViewDataSource, UICollec
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.registerNib(UINib(nibName: "ThumbnailCelliPad", bundle: nil), forCellWithReuseIdentifier: "ThumbnailCelliPad")
-        
+        layout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         ytHelper.getVideos(self);
         
-        
-        
-        
-        
         let collectionSize = CGSize(width:  UIScreen.mainScreen().bounds.size.width, height: UIScreen.mainScreen().bounds.size.height + (self.navigationController?.navigationBar.bounds.size.height)!)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(GridControlleriPad.orientation), name: UIDeviceOrientationDidChangeNotification, object: nil)
         
         let topImage = UIImage(named: "background.png")
         var bottomImage = UIImage()
@@ -45,37 +43,38 @@ class GridControlleriPad: UIViewController, UICollectionViewDataSource, UICollec
         UIGraphicsBeginImageContextWithOptions(collectionSize, false, 0)
         
         let color = UIColor(red: 0x18/255,green: 0x1F/255,blue: 0x59/255,alpha: 1.0)
-        color.setFill()
-        UIRectFill(rect)
-        bottomImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
+        color.setFill();
+        UIRectFill(rect);
+        bottomImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
         
         backgroundView.backgroundColor = color;
         
-        let size = CGSizeMake(topImage!.size.width, topImage!.size.height + bottomImage.size.height)
-        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
+        let size = CGSizeMake(topImage!.size.width, topImage!.size.height + bottomImage.size.height);
+        UIGraphicsBeginImageContextWithOptions(size, false, 0.0);
         
         [topImage!.drawInRect(CGRectMake(0,0,size.width, topImage!.size.height))];
         [bottomImage.drawInRect(CGRectMake(0,topImage!.size.height,size.width, bottomImage.size.height))];
         
-        let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
+        let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
         
-        collectionView.backgroundColor = UIColor(patternImage: newImage)
+        collectionView.backgroundColor = UIColor(patternImage: newImage);
         
-        let infoImage = UIImage(named: "ic_info_outline_white_2x.png")
-        let imgWidth = Int(30)
-        let imgHeight = Int(30)
-        let infoButton:UIButton = UIButton(frame: CGRect(x: 0, y: 0, width: imgWidth, height: imgHeight))
-        infoButton.setBackgroundImage(infoImage, forState: .Normal)
-        infoButton.addTarget(self, action: #selector(GridControlleriPad.infoTapped), forControlEvents: UIControlEvents.TouchUpInside)
+        let infoImage = UIImage(named: "ic_info_outline_white_2x.png");
+        let imgWidth = Int(30);
+        let imgHeight = Int(30);
+        let infoButton:UIButton = UIButton(frame: CGRect(x: 0, y: 0, width: imgWidth, height: imgHeight));
+        infoButton.setBackgroundImage(infoImage, forState: .Normal);
+        infoButton.addTarget(self, action: #selector(GridControlleriPad.infoTapped), forControlEvents: UIControlEvents.TouchUpInside);
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: infoButton)
     }
     
     override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(true)
-        self.collectionView.reloadData()
+        super.viewWillAppear(true);
+        self.collectionView.reloadData();
+        orientation();
     }
     
     override func viewDidLayoutSubviews() {
@@ -151,7 +150,6 @@ class GridControlleriPad: UIViewController, UICollectionViewDataSource, UICollec
         cell.layer.rasterizationScale = UIScreen.mainScreen().scale
         
         let video = ytHelper.ytImgCache.YTVideosArray[indexPath.row]
-        cell.titleLbl.text = video.title.uppercaseString
         
         if(cellsLoaded<ytHelper.ytImgCache.YTVideosArray.count){
             if(translation.x > 0){
@@ -176,6 +174,7 @@ class GridControlleriPad: UIViewController, UICollectionViewDataSource, UICollec
             cell.thumbnailImg.image = video.thumbnailImage
         }
         
+        cell.titleLbl.text = video.title.uppercaseString
         cell.viewLbl.text = String(video.viewCount)
         cell.durationLbl.text = video.duration
         
@@ -220,6 +219,19 @@ class GridControlleriPad: UIViewController, UICollectionViewDataSource, UICollec
         let alert = UIAlertController(title: "Emento", message: "Contact: developer@emento.dk", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func orientation(){
+        if(UIDevice.currentDevice().orientation.isLandscape){
+            layout.sectionInset.left = 57;
+            layout.sectionInset.right = layout.sectionInset.left;
+            layout.sectionInset.top = layout.sectionInset.left;
+        }
+        else if(UIDevice.currentDevice().orientation.isPortrait){
+            layout.sectionInset.left = 75;
+            layout.sectionInset.right = layout.sectionInset.left;
+            layout.sectionInset.top = layout.sectionInset.left;
+        }
     }
 }
 

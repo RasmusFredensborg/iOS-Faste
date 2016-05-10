@@ -53,9 +53,9 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         
         
         if(DeviceType.IS_IPHONE_6){
-            size.width = 180
-            size.height = 180
-            layout.minimumLineSpacing = 5
+            size.width = 170
+            size.height = 170
+            layout.minimumLineSpacing = 10
         }
         if(DeviceType.IS_IPHONE_5){
             size.width = 150
@@ -158,7 +158,6 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         let translation = collectionView.panGestureRecognizer.translationInView(collectionView.superview);
         
         let video = ytHelper.ytImgCache.YTVideosArray[indexPath.row]
-        cell.titleLbl.text = video.title.uppercaseString
         
         cell.layer.shouldRasterize = true
         cell.layer.rasterizationScale = UIScreen.mainScreen().scale
@@ -187,7 +186,8 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         
         cell.viewLbl.text = String(video.viewCount)
         cell.durationLbl.text = video.duration
-
+        cell.titleLbl.text = video.title.uppercaseString
+        
         cellsLoaded += 1;
         return cell;
     }

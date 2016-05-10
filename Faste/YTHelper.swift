@@ -10,7 +10,7 @@ import UIKit
 
 class YTHelper
 {
-    let videoArray = ["DtrcDz-yUKU", "QBWwWP_5Nc8", "vsbxs8tYXxM", "kZOCBths2lY", "BNdFm-stES0", "8oo8z8NwpLA"]
+    let videoArray = ["DtrcDz-yUKU", "QBWwWP_5Nc8", "kZOCBths2lY", "vsbxs8tYXxM", "8oo8z8NwpLA", "BNdFm-stES0"]
     
     let apiKey: String = "AIzaSyBrA9OpNqp6u_wnMKfTaT3sBkjnmflmAuc"
     let ytImgCache = YTImgCache()
