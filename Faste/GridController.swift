@@ -142,7 +142,7 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
     }
     
     func infoTapped(){
-        let alert = UIAlertController(title: "Emento", message: "Contact: developer@emento.dk", preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: "Emento", message: "Om denne app:\nIndholdet af denne app (video, tekst) er udarbejdet af Regionshospitalet Randers. På hospitalets hjemmeside kan du finde yderligere informationer:www.regionshospitalet-randers.dk \nKontaktinformation\nRegionshospitalet Randers\nSkovlyvej 1\n8930 Randers NØ\nTlf: 78 42 00 00\nFax: 78 42 43 00\nLOGO\nDesign og programmering:\nEMENTO A/S\nCvr.nr 37321745\nkontakt@emento.dk", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
     }

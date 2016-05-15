@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import SafariServices
 
-class GridControlleriPad: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class GridControlleriPad: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, SFSafariViewControllerDelegate {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet var backgroundView: UIView!
     
@@ -216,8 +217,37 @@ class GridControlleriPad: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     func infoTapped(){
-        let alert = UIAlertController(title: "Emento", message: "Contact: developer@emento.dk", preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        let popUpView : InfoPopup = NSBundle.mainBundle().loadNibNamed("InfoPopUp", owner: self, options: nil).first as! InfoPopup
+        
+        
+        let alert = UIAlertController(title: "Emento", message: " ", preferredStyle: UIAlertControllerStyle.Alert)
+        let urlAction = UIAlertAction(title: "Link", style: .Default) { (action:UIAlertAction!) in
+            var urlString = "www.regionshospitalet-randers.dk";
+            if urlString.lowercaseString.hasPrefix("http://")==false{
+                urlString = "http://".stringByAppendingString(urlString)
+            }
+            let url = NSURL(string: urlString);
+            if((NSClassFromString("SFSafariViewController")) != nil)
+            {
+                let safariViewController = SFSafariViewController(URL: url!);
+                safariViewController.delegate = self
+                self.presentViewController(safariViewController, animated: true, completion: nil)
+            }
+            else{
+                if(UIApplication.sharedApplication().canOpenURL(url!)){
+                    UIApplication.sharedApplication().openURL(url!);
+                }
+            }
+        }
+        let sample = UIViewController();
+        
+        let urlString = NSAttributedString(string:  "http://www.regionshospitalet-randers.dk", attributes: [NSLinkAttributeName : NSURL(string: "http://www.regionshospitalet-randers.dk")!])
+        
+        popUpView.text.attributedText = urlString;
+        sample.view.addSubview(popUpView as! UIView);
+        alert.setValue(sample, forKey: "contentViewController");
+        alert.addAction(UIAlertAction(title: "Luk", style: UIAlertActionStyle.Default, handler: nil))
+        alert.addAction(urlAction);
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
@@ -234,4 +264,5 @@ class GridControlleriPad: UIViewController, UICollectionViewDataSource, UICollec
         }
     }
 }
-
+//
+//Om denne app:\nIndholdet af denne app (video, tekst) er udarbejdet af Regionshospitalet Randers. På hospitalets hjemmeside kan du finde yderligere informationer:www.regionshospitalet-randers.dk \nKontaktinformation\nRegionshospitalet Randers\nSkovlyvej 1\n8930 Randers NØ\nTlf: 78 42 00 00\nFax: 78 42 43 00\nLOGO\nDesign og programmering:\nEMENTO A/S\nCvr.nr 37321745\nkontakt@emento.dk
