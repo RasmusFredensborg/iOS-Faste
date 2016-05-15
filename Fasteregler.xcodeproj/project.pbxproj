@@ -19,6 +19,7 @@
 		3ACAE04F1CE1ED1800161868 /* eyecon_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ACAE04E1CE1ED1800161868 /* eyecon_white.png */; };
 		3ACE96651CE850DE00F2D2A6 /* InfoPopUp.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3ACE96641CE850DE00F2D2A6 /* InfoPopUp.xib */; };
 		3ACE96671CE856E100F2D2A6 /* InfoPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ACE96661CE856E100F2D2A6 /* InfoPopUp.swift */; };
+		3ACE96691CE8656200F2D2A6 /* rhranderslogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ACE96681CE8656200F2D2A6 /* rhranderslogo.png */; };
 		3AF6C55D1CBD39380065B447 /* DescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF6C55C1CBD39380065B447 /* DescriptionView.swift */; };
 		3AFB00B71CD8E065009C2E98 /* MainiPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AFB00B61CD8E065009C2E98 /* MainiPad.storyboard */; };
 		3AFB00BA1CD8E327009C2E98 /* GridControlleriPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFB00B91CD8E327009C2E98 /* GridControlleriPad.swift */; };
@@ -70,6 +71,7 @@
 		3ACAE04E1CE1ED1800161868 /* eyecon_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eyecon_white.png; sourceTree = "<group>"; };
 		3ACE96641CE850DE00F2D2A6 /* InfoPopUp.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InfoPopUp.xib; path = ../InfoPopUp.xib; sourceTree = "<group>"; };
 		3ACE96661CE856E100F2D2A6 /* InfoPopUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoPopUp.swift; sourceTree = "<group>"; };
+		3ACE96681CE8656200F2D2A6 /* rhranderslogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rhranderslogo.png; sourceTree = "<group>"; };
 		3AF6C55C1CBD39380065B447 /* DescriptionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DescriptionView.swift; sourceTree = "<group>"; };
 		3AFB00B61CD8E065009C2E98 /* MainiPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainiPad.storyboard; sourceTree = "<group>"; };
 		3AFB00B91CD8E327009C2E98 /* GridControlleriPad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridControlleriPad.swift; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 		3E58635D1C983B000096DCD8 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				3ACE96681CE8656200F2D2A6 /* rhranderslogo.png */,
 				3A8EA9141CE1F777005B6679 /* ic_info_outline_white_2x.png */,
 				3A1F8D921CD09BBE00D53236 /* eyecon.png */,
 				3ACAE04E1CE1ED1800161868 /* eyecon_white.png */,
@@ -331,6 +334,7 @@
 				3E39C0B01C99BB67006C90B4 /* Profilbillede@3x.png in Resources */,
 				3ACE96651CE850DE00F2D2A6 /* InfoPopUp.xib in Resources */,
 				3E58635C1C983AF80096DCD8 /* Profilbillede.png in Resources */,
+				3ACE96691CE8656200F2D2A6 /* rhranderslogo.png in Resources */,
 				3AFB00BC1CD8E53A009C2E98 /* ThumbnailCelliPad.xib in Resources */,
 				3E5863601C9857C30096DCD8 /* Main.storyboard in Resources */,
 				3E05B7941C90197B00E0B739 /* Assets.xcassets in Resources */,

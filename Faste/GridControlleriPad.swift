@@ -217,11 +217,8 @@ class GridControlleriPad: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     func infoTapped(){
-        let popUpView : InfoPopup = NSBundle.mainBundle().loadNibNamed("InfoPopUp", owner: self, options: nil).first as! InfoPopup
-        
-        
-        let alert = UIAlertController(title: "Emento", message: " ", preferredStyle: UIAlertControllerStyle.Alert)
-        let urlAction = UIAlertAction(title: "Link", style: .Default) { (action:UIAlertAction!) in
+        let alert = UIAlertController(title: "Emento", message: "Om denne app:\nIndholdet af denne app (video, tekst) er udarbejdet af Regionshospitalet Randers.\n\nKontaktinformation\nRegionshospitalet Randers\nSkovlyvej 1\n8930 Randers NØ\nTlf: 78 42 00 00\nFax: 78 42 43 00\n\n\n\n\nDesign og programmering:\nEMENTO A/S\nCvr.nr 37321745\nkontakt@emento.dk\n\nPå hospitalets hjemmeside kan du finde yderligere informationer:", preferredStyle: UIAlertControllerStyle.Alert)
+        let urlAction = UIAlertAction(title: "Regionshospitalet Randers", style: .Default) { (action:UIAlertAction!) in
             var urlString = "www.regionshospitalet-randers.dk";
             if urlString.lowercaseString.hasPrefix("http://")==false{
                 urlString = "http://".stringByAppendingString(urlString)
@@ -239,15 +236,15 @@ class GridControlleriPad: UIViewController, UICollectionViewDataSource, UICollec
                 }
             }
         }
-        let sample = UIViewController();
         
-        let urlString = NSAttributedString(string:  "http://www.regionshospitalet-randers.dk", attributes: [NSLinkAttributeName : NSURL(string: "http://www.regionshospitalet-randers.dk")!])
-        
-        popUpView.text.attributedText = urlString;
-        sample.view.addSubview(popUpView as! UIView);
-        alert.setValue(sample, forKey: "contentViewController");
-        alert.addAction(UIAlertAction(title: "Luk", style: UIAlertActionStyle.Default, handler: nil))
+        let imageSize: CGFloat = 80
+        let image = UIImageView(frame: CGRectMake(270/2-CGFloat(imageSize/2), 215, imageSize, imageSize))
+        let infoImage = UIImage(named: "rhranderslogo.png");
+        image.contentMode = .ScaleAspectFit
+        image.image = infoImage
         alert.addAction(urlAction);
+        alert.view.addSubview(image);
+        alert.addAction(UIAlertAction(title: "Luk", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
@@ -264,5 +261,4 @@ class GridControlleriPad: UIViewController, UICollectionViewDataSource, UICollec
         }
     }
 }
-//
-//Om denne app:\nIndholdet af denne app (video, tekst) er udarbejdet af Regionshospitalet Randers. På hospitalets hjemmeside kan du finde yderligere informationer:www.regionshospitalet-randers.dk \nKontaktinformation\nRegionshospitalet Randers\nSkovlyvej 1\n8930 Randers NØ\nTlf: 78 42 00 00\nFax: 78 42 43 00\nLOGO\nDesign og programmering:\nEMENTO A/S\nCvr.nr 37321745\nkontakt@emento.dk
+
