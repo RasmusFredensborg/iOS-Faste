@@ -217,7 +217,7 @@ class GridControlleriPad: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     func infoTapped(){
-        let alert = UIAlertController(title: "Emento", message: "Om denne app:\nIndholdet af denne app (video, tekst) er udarbejdet af Regionshospitalet Randers.\n\nKontaktinformation\nRegionshospitalet Randers\nSkovlyvej 1\n8930 Randers NØ\nTlf: 78 42 00 00\nFax: 78 42 43 00\n\n\n\n\nDesign og programmering:\nEMENTO A/S\nCvr.nr 37321745\nkontakt@emento.dk\n\nPå hospitalets hjemmeside kan du finde yderligere informationer:", preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: "Om denne app", message: "Indholdet af denne app (video, tekst) er udarbejdet af Regionshospitalet Randers.\n\nKontaktinformation\nRegionshospitalet Randers\nSkovlyvej 1\n8930 Randers NØ\nTlf: 78 42 00 00\nFax: 78 42 43 00\n\n\n\n\nDesign og programmering:\nEMENTO A/S\nCvr.nr 37321745\nkontakt@emento.dk\n\nPå hospitalets hjemmeside kan du finde yderligere informationer:", preferredStyle: UIAlertControllerStyle.Alert)
         let urlAction = UIAlertAction(title: "Regionshospitalet Randers", style: .Default) { (action:UIAlertAction!) in
             var urlString = "www.regionshospitalet-randers.dk";
             if urlString.lowercaseString.hasPrefix("http://")==false{
@@ -238,7 +238,7 @@ class GridControlleriPad: UIViewController, UICollectionViewDataSource, UICollec
         }
         
         let imageSize: CGFloat = 80
-        let image = UIImageView(frame: CGRectMake(270/2-CGFloat(imageSize/2), 215, imageSize, imageSize))
+        let image = UIImageView(frame: CGRectMake(270/2-CGFloat(imageSize/2), 200, imageSize, imageSize))
         let infoImage = UIImage(named: "rhranderslogo.png");
         image.contentMode = .ScaleAspectFit
         image.image = infoImage
