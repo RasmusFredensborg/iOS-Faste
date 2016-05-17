@@ -36,6 +36,7 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
     let ytHelper = YTHelper()
     var layout = UICollectionViewFlowLayout();
     var cellsLoaded = 0;
+    var fontSize = 0;
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController!.navigationBar.translucent = false;
@@ -52,21 +53,29 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         
         layout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         
-        
+        if(DeviceType.IS_IPHONE_6P){
+            size.width = 190
+            size.height = 190
+            layout.minimumLineSpacing = 10
+            fontSize = 13;
+        }
         if(DeviceType.IS_IPHONE_6){
             size.width = 170
             size.height = 170
             layout.minimumLineSpacing = 10
+            fontSize = 10;
         }
         if(DeviceType.IS_IPHONE_5){
             size.width = 150
             size.height = 150
             layout.minimumLineSpacing = 6
+            fontSize = 8;
         }
         if(DeviceType.IS_IPHONE_4_OR_LESS){
             size.width = 150
             size.height = 150
             layout.minimumLineSpacing = 7
+            fontSize = 8;
         }
         layout.sectionInset.top = layout.minimumLineSpacing
         layout.sectionInset.left = layout.sectionInset.top
@@ -208,10 +217,6 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
                 cell.frame = finalCellFrame;
             }) { _ in
             }
-            
-//            UIView.animateWithDuration(0.8+Double(indexPath.item)/10) {
-//                cell.frame = finalCellFrame;
-//            }
         }
         
         if(video.thumbnailImage == nil)
@@ -227,7 +232,6 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         cell.viewLbl.text = String(video.viewCount)
         cell.durationLbl.text = video.duration
         cell.titleLbl.text = video.title.uppercaseString
-        
         cellsLoaded += 1;
         return cell;
     }
