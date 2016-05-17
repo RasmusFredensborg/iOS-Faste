@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 struct ScreenSize
 {
@@ -24,7 +25,7 @@ struct DeviceType
     static let IS_IPHONE_6P = UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.SCREEN_MAX_LENGTH == 736.0
 }
 
-class GridController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class GridController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, SFSafariViewControllerDelegate {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet var backgroundView: UIView!
     
@@ -62,7 +63,11 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
             size.height = 150
             layout.minimumLineSpacing = 6
         }
-//        layout.minimumInteritemSpacing = 5
+        if(DeviceType.IS_IPHONE_4_OR_LESS){
+            size.width = 150
+            size.height = 150
+            layout.minimumLineSpacing = 7
+        }
         layout.sectionInset.top = layout.minimumLineSpacing
         layout.sectionInset.left = layout.sectionInset.top
         layout.sectionInset.right = layout.sectionInset.top
@@ -86,14 +91,14 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         self.collectionView.reloadData()
     }
     override func viewDidLayoutSubviews() {
-        var collectionSize = collectionView.collectionViewLayout.collectionViewContentSize()        
+        let collectionSize = collectionView.collectionViewLayout.collectionViewContentSize()
         
         let topImage = UIImage(named: "background.png")
         var bottomImage = UIImage()
         let rect = CGRectMake(0, 0, collectionSize.width, collectionSize.height)
         UIGraphicsBeginImageContextWithOptions(collectionSize, false, 0)
         
-        var color = UIColor(red: 0x18/255,green: 0x1F/255,blue: 0x59/255,alpha: 1.0)
+        let color = UIColor(red: 0x18/255,green: 0x1F/255,blue: 0x59/255,alpha: 1.0)
         color.setFill()
         UIRectFill(rect)
         bottomImage = UIGraphicsGetImageFromCurrentImageContext()
@@ -141,9 +146,38 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         return twoSegmentTitleView;
     }
     
+    
     func infoTapped(){
-        let alert = UIAlertController(title: "Emento", message: "Om denne app:\nIndholdet af denne app (video, tekst) er udarbejdet af Regionshospitalet Randers. På hospitalets hjemmeside kan du finde yderligere informationer:www.regionshospitalet-randers.dk \nKontaktinformation\nRegionshospitalet Randers\nSkovlyvej 1\n8930 Randers NØ\nTlf: 78 42 00 00\nFax: 78 42 43 00\nLOGO\nDesign og programmering:\nEMENTO A/S\nCvr.nr 37321745\nkontakt@emento.dk", preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        let alert = UIAlertController(title: "Om denne app", message: "Indholdet af denne app (video, tekst) er udarbejdet af Regionshospitalet Randers.\n\nKontaktinformation\nRegionshospitalet Randers\nSkovlyvej 1\n8930 Randers NØ\nTlf: 78 42 00 00\nFax: 78 42 43 00\n\n\n\n\nDesign og programmering:\nEMENTO A/S\nCvr.nr 37321745\nkontakt@emento.dk\n\nPå hospitalets hjemmeside kan du finde yderligere informationer:", preferredStyle: UIAlertControllerStyle.Alert)
+        let urlAction = UIAlertAction(title: "Regionshospitalet Randers", style: .Default) { (action:UIAlertAction!) in
+            var urlString = "www.regionshospitalet-randers.dk";
+            if urlString.lowercaseString.hasPrefix("http://")==false{
+                urlString = "http://".stringByAppendingString(urlString)
+            }
+            let url = NSURL(string: urlString);
+            if((NSClassFromString("SFSafariViewController")) != nil)
+            {
+                let safariViewController = SFSafariViewController(URL: url!);
+                safariViewController.delegate = self
+                self.presentViewController(safariViewController, animated: true, completion: nil)
+            }
+            else{
+                if(UIApplication.sharedApplication().canOpenURL(url!)){
+                    UIApplication.sharedApplication().openURL(url!);
+                }
+            }
+        }
+        
+        let imageSize: CGFloat = 80
+        let image = UIImageView(frame: CGRectMake(270/2-CGFloat(imageSize/2), 200, imageSize, imageSize))
+        let infoImage = UIImage(named: "rhranderslogo.png");
+        image.contentMode = .ScaleAspectFit
+        image.image = infoImage
+        alert.addAction(urlAction);
+        if(!DeviceType.IS_IPHONE_4_OR_LESS){
+            alert.view.addSubview(image);
+        }
+        alert.addAction(UIAlertAction(title: "Luk", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
