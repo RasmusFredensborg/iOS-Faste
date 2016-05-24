@@ -38,11 +38,12 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
     var cellsLoaded = 0;
     var fontSize = 0;
     var infoViewController = InfoPopUpViewController();
+    var infoButton:UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         infoViewController.delegate = self;
-        
+        infoViewController.loadView();
         self.navigationController!.navigationBar.translucent = false;
         self.navigationController!.navigationBar.barTintColor = UIColor(red: 0xfb/255,green: 0xbc/255,blue: 0x00/255,alpha: 1.0)
         
@@ -93,7 +94,7 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         let infoImage = UIImage(named: "ic_info_outline_white_2x.png")
         let imgWidth = Int(20)
         let imgHeight = Int(20)
-        let infoButton:UIButton = UIButton(frame: CGRect(x: 0, y: 0, width: imgWidth, height: imgHeight))
+        infoButton = UIButton(frame: CGRect(x: 0, y: 0, width: imgWidth, height: imgHeight))
         infoButton.setBackgroundImage(infoImage, forState: .Normal)
         infoButton.addTarget(self, action: #selector(GridController.infoTapped), forControlEvents: UIControlEvents.TouchUpInside)
         
@@ -119,8 +120,6 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         bottomImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        backgroundView.backgroundColor = color;
-        
         let size = CGSizeMake(topImage!.size.width, topImage!.size.height + bottomImage.size.height)
         UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
         
@@ -130,7 +129,8 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        collectionView.backgroundColor = UIColor(patternImage: newImage)
+        backgroundView.backgroundColor = UIColor(patternImage: newImage);
+        collectionView.backgroundColor = UIColor(patternImage: newImage);
     }
     
     @objc func didBecomeReachable(note: NSNotification){
@@ -163,12 +163,15 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
     
     
     func infoTapped(){
-        infoViewController.showInfoPopUp(self, message: "");
+        infoViewController.showInfoPopUp(self, alphaView: self.collectionView );
+        infoButton.enabled = false;
     }
     
     func infoOK() {
         infoViewController.removeInfoPopUp();
+        infoButton.enabled = true;
     }
+    
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return ytHelper.ytImgCache.YTVideosArray.count
     }

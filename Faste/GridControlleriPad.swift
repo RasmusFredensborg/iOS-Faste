@@ -21,10 +21,12 @@ class GridControlleriPad: UIViewController, UICollectionViewDataSource, UICollec
     var cellsLoaded = 0;
     var layout = UICollectionViewFlowLayout();
     var infoViewController = InfoPopUpViewController();
+    var infoButton:UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         infoViewController.delegate = self;
+        infoViewController.loadView();
         self.navigationController!.navigationBar.translucent = false;
         self.navigationController!.navigationBar.barTintColor = UIColor(red: 0xfb/255,green: 0xbc/255,blue: 0x00/255,alpha: 1.0)
         
@@ -67,7 +69,7 @@ class GridControlleriPad: UIViewController, UICollectionViewDataSource, UICollec
         let infoImage = UIImage(named: "ic_info_outline_white_2x.png");
         let imgWidth = Int(30);
         let imgHeight = Int(30);
-        let infoButton:UIButton = UIButton(frame: CGRect(x: 0, y: 0, width: imgWidth, height: imgHeight));
+        infoButton = UIButton(frame: CGRect(x: 0, y: 0, width: imgWidth, height: imgHeight));
         infoButton.setBackgroundImage(infoImage, forState: .Normal);
         infoButton.addTarget(self, action: #selector(GridControlleriPad.infoTapped), forControlEvents: UIControlEvents.TouchUpInside);
         
@@ -76,6 +78,7 @@ class GridControlleriPad: UIViewController, UICollectionViewDataSource, UICollec
     
     func infoOK() {
         infoViewController.removeInfoPopUp();
+        infoButton.enabled = true;
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -100,7 +103,7 @@ class GridControlleriPad: UIViewController, UICollectionViewDataSource, UICollec
             bottomImage = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
             
-            backgroundView.backgroundColor = color;
+            
             
             let size = CGSizeMake(topImage!.size.width, topImage!.size.height + bottomImage.size.height)
             UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
@@ -110,7 +113,7 @@ class GridControlleriPad: UIViewController, UICollectionViewDataSource, UICollec
             
             let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
-            
+            backgroundView.backgroundColor = UIColor(patternImage: newImage)
             collectionView.backgroundColor = UIColor(patternImage: newImage)
         }
     }
@@ -223,7 +226,8 @@ class GridControlleriPad: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     func infoTapped(){
-        infoViewController.showInfoPopUp(self, message: "");
+        infoViewController.showInfoPopUp(self, alphaView: self.collectionView);
+        infoButton.enabled = false;
     }
     
     func orientation(){
