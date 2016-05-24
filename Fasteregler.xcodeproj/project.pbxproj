@@ -16,6 +16,8 @@
 		3A8AB0521CBE28B400D9F10F /* PersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8AB0511CBE28B400D9F10F /* PersonView.swift */; };
 		3A8AB0541CBE5C1100D9F10F /* YTImgCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8AB0531CBE5C1100D9F10F /* YTImgCache.swift */; };
 		3A8EA9151CE1F777005B6679 /* ic_info_outline_white_2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A8EA9141CE1F777005B6679 /* ic_info_outline_white_2x.png */; };
+		3AA6770F1CF4365D009DB715 /* InfoPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA6770D1CF4365D009DB715 /* InfoPopUpViewController.swift */; };
+		3AA677101CF4365D009DB715 /* InfoPopUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AA6770E1CF4365D009DB715 /* InfoPopUpViewController.xib */; };
 		3AC6ACA81CC6219C00F203CF /* ThumbnailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AC6ACA71CC6219C00F203CF /* ThumbnailCell.xib */; };
 		3ACAE04F1CE1ED1800161868 /* eyecon_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ACAE04E1CE1ED1800161868 /* eyecon_white.png */; };
 		3ACE96691CE8656200F2D2A6 /* rhranderslogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ACE96681CE8656200F2D2A6 /* rhranderslogo.png */; };
@@ -65,6 +67,8 @@
 		3A8AB0511CBE28B400D9F10F /* PersonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonView.swift; sourceTree = "<group>"; };
 		3A8AB0531CBE5C1100D9F10F /* YTImgCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YTImgCache.swift; sourceTree = "<group>"; };
 		3A8EA9141CE1F777005B6679 /* ic_info_outline_white_2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_info_outline_white_2x.png; sourceTree = "<group>"; };
+		3AA6770D1CF4365D009DB715 /* InfoPopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InfoPopUpViewController.swift; path = ../InfoPopUpViewController.swift; sourceTree = "<group>"; };
+		3AA6770E1CF4365D009DB715 /* InfoPopUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InfoPopUpViewController.xib; path = ../InfoPopUpViewController.xib; sourceTree = "<group>"; };
 		3AC6ACA71CC6219C00F203CF /* ThumbnailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThumbnailCell.xib; sourceTree = "<group>"; };
 		3ACAE04E1CE1ED1800161868 /* eyecon_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eyecon_white.png; sourceTree = "<group>"; };
 		3ACE96681CE8656200F2D2A6 /* rhranderslogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rhranderslogo.png; sourceTree = "<group>"; };
@@ -155,6 +159,8 @@
 		3E05B78B1C90197B00E0B739 /* Faste */ = {
 			isa = PBXGroup;
 			children = (
+				3AA6770D1CF4365D009DB715 /* InfoPopUpViewController.swift */,
+				3AA6770E1CF4365D009DB715 /* InfoPopUpViewController.xib */,
 				3A3FF0B31CEAF45000898E0D /* Launch Screen.storyboard */,
 				3ACE96681CE8656200F2D2A6 /* rhranderslogo.png */,
 				3A8EA9141CE1F777005B6679 /* ic_info_outline_white_2x.png */,
@@ -316,6 +322,7 @@
 				3AFB00B71CD8E065009C2E98 /* MainiPad.storyboard in Resources */,
 				3A3FF0B41CEAF45000898E0D /* Launch Screen.storyboard in Resources */,
 				3E58635C1C983AF80096DCD8 /* Profilbillede.png in Resources */,
+				3AA677101CF4365D009DB715 /* InfoPopUpViewController.xib in Resources */,
 				3ACE96691CE8656200F2D2A6 /* rhranderslogo.png in Resources */,
 				3AFB00BC1CD8E53A009C2E98 /* ThumbnailCelliPad.xib in Resources */,
 				3E5863601C9857C30096DCD8 /* Main.storyboard in Resources */,
@@ -359,6 +366,7 @@
 				3E05B7C51C901CFD00E0B739 /* VideoController.swift in Sources */,
 				3A4780CA1CCFA438005CFE41 /* Reachability.m in Sources */,
 				3E05B7C71C901D7800E0B739 /* ThumbnailCell.swift in Sources */,
+				3AA6770F1CF4365D009DB715 /* InfoPopUpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

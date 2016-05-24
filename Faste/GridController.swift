@@ -25,7 +25,7 @@ struct DeviceType
     static let IS_IPHONE_6P = UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.SCREEN_MAX_LENGTH == 736.0
 }
 
-class GridController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, SFSafariViewControllerDelegate {
+class GridController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, SFSafariViewControllerDelegate, InfoPopUpViewControllerDelegate {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet var backgroundView: UIView!
     
@@ -37,8 +37,12 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
     var layout = UICollectionViewFlowLayout();
     var cellsLoaded = 0;
     var fontSize = 0;
+    var infoViewController = InfoPopUpViewController();
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        infoViewController.delegate = self;
+        
         self.navigationController!.navigationBar.translucent = false;
         self.navigationController!.navigationBar.barTintColor = UIColor(red: 0xfb/255,green: 0xbc/255,blue: 0x00/255,alpha: 1.0)
         
@@ -95,10 +99,12 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: infoButton)
     }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         self.collectionView.reloadData()
     }
+    
     override func viewDidLayoutSubviews() {
         let collectionSize = collectionView.collectionViewLayout.collectionViewContentSize()
         
@@ -157,40 +163,12 @@ class GridController: UIViewController, UICollectionViewDataSource, UICollection
     
     
     func infoTapped(){
-        let alert = UIAlertController(title: "Om denne app", message: "Indholdet af denne app (video, tekst) er udarbejdet af Regionshospitalet Randers.\n\nKontaktinformation\nRegionshospitalet Randers\nSkovlyvej 1\n8930 Randers NØ\nTlf: 78 42 00 00\nFax: 78 42 43 00\n\n\n\n\nDesign og programmering:\nEMENTO A/S\nCvr.nr 37321745\nkontakt@emento.dk\n\nPå hospitalets hjemmeside kan du finde yderligere informationer:", preferredStyle: UIAlertControllerStyle.Alert)
-        let urlAction = UIAlertAction(title: "Regionshospitalet Randers", style: .Default) { (action:UIAlertAction!) in
-            var urlString = "www.regionshospitalet-randers.dk";
-            if urlString.lowercaseString.hasPrefix("http://")==false{
-                urlString = "http://".stringByAppendingString(urlString)
-            }
-            let url = NSURL(string: urlString);
-            if((NSClassFromString("SFSafariViewController")) != nil)
-            {
-                let safariViewController = SFSafariViewController(URL: url!);
-                safariViewController.delegate = self
-                self.presentViewController(safariViewController, animated: true, completion: nil)
-            }
-            else{
-                if(UIApplication.sharedApplication().canOpenURL(url!)){
-                    UIApplication.sharedApplication().openURL(url!);
-                }
-            }
-        }
-        
-        let imageSize: CGFloat = 80
-        let image = UIImageView(frame: CGRectMake(270/2-CGFloat(imageSize/2), 200, imageSize, imageSize))
-        let infoImage = UIImage(named: "rhranderslogo.png");
-        image.contentMode = .ScaleAspectFit
-        image.image = infoImage
-        alert.addAction(urlAction);
-        if(!DeviceType.IS_IPHONE_4_OR_LESS){
-            alert.view.addSubview(image);
-        }
-        alert.addAction(UIAlertAction(title: "Luk", style: UIAlertActionStyle.Default, handler: nil))
-        self.presentViewController(alert, animated: true, completion: nil)
+        infoViewController.showInfoPopUp(self, message: "");
     }
     
-    
+    func infoOK() {
+        infoViewController.removeInfoPopUp();
+    }
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return ytHelper.ytImgCache.YTVideosArray.count
     }
