@@ -13,28 +13,28 @@ class YTImgCache
 {
     var YTVideosArray: Array<YTVideo> = []
     
-    enum ErrorHandler:ErrorType
+    enum ErrorHandler:Error
     {
-        case ErrorFetchingResults
+        case errorFetchingResults
     }
     
-    func load_image(urlString:String, imageview:UIImageView, index:NSInteger)
+    func load_image(_ urlString:String, imageview:UIImageView, index:NSInteger)
     {
         
-        let url:NSURL = NSURL(string: urlString)!
-        let session = NSURLSession.sharedSession()
-        let task = session.downloadTaskWithURL(url) {
+        let url:URL = URL(string: urlString)!
+        let session = URLSession.shared
+        let task = session.downloadTask(with: url, completionHandler: {
             (
-            let location, let response, let error) in
+            location, response, error) in
             
-            guard let _:NSURL = location, let _:NSURLResponse = response  where error == nil else {
+            guard let _:URL = location, let _:URLResponse = response, error == nil else {
                 print("error")
                 return
             }
             
-            let imageData = NSData(contentsOfURL: location!)
+            let imageData = try? Data(contentsOf: location!)
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 
                 
                 self.YTVideosArray[index].thumbnailImage = UIImage(data: imageData!)
@@ -45,7 +45,7 @@ class YTImgCache
             })
             
             
-        }
+        }) 
         
         task.resume()
         
@@ -60,16 +60,16 @@ class YTImgCache
         
         do
         {
-            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
             let managedContext = appDelegate.managedObjectContext!
-            let fetchRequest = NSFetchRequest(entityName: "Images")
-            let fetchedResults = try managedContext.executeFetchRequest(fetchRequest)
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Images")
+            let fetchedResults = try managedContext.fetch(fetchRequest)
             
             if(fetchedResults.count != YTVideosArray.count)
             {
                 for i in 0 ..< fetchedResults.count
                 {
-                    managedContext.deleteObject(fetchedResults[i] as! NSManagedObject)
+                    managedContext.delete(fetchedResults[i] as! NSManagedObject)
                 }
                 
                 return
@@ -78,8 +78,8 @@ class YTImgCache
             for i in 0 ..< fetchedResults.count
             {
                 let single_result = fetchedResults[i]
-                let index = single_result.valueForKey("index") as! NSInteger
-                let img: NSData? = single_result.valueForKey("image") as? NSData
+                let index = (single_result as AnyObject).value(forKey: "index") as! NSInteger
+                let img: Data? = (single_result as AnyObject).value(forKey: "image") as? Data
                 
                 YTVideosArray[index].thumbnailImage = UIImage(data: img!)
                 
@@ -89,20 +89,20 @@ class YTImgCache
         catch
         {
             print("error")
-            throw ErrorHandler.ErrorFetchingResults
+            throw ErrorHandler.errorFetchingResults
         }
         
     }
     
-    func save(id:Int,image:UIImage)
+    func save(_ id:Int,image:UIImage)
     {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext!
         
-        let entity = NSEntityDescription.entityForName("Images",
-                                                       inManagedObjectContext: managedContext)
+        let entity = NSEntityDescription.entity(forEntityName: "Images",
+                                                       in: managedContext)
         let options = NSManagedObject(entity: entity!,
-                                      insertIntoManagedObjectContext:managedContext)
+                                      insertInto:managedContext)
         
         let newImageData = UIImageJPEGRepresentation(image,1)
         

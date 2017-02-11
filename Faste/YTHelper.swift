@@ -7,6 +7,19 @@
 //
 
 import UIKit
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
 
 class YTHelper
 {
@@ -30,26 +43,25 @@ class YTHelper
         }
     }
     
-    func loadImage(urlString:String, imageview:UIImageView, index:NSInteger)
+    func loadImage(_ urlString:String, imageview:UIImageView, index:NSInteger)
     {
         ytImgCache.load_image(urlString, imageview: imageview, index: index)
     }
     
-    func performGetRequest(targetURL: NSURL!, completion: (data: NSData?, HTTPStatusCode: Int, error: NSError?) -> Void) {
-        let request = NSMutableURLRequest(URL: targetURL)
-        request.HTTPMethod = "GET"
+    func performGetRequest(_ targetURL: URL!, completion: @escaping (_ data: Data?, _ HTTPStatusCode: Int, _ error: NSError?) -> Void) {
+        let request = URLRequest(url: targetURL)
         
-        let sessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
+        let sessionConfiguration = URLSessionConfiguration.default
         
-        let session = NSURLSession(configuration: sessionConfiguration)
+        let session = URLSession(configuration: sessionConfiguration)
         
-        let task = session.dataTaskWithRequest(request, completionHandler: { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in dispatch_async(dispatch_get_main_queue(), { () -> Void in
+        let task = session.dataTask(with: request, completionHandler: { (data, response, error) -> Void in DispatchQueue.main.async(execute: { () -> Void in
             if(error == nil){
-                completion(data: data, HTTPStatusCode: (response as! NSHTTPURLResponse).statusCode, error: error)
+                completion(data, (response as! HTTPURLResponse).statusCode, error as NSError?)
             }
             else{
                 print("Offline!")
-                completion(data: data, HTTPStatusCode: 0, error: error)
+                completion(data, 0, error as NSError?)
             }
         })
         })
@@ -57,31 +69,31 @@ class YTHelper
         task.resume()
     }
     
-    func getVideos(parent : UIViewController) {
+    func getVideos(_ parent : UIViewController) {
         // Form the request URL string.
         let urlString = "https://www.googleapis.com/youtube/v3/videos?id=\(videos)&part=snippet,contentDetails,statistics&key=\(apiKey)"
         
         // Create a NSURL object based on the above string.
-        let targetURL = NSURL(string: urlString)
+        let targetURL = URL(string: urlString)
         
         // Fetch the playlist from Google.
         performGetRequest(targetURL, completion: { (data, HTTPStatusCode, error) -> Void in
             if HTTPStatusCode == 200 && error == nil {
                 do{
-                    let resultsDict = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as! Dictionary<NSObject, AnyObject>
+                    let resultsDict = try JSONSerialization.jsonObject(with: data!, options: []) as! NSDictionary
                     
                     let items: Array<Dictionary<NSObject, AnyObject>> = resultsDict["items"] as! Array<Dictionary<NSObject, AnyObject>>
                     
                     for i in 0 ..< items.count {
-                        let videoSnippetDict = (items[i] as Dictionary<NSObject, AnyObject>)["snippet"] as! Dictionary<NSObject, AnyObject>
-                        let videoDetailsDict = (items[i] as Dictionary<NSObject, AnyObject>)["contentDetails"] as! Dictionary<NSObject, AnyObject>
-                        let videoStatDict = (items[i] as Dictionary<NSObject, AnyObject>)["statistics"] as! Dictionary<NSObject, AnyObject>
+                        let videoSnippetDict = (items[i] as NSDictionary)["snippet"] as! NSDictionary
+                        let videoDetailsDict = (items[i] as NSDictionary)["contentDetails"] as! NSDictionary
+                        let videoStatDict = (items[i] as NSDictionary)["statistics"] as! NSDictionary
                         let video = YTVideo()
-                        video.ID = (items[i] as Dictionary<NSObject, AnyObject>)["id"] as! String
+                        video.ID = (items[i] as NSDictionary)["id"] as! String
                         video.title = videoSnippetDict["title"] as! String
-                        video.thumbnailUrl = ((videoSnippetDict["thumbnails"] as! Dictionary<NSObject, AnyObject>)["medium"] as! Dictionary<NSObject, AnyObject>)["url"] as! String
-                        video.thumbnailWidth = ((videoSnippetDict["thumbnails"] as! Dictionary<NSObject, AnyObject>)["medium"] as! Dictionary<NSObject, AnyObject>)["width"] as! Int
-                        video.thumbnailHeight = ((videoSnippetDict["thumbnails"] as! Dictionary<NSObject, AnyObject>)["medium"] as! Dictionary<NSObject, AnyObject>)["height"] as! Int
+                        video.thumbnailUrl = ((videoSnippetDict["thumbnails"] as! NSDictionary)["medium"] as! NSDictionary)["url"] as! String
+                        video.thumbnailWidth = ((videoSnippetDict["thumbnails"] as! NSDictionary)["medium"] as! NSDictionary)["width"] as! Int
+                        video.thumbnailHeight = ((videoSnippetDict["thumbnails"] as! NSDictionary)["medium"] as! NSDictionary)["height"] as! Int
                         video.description = videoSnippetDict["description"] as! String
                         video.duration = self.ISOConverter( videoDetailsDict["duration"] as! String )
                         video.viewCount = Int(videoStatDict["viewCount"] as! String)!
@@ -95,7 +107,7 @@ class YTHelper
                             do{
                                 try self.ytImgCache.read()
                                 
-                                if(parent.isKindOfClass(GridController)){
+                                if(parent.isKind(of: GridController.self)){
                                     (parent as! GridController).do_grid_refresh()
                                 }
                                 else{
@@ -116,25 +128,25 @@ class YTHelper
                 print("HTTP Status Code = \(HTTPStatusCode)")
                 print("Error while loading videos: \(error)")
                 
-                let alert = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-                parent.presentViewController(alert, animated: true, completion: nil)
+                let alert = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                parent.present(alert, animated: true, completion: nil)
             }
         })
     }
     
-    func ISOConverter(source: String) -> String{
-        var isoString = source.stringByReplacingOccurrencesOfString("PT", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+    func ISOConverter(_ source: String) -> String{
+        var isoString = source.replacingOccurrences(of: "PT", with: "", options: NSString.CompareOptions.literal, range: nil)
         var hours = ""
         var minutes = ""
         
-        if isoString.rangeOfString("H") != nil {
-            let stringArray = isoString.characters.split("H").map(String.init)
+        if isoString.range(of: "H") != nil {
+            let stringArray = isoString.characters.split(separator: "H").map(String.init)
             hours = stringArray[0] + ":"
             isoString = stringArray[1]
         }
-        if isoString.rangeOfString("M") != nil {
-            let stringArray = isoString.characters.split("M").map(String.init)
+        if isoString.range(of: "M") != nil {
+            let stringArray = isoString.characters.split(separator: "M").map(String.init)
             let minutesPre = stringArray[0]
             minutes = (Int(minutesPre) < 10 ? "0" + minutesPre : minutesPre) + ":"
             isoString = stringArray[1]
@@ -143,7 +155,7 @@ class YTHelper
         {
             minutes = "0:"
         }
-        let secondsPre = isoString.characters.split("S").map(String.init)[0]
+        let secondsPre = isoString.characters.split(separator: "S").map(String.init)[0]
         let seconds = (Int(secondsPre) < 10 ? "0"+secondsPre : secondsPre)
         let duration = hours + minutes + seconds
         return duration

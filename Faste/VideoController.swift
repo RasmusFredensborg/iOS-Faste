@@ -22,30 +22,30 @@ class VideoController: UIViewController, YTPlayerViewDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor();
+        self.navigationController!.navigationBar.tintColor = UIColor.white;
         self.navigationController!.navigationBar.barTintColor = UIColor(red: 0xfb/255,green: 0xbc/255,blue: 0x00/255,alpha: 1.0)
 
-        self.navigationItem.titleView = constructTitle(YTVideosArray[videoIndex].title.uppercaseString)
+        self.navigationItem.titleView = constructTitle(YTVideosArray[videoIndex].title.uppercased())
         self.playerView.delegate = self
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(VideoController.orientation), name: UIDeviceOrientationDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(VideoController.orientation), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
         updateView();
         
-        playerView.loadWithVideoId(YTVideosArray[videoIndex].ID, playerVars: playerVars)
-        playerHeight.constant = UIScreen.mainScreen().bounds.width * (9/16)
+        playerView.load(withVideoId: YTVideosArray[videoIndex].ID, playerVars: playerVars)
+        playerHeight.constant = UIScreen.main.bounds.width * (9/16)
 //        descriptionView.bringSubviewToFront(profile)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         orientation()
     }
     
-    func constructTitle(title: String) -> UIView
+    func constructTitle(_ title: String) -> UIView
     {
         
-        let titleLabel = UILabel(frame: CGRectMake(0, 0, 0, 0))
-        titleLabel.text = title.uppercaseString
-        if(UIDevice.currentDevice().model=="iPad")
+        let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        titleLabel.text = title.uppercased()
+        if(UIDevice.current.model=="iPad")
         {
             titleLabel.font = UIFont(name: "AvenirNext-Heavy", size: 24)
         }
@@ -53,11 +53,11 @@ class VideoController: UIViewController, YTPlayerViewDelegate{
         {
             titleLabel.font = UIFont(name: "AvenirNext-Heavy", size: 12)
         }
-        titleLabel.textColor = UIColor.whiteColor()
+        titleLabel.textColor = UIColor.white
         titleLabel.sizeToFit();
-        titleLabel.textAlignment = NSTextAlignment.Center
+        titleLabel.textAlignment = NSTextAlignment.center
   
-        let titleView = UIView(frame: CGRectMake(0, 0, titleLabel.frame.size.width, titleLabel.frame.size.height));
+        let titleView = UIView(frame: CGRect(x: 0, y: 0, width: titleLabel.frame.size.width, height: titleLabel.frame.size.height));
         titleView.addSubview(titleLabel)
         return titleView;
     }
@@ -65,39 +65,39 @@ class VideoController: UIViewController, YTPlayerViewDelegate{
     func updateView(){
         let video = YTVideosArray[videoIndex];
         descriptionView.descriptionLabel?.text = video.description;
-        self.navigationItem.titleView = constructTitle(video.title.uppercaseString)
+        self.navigationItem.titleView = constructTitle(video.title.uppercased())
         personView.viewsLabel?.text = String(video.viewCount);
         personView.nameLabel?.text = "Jannie Falk Bjerregaard"
         personView.descriptionLabel?.text = "Narkose-sygeplejerske, Regionshospitalet Randers"
     }
     
-    @IBAction func nextVideoPressed(sender: AnyObject) {
+    @IBAction func nextVideoPressed(_ sender: AnyObject) {
         if(videoIndex < YTVideosArray.count-1){
             videoIndex+=1;
-            self.playerView.loadWithVideoId(YTVideosArray[videoIndex].ID, playerVars: playerVars)
+            self.playerView.load(withVideoId: YTVideosArray[videoIndex].ID, playerVars: playerVars)
             updateView()
         }
     }
     
-    func playerViewDidBecomeReady(playerView: YTPlayerView!) {
+    func playerViewDidBecomeReady(_ playerView: YTPlayerView!) {
         playerView.playVideo()
         
     }
     
-    func playerView(playerView: YTPlayerView!, receivedError error: YTPlayerError) {
+    func playerView(_ playerView: YTPlayerView!, receivedError error: YTPlayerError) {
         print("Error")
     }
     
     func orientation(){
-        if(UIDevice.currentDevice().orientation.isLandscape){
-            if(UIDevice.currentDevice().model == "iPhone"){
-                self.navigationController?.navigationBarHidden = true;
+        if(UIDevice.current.orientation.isLandscape){
+            if(UIDevice.current.model == "iPhone"){
+                self.navigationController?.isNavigationBarHidden = true;
             }
-            playerHeight.constant = UIScreen.mainScreen().bounds.width * (9/16)
+            playerHeight.constant = UIScreen.main.bounds.width * (9/16)
         }
-        else if(UIDevice.currentDevice().orientation.isPortrait){
-            self.navigationController?.navigationBarHidden = false;
-            playerHeight.constant = UIScreen.mainScreen().bounds.width * (9/16)
+        else if(UIDevice.current.orientation.isPortrait){
+            self.navigationController?.isNavigationBarHidden = false;
+            playerHeight.constant = UIScreen.main.bounds.width * (9/16)
         }
     }
 }

@@ -277,15 +277,18 @@
 					3E05B7881C90197B00E0B739 = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = YDA447S8C8;
+						LastSwiftMigration = 0820;
 					};
 					3E05B79C1C90197B00E0B739 = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = 7F69CGL6EJ;
+						LastSwiftMigration = 0820;
 						TestTargetID = 3E05B7881C90197B00E0B739;
 					};
 					3E05B7A71C90197B00E0B739 = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = 7F69CGL6EJ;
+						LastSwiftMigration = 0820;
 						TestTargetID = 3E05B7881C90197B00E0B739;
 					};
 				};
@@ -508,6 +511,7 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Faste/Faste-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -525,6 +529,7 @@
 				PRODUCT_NAME = Fasteregler;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Faste/Faste-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -538,6 +543,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = dk.emento.FasteTests;
 				PRODUCT_NAME = Fasteregler;
 				SWIFT_OBJC_BRIDGING_HEADER = "Faste/Faste-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Fasteregler.app/Fasteregler";
 			};
 			name = Debug;
@@ -551,6 +557,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = dk.emento.FasteTests;
 				PRODUCT_NAME = Fasteregler;
 				SWIFT_OBJC_BRIDGING_HEADER = "Faste/Faste-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Fasteregler.app/Fasteregler";
 			};
 			name = Release;
@@ -562,6 +569,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = dk.emento.FasteUITests;
 				PRODUCT_NAME = Fasteregler;
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = Faste;
 				USES_XCTRUNNER = YES;
 			};
@@ -574,6 +582,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = dk.emento.FasteUITests;
 				PRODUCT_NAME = Fasteregler;
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = Faste;
 				USES_XCTRUNNER = YES;
 			};

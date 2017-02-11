@@ -20,7 +20,7 @@ class InfoPopUpViewController: UIViewController {
     var alphaView : UIView!;
     var dialogHeight : CGFloat = 583;
     var dialogWidth : CGFloat = 355;
-    @IBAction func btnOKTap(sender: AnyObject) {
+    @IBAction func btnOKTap(_ sender: AnyObject) {
         self.delegate?.infoOK();
     }
     
@@ -33,13 +33,13 @@ class InfoPopUpViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func showInfoPopUp(targetView: UIViewController, alphaView: UIView){
+    func showInfoPopUp(_ targetView: UIViewController, alphaView: UIView){
         self.alphaView = alphaView;
         let statusBarOffset : CGFloat;
         let navigationBarSize = (targetView.navigationController?.navigationBar.frame.size)! as CGSize;
-        let statusBarSize = UIApplication.sharedApplication().statusBarFrame.size;
+        let statusBarSize = UIApplication.shared.statusBarFrame.size;
         
-        if(!UIApplication.sharedApplication().statusBarHidden){
+        if(!UIApplication.shared.isStatusBarHidden){
             if(statusBarSize.width < statusBarSize.height){
                 statusBarOffset = navigationBarSize.width + statusBarSize.height/2;
             }
@@ -57,43 +57,43 @@ class InfoPopUpViewController: UIViewController {
         offsetX = 0;
         offsetY = -statusBarOffset;
         
-        self.view.frame = CGRectMake(targetView.view.frame.origin.x, targetView.view.frame.origin.y, width, height);
-        self.view.frame.offsetInPlace(dx: offsetX, dy: offsetY);
+        self.view.frame = CGRect(x: targetView.view.frame.origin.x, y: targetView.view.frame.origin.y, width: width, height: height);
+        self.view.frame.offsetBy(dx: offsetX, dy: offsetY);
         targetView.view.addSubview(self.view);
         infoHeight.constant = dialogHeight;
         infoWidth.constant = dialogWidth;
         
-        infoView.frame = CGRectMake((width-infoView.frame.size.width)/2, height, infoView.frame.size.width, infoView.frame.size.height);
+        infoView.frame = CGRect(x: (width-infoView.frame.size.width)/2, y: height, width: infoView.frame.size.width, height: infoView.frame.size.height);
         if(DeviceType.IS_IPHONE_4_OR_LESS){
-            infoView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.7, 0.7)
+            infoView.transform = CGAffineTransform.identity.scaledBy(x: 0.7, y: 0.7)
             infoWidth.constant = infoWidth.constant + 85
         }
         if(DeviceType.IS_IPHONE_5){
-            infoView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.85, 0.85)
+            infoView.transform = CGAffineTransform.identity.scaledBy(x: 0.85, y: 0.85)
         }
         self.alphaView.alpha = 1;
         UIView.beginAnimations("", context: nil);
         UIView.setAnimationDuration(animationDuration);
-        UIView.setAnimationCurve(.EaseOut);
-        infoView.frame = CGRectMake((width-infoView.frame.size.width)/2, (height-infoView.frame.size.height)/2, infoView.frame.size.width, infoView.frame.size.height);
+        UIView.setAnimationCurve(.easeOut);
+        infoView.frame = CGRect(x: (width-infoView.frame.size.width)/2, y: (height-infoView.frame.size.height)/2, width: infoView.frame.size.width, height: infoView.frame.size.height);
         self.alphaView.alpha = 0;
         
         UIView.commitAnimations();
         
-        hyperlink.editable = false;
-        hyperlink.dataDetectorTypes = .Link;
-        email.editable = false;
-        email.dataDetectorTypes = .Link;
+        hyperlink.isEditable = false;
+        hyperlink.dataDetectorTypes = .link;
+        email.isEditable = false;
+        email.dataDetectorTypes = .link;
     }
     
     func removeInfoPopUp(){
         UIView.beginAnimations("", context: nil);
         UIView.setAnimationDuration(animationDuration);
-        UIView.setAnimationCurve(.EaseIn);
-        infoView.frame = CGRectMake((self.view.frame.size.width-infoView.frame.size.width)/2, -self.view.frame.size.height, infoView.frame.size.width, infoView.frame.size.height);
+        UIView.setAnimationCurve(.easeIn);
+        infoView.frame = CGRect(x: (self.view.frame.size.width-infoView.frame.size.width)/2, y: -self.view.frame.size.height, width: infoView.frame.size.width, height: infoView.frame.size.height);
         alphaView.alpha = 1;
         UIView.commitAnimations();
-        self.view.performSelector(#selector(self.view.removeFromSuperview), withObject: nil, afterDelay: animationDuration);
+        self.view.perform(#selector(self.view.removeFromSuperview), with: nil, afterDelay: animationDuration);
         
     }
     
